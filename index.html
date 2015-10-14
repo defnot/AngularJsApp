@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="Agrion">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Agrion</title>
+
+  <!-- Style sheets -->
+  <link href="app/css/bootstrap.css" rel="stylesheet">
+  <link href="app/css/CustomStyle.css" rel="stylesheet">
+
+  <!-- Angular -->
+  <script src="lib/angular/angular.js" charset="utf-8"></script>
+  <script src="lib/angular-ui-router/angular-ui-router.js" charset="utf-8"></script>
+
+  <!-- Angular app files -->
+  <script src="app/app.js" charset="utf-8"></script>
+  <script src="app/routes.js" charset="utf-8"></script>
+
+  <!-- Controllers -->
+  <script src="app/controllers/homeCtrl.js" charset="utf-8"></script>
+  <script src="app/controllers/clients/clientsCtrl.js" charset="utf-8"></script>
+  <script src="app/controllers/clients/individualEntityCtrl.js" charset="utf-8"></script>
+  <script src="app/controllers/clients/legalEntityCtrl.js" charset="utf-8"></script>
+  <script src="app/controllers/offer/offerCtrl.js" charset="utf-8"></script>
+
+  <!--[if lt IE 9]>
+      <script src="https://cdn.jsdelivr.net/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+  <div class="container-fluid ">
+    <div class="row">
+
+      <div class="headerStyle">
+        <img src="app/images/logo.svg" alt="Code Scratcher" class="img-responsive" />
+      </div>
+
+      <nav class="navbar navbar-default">
+        <div class="container-fluid">        
+          <div class="col-sm-9 col-sm-push-3">
+            <div ui-view></div>
+          </div>
+
+          <div class="sidebarStyle">
+            <ul class="nav">
+              <li>
+                <a href="#/clients">Клиенти</a>
+              </li>
+              <li>
+                <a href="#/client/individual">Физическо лице</a>
+              </li>
+              <li>
+                <a href="#/client/legal">Юридическо лице</a>
+              </li>
+              <li>
+                <a href="#/offer">Оферта</a>
+              </li>
+            </ul>
+          </div>
+          <div class="clearfix"></div>
+        </div>
+    </div>
+
+    <!-- jQuery -->
+    <script src="lib/jquery/jquery-1.11.2.min.js"></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="lib/bootstrap/bootstrap.min.js"></script>
+</body>
+
+</html>

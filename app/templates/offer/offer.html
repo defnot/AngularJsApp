@@ -1,0 +1,53 @@
+<div ng-controller="OfferCtrl as vm">
+      <h1>Оферта</h1>
+    <form ng-submit="vm.submitOffer()" class="form-horizontal">
+        <div class="form-group">
+            <label for="loan" class="control-label col-xs-2">Заем:</label>
+            <div class="col-xs-5">
+                <input type="text" class="form-control" id="loan" placeholder="Заем" ng-model="vm.loan">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="interest" class="control-label col-xs-2">Лихва:</label>
+            <div class="col-xs-5">
+                <input type="text" class="form-control" id="interest" placeholder="Лихва" ng-model="vm.interest">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="paymentPerMonth" class="control-label col-xs-2">Брой вноски на година:</label>
+            <div class="col-xs-5">
+                <input type="text" class="form-control" id="payment-per-month" placeholder="Брой вноски на година" ng-model="vm.numpayments">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="years" class="control-label col-xs-2">Години:</label>
+            <div class="col-xs-5">
+                <input type="text" class="form-control" id="years" placeholder="Години" ng-model="vm.years">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-xs-13">
+                <button type="submit" class="btn btn-primary">Оферта</button>
+            </div>
+        </div>
+    </form>
+
+      <table class="table table-striped table-bordered table-condensed">
+          <thead>
+            <th>Месец</th>
+            <th>Заем</th>
+            <th>Главница на вноска</th>
+            <th>Лихва на вноска</th>
+            <th>Вноска</th>
+          </thead>
+          <tbody>
+              <tr ng-repeat="data in vm.offerTable">
+                <td>{{data.month}}</td>
+                <td>{{data.startBalance | number:2}}</td>
+                <td>{{data.principal | number:2}}</td>
+                <td>{{data.interest | number:2}}</td>
+                <td>{{data.payment | number:2}}</td>
+              </tr>
+          </tbody>
+      </table>
+</div>

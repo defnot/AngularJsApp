@@ -1,0 +1,140 @@
+<tabset ng-controller="IndividualEntityCtrl as vm">
+
+  <tab heading="Информация">
+
+    <div style="background: #fff; width: 100%; height: 100%;">
+      <div class="col-md-10 col-md-offset-1" style="margin-top: 30px; margin-bottom: 20px;">
+        <h3>Физическо лице</h3>
+        <form name="registerIndividualClientForm" ng-submit="vm.registerClient()" novalidate>
+
+          <div class="col-md-4 form-padding">
+            <label for="input-04">Дата на искането за кредит</label>
+            <input class="form-control text-margin" id="input-04" placeholder="задължително" required type="text">
+
+            <label for="input-05">Име на оператора</label>
+            <input class="form-control text-margin" id="input-03" placeholder="задължително" required type="text">
+          </div>
+
+          <div class="col-md-4 form-padding">
+            <label for="input-02">ID Клиентски номер на кредитоискателя</label>
+            <input class="form-control text-margin" disabled id="input-02" type="text">
+
+            <label for="col2-input-02">Филиал</label>
+            <input class="form-control text-margin" id="col2-input-02" placeholder="задължително" required  type="text">
+          </div>
+
+          <div class="col-md-4 form-padding">
+            <label for="input-03">Регион</label>
+            <input class="form-control text-margin" id="input-03" placeholder="задължително" required  type="text">
+
+            <label for="col2-input-03">Индентификационен номер на оператора</label>
+            <input class="form-control text-margin" id="col2-input-03" placeholder="задължително" required  type="text">
+
+          </div>
+
+          <div class="col-md-4 form-padding">
+            <label for="input-05">Фамилия на оператора</label>
+            <input class="form-control text-margin" id="input-03" placeholder="задължително" required  type="text">
+          </div>
+
+          <div class="col-md-12 form-padding">
+            <h3>Данни за кредитоискателя</h3>
+          </div>
+
+          <div class="col-md-4 form-padding">
+            <!-- <input type="text" id="input-06" class="form-control"> -->
+
+            <label for="input-07">Име</label>
+            <input class="form-control text-margin" id="input-03" id="input-07" placeholder="" type="text">
+
+            <label for="col1-input-05">ЕГН</label>
+            <span ng-if="clientEgn && !vm.checkEgn(clientEgn) && clientEgn.length >=10" style="color:red">Невалиден ЕГН номер!
+            </span>
+            <span ng-if="clientEgn && clientEgn.length < 10" style="color:red">Невалидна дължина (10)</span>
+            <input class="form-control text-margin" id="col1-input-05" ng-change="vm.sex=''; vm.birthDate = ''" ng-model="clientEgn" type="text">
+
+          </div>
+
+          <div class="col-md-4 form-padding">
+            <label for="col2-input-05">Презиме</label>
+            <input class="form-control text-margin" id="col3-input-3" type="text" value="">
+
+            <label for="col2-input-2">НЛК</label>
+            <input class="form-control text-margin" id="col2-input-2" type="text" value="">
+
+          </div>
+
+          <div class="col-md-4 form-padding">
+            <label for="col2-input-09">Фамилия</label>
+            <input class="form-control text-margin" id="col2-input-09" type="text">
+
+            <label>Дата на раждане</label>
+            <input class="form-control text-margin" disabled id="col3-input-3" ng-model="vm.birthDate" type="text">
+          </div>
+
+          <div class="col-md-4 form-padding">
+            <label>Пол</label>
+            <input class="form-control text-margin" disabled id="col3-input-3" ng-model="vm.sex" type="text">
+
+            <label>ДДС №</label>
+            <input class="form-control text-margin" id="col3-input-3" type="text" value="">
+          </div>
+
+          <div class="col-md-4 form-padding">
+            <label>ЗП Регистрационен номер</label>
+            <input class="form-control text-margin" disabled id="col3-input-3" type="text" value="">
+
+            <label>Националност</label>
+            <select class="form-control text-margin"></select>
+
+          </div>
+
+          <div class="col-md-4 form-padding">
+            <label>Данъчен номер</label>
+            <input class="form-control text-margin" id="col3-input-3" type="text" value="">
+
+          </div>
+
+          <div class="col-md-12 form-padding">
+            <h3>Адрес за кореспонденция</h3>
+          </div>
+
+          <div class="col-md-4 form-padding">
+            <label for="col2-input-09">Улица</label>
+            <input class="form-control text-margin" id="col2-input-09" type="text">
+
+            <label for="col3-input-3">Град</label>
+            <input class="form-control text-margin" id="col3-input-3" type="text" value="">
+          </div>
+
+          <div class="col-md-4 form-padding">
+            <label for="col2-input-09">Област</label>
+            <input class="form-control text-margin" id="col2-input-09" type="text">
+
+            <label for="col3-input-3">Пощенски код</label>
+            <input class="form-control text-margin" id="col3-input-3" type="text" value="">
+          </div>
+
+          <div class="col-md-4 form-padding">
+            <label for="col2-input-09">Държава</label>
+            <input class="form-control text-margin" id="col2-input-09" type="text">
+
+            <label for="col3-input-3">Телефон</label>
+            <input class="form-control text-margin" id="col3-input-3" type="text" value="">
+          </div>
+
+          <div class="col-md-12" style="padding-top: 30px;">
+            <button class="btn btn-default" ng-click="">
+              <span></span>Cancel</button>
+            <input class="btn btn-success" ng-disabled="!vm.checkEgn(clientEgn)" type="submit" value="Save"/>
+          </div>
+        </form>
+
+        <!-- <div>
+          <button class="btn btn-primary text-right" ng-click="saveClientDetails()">Запази</button>
+        </div> -->
+      </div>
+    </div>
+
+  </tab>
+</tabset>
