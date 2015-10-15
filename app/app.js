@@ -1,6 +1,7 @@
-(function(){
+(function() {
   "use strict";
 
-  angular.module('Agrion', ['ui.router']);
+  // Module 'clientResourceMocks' SHOULD be removed when mocks are not needed.
+  angular.module('Agrion', ['ui.router', 'commonServices', 'clientResourceMocks']);
 
 }());

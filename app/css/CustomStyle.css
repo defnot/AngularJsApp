@@ -196,10 +196,6 @@
     background-color: #75ad29;
 }
 
-html body {
-  background-color: "#fff";
-  font-family: 'Open Sans', sans-serif;
-}
 .contentAreaStyle {
   background-color: #E8E8C2;
   height: 400px;
@@ -227,21 +223,51 @@ html body {
   width: 40px;
 }
 
-/*.footer1Style {
-  background-color: #7d7e7d;
-  color: #dddddd;
-  height: 150px;
-  text-align: center;
+.contentAreaStyle
+{
+	background-color: #E8E8C2;
+	height: 400px;
+	text-align: center;
 }
-.footer2Style {
-  background-color: #5C5C5C;
-  color: #dddddd;
-  height: 150px;
-  text-align: center;
+.footer1Style
+{
+	background-color: #7d7e7d;
+	color: #dddddd;
+	height: 150px;
+	text-align: center;
 }
-.footerCopyRightStyle {
-  background-color: #373737;
-  color: #dddddd;
-  height: 30px;
-  text-align: center;
-}*/
+.footer2Style
+{
+	background-color: #5C5C5C;
+	color: #dddddd;
+	height: 150px;
+	text-align: center;
+}
+.footerCopyRightStyle
+{
+	background-color: #373737;
+	color: #dddddd;
+	height: 30px;
+	text-align: center;
+}
+
+.resultText, .resultInfo
+{
+	width: 24%;
+	position: relative;
+	float:left;
+	font-size:14px;
+	line-height:24px;
+}
+.resultInfoRight
+{
+  width: 40%;
+  position: relative;
+  float: right;
+  text-align: right;
+}
+
+html body {
+  background-color: "#fff";
+  font-family: 'Open Sans', sans-serif;
+}

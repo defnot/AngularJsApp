@@ -9,12 +9,12 @@ angular.module("Agrion")
 
         var vm = this;
 
-        vm.submitOffer = function(){$http.get('http://localhost:9000/tableRows',
+        vm.submitOffer = function(){$http.get('http://localhost:9000/calculateEMI',
           {params: {
-                baseLoanAmount: vm.loan,
-                loanPercent: vm.interest,
-                numOfPaymentsPerYear: vm.numpayments,
-                years: vm.years
+                loan: vm.loan,
+                annualInterest: vm.interest,
+                paymentsPerYear: vm.numpayments,
+                loanPeriodYears: vm.years
                 }} ).
             success(function(data) {
                 vm.offerTable = data;
