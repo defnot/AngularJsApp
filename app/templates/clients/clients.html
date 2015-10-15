@@ -91,7 +91,7 @@
                 </thead>
 
                 <tbody>
-                <tr ng-repeat="c in getClients() | orderBy:sortType:sortReverse | filter:searchClient">
+                <tr ng-repeat="c in vm.getClients() | orderBy:sortType:sortReverse | filter:searchClient">
                     <td>{{ c.id }}</td>
                     <td>{{ c.company_name_bg }}</td>
                     <td>{{ c.company_name_en }}</td>

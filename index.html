@@ -14,6 +14,8 @@
   <!-- Angular -->
   <script src="lib/angular/angular.js" charset="utf-8"></script>
   <script src="lib/angular-ui-router/angular-ui-router.js" charset="utf-8"></script>
+  <script src="lib/angular-resource/angular-resource.js" charset="utf-8"></script>
+  <script src="lib/angular-mocks/angular-mocks.js" charset="utf-8"></script>
 
   <!-- Angular app files -->
   <script src="app/app.js" charset="utf-8"></script>
@@ -25,6 +27,13 @@
   <script src="app/controllers/clients/individualEntityCtrl.js" charset="utf-8"></script>
   <script src="app/controllers/clients/legalEntityCtrl.js" charset="utf-8"></script>
   <script src="app/controllers/offer/offerCtrl.js" charset="utf-8"></script>
+
+  <!-- Services -->
+  <script src="app/services/commonServices.js"></script>
+  <script src="app/services/clientResource.js"></script>
+
+  <!-- Mocks -->
+  <script src="app/mocks/clientResourceMocks.js"></script>
 
   <!--[if lt IE 9]>
       <script src="https://cdn.jsdelivr.net/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -40,8 +49,8 @@
         <img src="app/images/logo.svg" alt="Code Scratcher" class="img-responsive" />
       </div>
 
-      <nav class="navbar navbar-default">
-        <div class="container-fluid">        
+      <nav class="navbar-default">
+        <div class="container-fluid">
           <div class="col-sm-9 col-sm-push-3">
             <div ui-view></div>
           </div>
