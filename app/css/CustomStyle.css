@@ -270,3 +270,19 @@ html body {
 	height: 30px;
 	text-align: center;
 }
+
+.resultText, .resultInfo
+{
+	width: 24%;
+	position: relative;
+	float:left;
+	font-size:14px;
+	line-height:24px;
+}
+.resultInfoRight
+{
+  width: 40%;
+  position: relative;
+  float: right;
+  text-align: right;
+}
