@@ -37,39 +37,52 @@
     <div class="row">
 
       <div class="headerStyle">
-        <img src="app/images/logo.svg" alt="Code Scratcher" class="img-responsive" />
+        <img src="app/images/logo.png" alt="Code Scratcher" class="img-responsive" />
       </div>
 
-      <nav class="navbar navbar-default">
-        <div class="container-fluid">        
-          <div class="col-sm-9 col-sm-push-3">
-            <div ui-view></div>
-          </div>
-
-          <div class="sidebarStyle">
-            <ul class="nav">
-              <li>
-                <a href="#/clients">Клиенти</a>
-              </li>
-              <li>
-                <a href="#/client/individual">Физическо лице</a>
-              </li>
-              <li>
-                <a href="#/client/legal">Юридическо лице</a>
-              </li>
-              <li>
-                <a href="#/offer">Оферта</a>
-              </li>
-            </ul>
-          </div>
-          <div class="clearfix"></div>
+      <div class="container-fluid">
+        <!-- main content -->
+        <div class="col-sm-11 col-sm-push-1">
+          <div ui-view></div>
         </div>
-    </div>
 
-    <!-- jQuery -->
-    <script src="lib/jquery/jquery-1.11.2.min.js"></script>
-    <!-- Bootstrap Core JavaScript -->
-    <script src="lib/bootstrap/bootstrap.min.js"></script>
+        <div class="sidebarStyle">
+          <ul class="nav">
+            <li>
+              <a href="#/clients">
+                <span class="menu-icon-clients"></span>
+                Клиенти
+              </a>
+            </li>
+            <li>
+              <a href="#/client/individual">Физическо лице</a>
+            </li>
+            <li>
+              <a href="#/client/legal">Юридическо лице</a>
+            </li>
+            <li>
+              <a href="#/offer">
+                <span class="menu-icon-offer"></span>
+                Оферта</a>
+            </li>
+            <li>
+              <a href="#/reports">
+                <span class="menu-icon-reports"></span>
+                Отчети</a>
+            </li>
+
+
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- jQuery -->
+  <script src="lib/jquery/jquery-1.11.2.min.js"></script>
+  <!-- Bootstrap Core JavaScript -->
+  <script src="lib/bootstrap/bootstrap.min.js"></script>
 </body>
 
 </html>
