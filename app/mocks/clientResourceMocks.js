@@ -1,6 +1,8 @@
 (function() {
   'use strict';
 
+  // Create 'clientResourceMocks' and added as dependency to the
+  // main module(Agrion) so it can be easily disabled and enabled
   angular
     .module('clientResourceMocks', ['ngMockE2E'])
     .run(function($httpBackend) {
@@ -611,6 +613,29 @@
       // TODO: Handle the other request methods like POST, PUT, DELETE
       $httpBackend.whenGET(clientsUrl).respond(clients);
 
+      var clientsUrlRegex = new RegExp(clientsUrl + '/[0-9][0-9]*', '');
+      $httpBackend.whenGET(clientsUrlRegex).respond(filterClients);
+
       $httpBackend.whenGET(/app/).passThrough();
+
+      function filterClients(method, url, data) {
+        var client = {
+          clientId: 0
+        };
+        var parameters = url.split('/');
+        var length = parameters.length;
+        var id = parameters[length - 1];
+
+        if (id > 0) {
+          for (var i = 0; i < clients.length; i++) {
+            if (clients[i].id == id) {
+              client = clients[i];
+              break;
+            }
+          };
+        }
+
+        return [200, client, {}];
+      }
     });
 }())

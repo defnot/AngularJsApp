@@ -23,9 +23,14 @@
       return vm.clients;
     };
     //
-    // vm.edit = function (clientId) {
-    // 	alert(clientId);
-    // };
+    vm.editClient = function (client) {
+
+    	if (client.client_type != 1) {
+        // TODO: Call legal view
+      } else {
+        // TODO: Call individual view
+      }
+    };
     //
     // vm.delete = function (clientId) {};
 

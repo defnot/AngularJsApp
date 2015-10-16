@@ -1,7 +1,7 @@
 (function() {
   'use strict';
 
-  angular.module("Agrion")
+  angular.module('Agrion')
     .config(['$stateProvider',
       '$urlRouterProvider',
       SetRoutes
@@ -13,14 +13,13 @@
 
     // Application routes
     $stateProvider
-      .state("home", {
+      .state('home', {
         url: '',
-        templateUrl: "app/templates/home.html"
+        templateUrl: 'app/templates/home.html'
       })
-      .state("clients", {
+      .state('clients', {
         url: '/clients',
-        templateUrl: "app/templates/clients/clients.html",
-        controller: "ClientsCtrl as vm"
+        templateUrl: 'app/templates/clients/clients.html'
       })
       .state('client', {
         url: '/client',
@@ -28,18 +27,30 @@
       })
       .state('client.individual', {
         url: '/individual',
-        templateUrl: 'app/templates/clients/individualEntity.html',
-        controller: 'IndividualEntityCtrl as vm'
+        templateUrl: 'app/templates/clients/individualEntity.html'
       })
       .state('client.legal', {
         url: '/legal',
-        templateUrl: 'app/templates/clients/legalEntity.html',
-        controller: 'LegalEntityCtrl as vm'
+        templateUrl: 'app/templates/clients/legalEntity.html'
       })
-      .state("offer", {
+      .state('client.editLegal', {
+        url: '/legal/{clientId:int}',
+        templateUrl: 'app/templates/clients/legalEntity.html',
+        controller: 'LegalEntityCtrl as vm',
+        resolve: {
+          clientResource: 'clientResource',
+
+          client: function(clientResource, $stateParams) {
+            var clientId = $stateParams.clientId;
+
+            return clientResource.get({ clientId: clientId }).$promise;
+          }
+        }
+      })
+      .state('offer', {
         url: '/offer',
-        templateUrl: "app/templates/offer/offer.html",
-        controller: "OfferCtrl as vm"
+        templateUrl: 'app/templates/offer/offer.html',
+        controller: 'OfferCtrl as vm'
       });
   }
 }());

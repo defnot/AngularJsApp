@@ -1,4 +1,4 @@
-<tabset ng-controller="LegalEntityCtrl as vm">
+<tabset>
 	<tab heading="Информация">
 
 
@@ -8,32 +8,32 @@
         <div class="col-md-4 form-padding">
 
           <label for="input-04">Дата на искането за кредит</label>
-          <input type="text" id="input-04" class="form-control text-margin" placeholder="">
+          <input type="text" id="input-04" class="form-control text-margin" placeholder="" value="{{ vm.client.request_date }}">
 
 					<label for="input-05">Име на оператора</label>
-					<input type="text" id="input-03" class="form-control text-margin" placeholder="" >
+					<input type="text" id="input-03" class="form-control text-margin" placeholder="" value="{{ vm.client.operator_name }}">
         </div>
 
         <div class="col-md-4 form-padding">
           <label for="input-02">ID Клиентски номер на кредитоискателя</label>
-          <input type="text" disabled id="input-02" class="form-control text-margin" >
+          <input type="text" disabled id="input-02" class="form-control text-margin" value="{{ vm.client.client_id_number }}">
 
           <label for="col2-input-02">Филиал</label>
-          <input type="text" id="col2-input-02" class="form-control text-margin" placeholder="" >
+          <input type="text" id="col2-input-02" class="form-control text-margin" placeholder="" value="{{ vm.client.branch }}" >
         </div>
 
         <div class="col-md-4 form-padding">
           <label for="input-03">Регион</label>
-          <input type="text" id="input-03" class="form-control text-margin" placeholder="" >
+          <input type="text" id="input-03" class="form-control text-margin" placeholder="" value="{{ vm.client.region }}">
 
           <label for="col2-input-03">Индентификационен номер на оператора</label>
-          <input type="text" id="col2-input-03" class="form-control text-margin" placeholder="" >
+          <input type="text" id="col2-input-03" class="form-control text-margin" placeholder="" value="{{ vm.client.operator_id }}">
 
         </div>
 
         <div class="col-md-4 form-padding">
           <label for="input-05">Фамилия на оператора</label>
-          <input type="text" id="input-03" class="form-control text-margin" placeholder="" >
+          <input type="text" id="input-03" class="form-control text-margin" placeholder="" value="{{ vm.client.operator_family }}">
         </div>
 
         <div class="col-md-12 form-padding">
@@ -44,39 +44,39 @@
           <!-- <input type="text" id="input-06" class="form-control"> -->
 
           <label for="input-07">Име на компанията</label>
-          <input type="text" id="input-03" class="form-control text-margin" id="input-07" placeholder="" >
+          <input type="text" id="input-03" class="form-control text-margin" id="input-07" placeholder="" value="{{ vm.client.company_name_en }}">
 
           <label for="col1-input-05">Юридическа форма</label>
-          <input type="text" id="col1-input-05" class="form-control text-margin" placeholder="" >
+          <input type="text" id="col1-input-05" class="form-control text-margin" placeholder="" value="{{ vm.client.legal_form }}">
         </div>
 
         <div class="col-md-4 form-padding">
-          <label for="col2-input-05">Отрасъл</label>
+          <label for="col2-input-05">Отрасъл</label> <!-- TODO: add data to the menu -->
           <select class="form-control text-margin"  ></select>
 
           <label for="col2-input-2">Дата на стартиране надейността</label>
-          <input type="text" id="col2-input-2" class="form-control text-margin" value="" >
+          <input type="text" id="col2-input-2" class="form-control text-margin" value="{{ vm.client.starter_date }}" >
 
         </div>
 
         <div class="col-md-4 form-padding">
           <label for="col2-input-09">Собственици – брой</label>
-          <input type="text" id="col2-input-09" class="form-control text-margin" >
+          <input type="text" id="col2-input-09" class="form-control text-margin" value="{{ vm.client.owners.length }}">
 
           <label for="col3-input-3">Служители – брой</label>
-          <input type="text" id="col3-input-3" class="form-control text-margin" value="" >
+          <input type="text" id="col3-input-3" class="form-control text-margin" value="{{ vm.client.employees.length }}" >
 
         </div>
 
         <div class="col-md-4 form-padding">
           <label>ЕИК №:</label>
-          <input type="text" id="col3-input-3" class="form-control text-margin" value="" >
+          <input type="text" id="col3-input-3" class="form-control text-margin" value="{{ vm.client.eik }}" >
 
         </div>
 
         <div class="col-md-4 form-padding">
           <label>ДДС №:</label>
-          <input type="text" disabled id="col3-input-3" class="form-control text-margin" value="" >
+          <input type="text" disabled id="col3-input-3" class="form-control text-margin" value="{{ vm.client.num_dds }}" >
         </div>
 
         <div class="col-md-4 form-padding">
@@ -95,26 +95,26 @@
 
         <div class="col-md-4 form-padding">
           <label for="col2-input-09">Улица</label>
-          <input type="text" id="col2-input-09" class="form-control text-margin" >
+          <input type="text" id="col2-input-09" class="form-control text-margin" value="{{ vm.client.addresses[0].street }}">
 
           <label for="col3-input-3">Град</label>
-          <input type="text" id="col3-input-3" class="form-control text-margin" value="" >
+          <input type="text" id="col3-input-3" class="form-control text-margin" value="{{ vm.client.addresses[0].city }}" >
         </div>
 
         <div class="col-md-4 form-padding">
           <label for="col2-input-09">Област</label>
-          <input type="text" id="col2-input-09" class="form-control text-margin" >
+          <input type="text" id="col2-input-09" class="form-control text-margin" value="{{ vm.client.addresses[0].city }}">
 
           <label for="col3-input-3">Пощенски код</label>
-          <input type="text" id="col3-input-3" class="form-control text-margin" value="" >
+          <input type="text" id="col3-input-3" class="form-control text-margin" value="{{ vm.client.addresses[0].post_code }}" >
         </div>
 
         <div class="col-md-4 form-padding">
           <label for="col2-input-09">Държава</label>
-          <input type="text" id="col2-input-09" class="form-control text-margin" >
+          <input type="text" id="col2-input-09" class="form-control text-margin" value="{{ vm.client.addresses[0].country }}" >
 
           <label for="col3-input-3">Телефон</label>
-          <input type="text" id="col3-input-3" class="form-control text-margin" value="" >
+          <input type="text" id="col3-input-3" class="form-control text-margin" value="{{ vm.client.addresses[0].phone }}" >
         </div>
 
 
