@@ -38,7 +38,7 @@
 
     <div class="form-group">
       <div class="col-xs-10">
-        <button class="btn btn-primary" type="submit">Оферта</button>
+        <button class="btn btn-primary" type="submit">Изчисли Оферта</button>
       </div>
     </div>
   </form>
@@ -59,7 +59,7 @@
   <span class="resultInfo">{{vm.offerTable[0].totalInterest | number:2}}
     {{vm.currency}}</span>
   <br style="clear:both">
-  <div class="resultText">Заем:</div>
+  <div class="resultText">Сума на заема:</div>
   <span class="resultInfo">
     {{vm.offerTable[0].startBalance | number:2}}
     {{vm.currency}}</span>
@@ -76,7 +76,7 @@
   <table class="table table-striped table-bordered table-condensed">
     <thead>
       <th>Номер на вноска</th>
-      <th>Заем</th>
+      <th>Сума на заема</th>
       <th>Главница на вноска</th>
       <th>Лихва на вноска</th>
       <th>Вноска</th>
@@ -92,7 +92,7 @@
     </tbody>
   </table>
 
-  <a href="#" class="btn btn-success" role="button">Продължи</a>
+  <a href="#" class="btn btn-success" role="button">Запиши</a>
   <a id="create_pdf" class="btn btn-success" role="button">Изтегли PDF</a>
 
 </div>
