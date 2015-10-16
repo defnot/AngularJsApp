@@ -1,4 +1,4 @@
-(function(){
+  (function(){
 
     "use strict";
     angular.module('Agrion')
@@ -7,6 +7,12 @@
 
     function IndividualEntityCtrl(){
         var vm = this;
+
+
+        //submiting form
+        vm.registerClient = function() {
+          alert("implement submit to mock service")
+        }
 
         //validates egn
         vm.checkEgn = function (egn) {
@@ -71,9 +77,44 @@
          var month = Math.floor(parseInt(egn) / 1000000) % 100;
          var day = Math.floor(parseInt(egn) / 10000) % 100;
 
+         if (Math.floor(day/10) == 0) {
+           day = "0"+day;
+         }
+
+         if(Math.floor(month/10) == 0){
+           month = "0" + month;
+         }
+
+         if(Math.floor(year/10) % 10 == 0 ) {
+           year = "0" + year;
+         }
+
+         if(month < 13) {
+           year = "19" + year;
+         }
+
+         if (month >= 41 && month <= 49) {
+           month = month % 10;
+           month = "0" + month;
+            year = "20" + year;
+         }
+
+         if (month >= 50) {
+           month = month % 10;
+           month = "1" + month;
+           year = "20" + year;
+         }
+
         return day + "/" + month + "/" + year;
 
        }
+
+       vm.containsOnlyDigits = function(documentNumber){
+         var regexp = /^\d+$/;
+         var valid = regexp.test(documentNumber);
+         return valid;
+       }
+
 
     }
 }());

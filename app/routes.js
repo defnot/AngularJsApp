@@ -24,7 +24,7 @@
       })
       .state('client', {
         url: '/client',
-        templateUrl: 'app/templates/clients/client.html',
+        templateUrl: 'app/templates/clients/client.html'
       })
       .state('client.individual', {
         url: '/individual',
@@ -40,6 +40,10 @@
         url: '/offer',
         templateUrl: "app/templates/offer/offer.html",
         controller: "OfferCtrl as vm"
+      })
+      .state("offerClientData", {
+        url: '/offerclientdata',
+        templateUrl: "app/templates/offer/offer-client-data.html",
       });
   }
 }());
