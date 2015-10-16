@@ -610,7 +610,7 @@
       var clientsUrl = '/api/clients';
       // TODO: Handle the other request methods like POST, PUT, DELETE
       $httpBackend.whenGET(clientsUrl).respond(clients);
-
+      $httpBackend.whenGET(/calculateEMI/).passThrough();
       $httpBackend.whenGET(/app/).passThrough();
     });
 }())

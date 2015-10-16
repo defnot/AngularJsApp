@@ -44,23 +44,19 @@
   </form>
   <!-- DATA  -->
   <hr>
-  <div class="resultText total2">
+  <div class="resultText">
     <b>Дължима сума</b>:</div>
-  <!-- TODO: CREATE THIS FIELD IN SERVICE? -->
-  <span class="resultInfo total2">
-    <b>145,329.02
+  <span class="resultInfo">
+    <b>{{vm.offerTable[0].totalAmount | number:2}}
       {{vm.currency}}</b>
   </span>
-  <div class="resultInfoRight">
-    <b>Начална дата:</b>: Октомври 15, 2015<br>
-    <b>Крайна дата</b>: Септември 15, 2018</div>
+  <br style="clear:both">
   <div class="resultText">35 месечни вноски от:</div>
   <span class="resultInfo">{{vm.offerTable[0].payment | number:2}}
     {{vm.currency}}</span>
   <br style="clear:both">
   <div class="resultText">Цяла лихва:</div>
-  <!-- TODO: CREATE THIS FIELD IN SERVICE? -->
-  <span class="resultInfo">23,217.02
+  <span class="resultInfo">{{vm.offerTable[0].totalInterest | number:2}}
     {{vm.currency}}</span>
   <br style="clear:both">
   <div class="resultText">Заем:</div>
@@ -71,8 +67,8 @@
   <div class="resultText">Лихвa %:</div>
   <span class="resultInfo">{{vm.interest}}%</span>
   <br style="clear:both">
-  <div class="resultText">Ефективна годишна лихва:</div>
-  <span class="resultInfo">12.68%</span>
+  <!-- <div class="resultText">Ефективна годишна лихва:</div>
+  <span class="resultInfo">12.68%</span> -->
   <br style="clear:both">
   <hr>
 
@@ -97,5 +93,6 @@
   </table>
 
   <a href="#" class="btn btn-success" role="button">Продължи</a>
+  <a id="create_pdf" class="btn btn-success" role="button">Изтегли PDF</a>
 
 </div>
