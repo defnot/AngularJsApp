@@ -148,29 +148,29 @@
 /* Navigation area style */
 
 .navbar {
-  margin-bottom: 0px;
+  /*margin-bottom: 0px;*/
   background-color: white;
 }
 
 /* Cover Area style */
 
-.jumbotron {
+/*.jumbotron {
   background: url('../images/header-bg.jpg') no-repeat center center;
   background-position: 0% 25%;
   background-size: cover;
   background-repeat: no-repeat;
   color: white;
-}
-.container .jumbotron, .container-fluid .jumbotron {
-  border-radius: 0px;
-}
+}*/
+/*.container .jumbotron, .container-fluid .jumbotron {
+  /*border-radius: 0px;*/
+  /*}*/
 .sidebarStyle {
   /*background-color: #A7D97E;*/
   /* margin-bottom:30px; */
   width: 105px;
   height: 100%;
   background: #89c23b;
-  position: fixed;
+  /*position: fixed;*/
   /*change top, if change the header height*/
   top: 58;
   position: absolute;
@@ -268,6 +268,6 @@
 }
 
 html body {
-  background-color: "#fff";
+  background-color:#FFF;
   font-family: 'Open Sans', sans-serif;
 }
