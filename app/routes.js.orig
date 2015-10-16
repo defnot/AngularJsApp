@@ -23,7 +23,7 @@
       })
       .state('client', {
         url: '/client',
-        templateUrl: 'app/templates/clients/client.html',
+        templateUrl: 'app/templates/clients/client.html'
       })
       .state('client.individual', {
         url: '/individual',
@@ -49,12 +49,17 @@
       })
       .state('offer', {
         url: '/offer',
+<<<<<<< HEAD
         templateUrl: 'app/templates/offer/offer.html',
         controller: 'OfferCtrl as vm'
+=======
+        templateUrl: "app/templates/offer/offer.html",
+        controller: "OfferCtrl as vm"
       })
-      .state('offerClientData', {
+      .state("offerClientData", {
         url: '/offerclientdata',
-        templateUrl: 'app/templates/offer/offer-client-data.html'
+        templateUrl: "app/templates/offer/offer-client-data.html",
+>>>>>>> 69628f79c748858bad9883dfe60ae0c1b4a19976
       });
   }
 }());

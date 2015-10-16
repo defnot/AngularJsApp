@@ -612,12 +612,15 @@
       var clientsUrl = '/api/clients';
       // TODO: Handle the other request methods like POST, PUT, DELETE
       $httpBackend.whenGET(clientsUrl).respond(clients);
+<<<<<<< HEAD
 
       var clientsUrlRegex = new RegExp(clientsUrl + '/[0-9][0-9]*', '');
       $httpBackend.whenGET(clientsUrlRegex).respond(filterClients);
 
-      $httpBackend.whenGET(/app/).passThrough();
+=======
       $httpBackend.whenGET(/calculateEMI/).passThrough();
+>>>>>>> 69628f79c748858bad9883dfe60ae0c1b4a19976
+      $httpBackend.whenGET(/app/).passThrough();
 
       function filterClients(method, url, data) {
         var client = {

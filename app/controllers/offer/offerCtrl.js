@@ -7,7 +7,7 @@
   function OfferCtrl($http) {
 
     var vm = this;
-
+    vm.offerTable = [];
     vm.submitOffer = submitOffer;
 
     function submitOffer() {
