@@ -1,13 +1,12 @@
 (function(){
-var
- form = $('.form'),
- cache_width = form.width(),
- a4  =[ 595.28,  841.89];  // for a4 size paper width and height
- console.log("yey");
-$('#create_pdf').on('click',function(){
+var form = $('#printFields');
+var cache_width = form.width();
+var a4 = [595.28,  841.89];  // for a4 size paper width and height
+
+ $('#create_pdf').click(function(){
  $('body').scrollTop(0);
  createPDF();
-});
+ });
 //create pdf
 function createPDF(){
   console.log("create yey");
@@ -32,5 +31,12 @@ function getCanvas(){
      removeContainer:true
     });
 }
+
+
+  var service = {
+      createPDF: createPDF
+  };
+  
+  return service;
 
 }());
