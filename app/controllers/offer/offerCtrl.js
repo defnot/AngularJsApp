@@ -1,17 +1,15 @@
-(function () {
-	'use strict'
+(function() {
+  'use strict'
 
-	angular.module("Agrion")
-		.controller("OfferCtrl", ['$http',
-			OfferCtrl
-		]);
+  angular.module("Agrion")
+    .controller("OfferCtrl", ['$http', OfferCtrl]);
 
-	function OfferCtrl($http) {
-		var vm = this;
+  function OfferCtrl($http) {
 
-		vm.submitOffer = submitOffer;
+    var vm = this;
     vm.offerTable = [];
     vm.printPDF = printPDF;
+    vm.submitOffer = submitOffer;
 
     function printPDF() {
 
@@ -98,20 +96,5 @@
 				vm.offerTable = data;
 			});
 		}
-
-
-		// vm.submitOffer = function(){
-		// $http.get(serviceUrl,
-		// {params: {
-		//       loan: vm.loan,
-		//       annualInterest: vm.interest,
-		//       paymentsPerYear: vm.numpayments,
-		//       loanPeriodYears: vm.years
-		//       }} ).
-		//   success(function(data) {
-		//       vm.offerTable = data;
-		//   });
-		// }
-	}
 
 }());
