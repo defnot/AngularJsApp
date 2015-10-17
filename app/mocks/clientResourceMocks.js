@@ -8,6 +8,14 @@
     .run(function($httpBackend) {
 
       var clients = [{
+        risk_groups: [1, 2, 3, 4, 5],
+        legal_form: 'Юридическа форма',
+        branches: ['Пловдив', 'София', 'Бургас', 'Варна', 'Стара Загора', 'Русе', 'Свиленград'],
+        owners_count: 1,
+        zp_reg_number: '218453175',
+        branch: 'София',
+        risk_group: 1,
+        starter_date: '25-01-2015',
         id: 1,
         company_name_bg: '3M Company',
         company_name_en: '3M Company',
@@ -32,6 +40,8 @@
         client_group: 0,
         client_contact_type: 3,
         addresses: [{
+          post_code: '4000',
+          country: 'България',
           id: 1,
           type: 1,
           city: 'Пловдив',
@@ -68,6 +78,14 @@
           company_position: 'Управител'
         }]
       }, {
+        risk_groups: [1, 2, 3, 4, 5],
+        legal_form: 'Юридическа форма',
+        branches: ['Пловдив', 'София', 'Бургас', 'Варна', 'Стара Загора', 'Русе', 'Свиленград'],
+        owners_count: 1,
+        zp_reg_number: '303988189',
+        branch: 'София',
+        risk_group: 1,
+        starter_date: '25-01-2015',
         id: 2,
         company_name_bg: 'A.G. Edwards Inc.',
         company_name_en: 'A.G. Edwards Inc.',
@@ -92,6 +110,8 @@
         client_group: 2,
         client_contact_type: 3,
         addresses: [{
+          post_code: '4000',
+          country: 'България',
           id: 1,
           type: 1,
           city: 'Пловдив',
@@ -128,6 +148,14 @@
           company_position: 'Управител'
         }]
       }, {
+        risk_groups: [1, 2, 3, 4, 5],
+        legal_form: 'Юридическа форма',
+        branches: ['Пловдив', 'София', 'Бургас', 'Варна', 'Стара Загора', 'Русе', 'Свиленград'],
+        owners_count: 1,
+        zp_reg_number: '501056426',
+        branch: 'Пловдив',
+        risk_group: 1,
+        starter_date: '25-01-2015',
         id: 3,
         company_name_bg: 'Abbott Laboratories',
         company_name_en: 'Abbott Laboratories',
@@ -152,6 +180,8 @@
         client_group: 0,
         client_contact_type: 1,
         addresses: [{
+          post_code: '4000',
+          country: 'България',
           id: 1,
           type: 1,
           city: 'Пловдив',
@@ -188,6 +218,14 @@
           company_position: 'Управител'
         }]
       }, {
+        risk_groups: [1, 2, 3, 4, 5],
+        legal_form: 'Юридическа форма',
+        branches: ['Пловдив', 'София', 'Бургас', 'Варна', 'Стара Загора', 'Русе', 'Свиленград'],
+        owners_count: 1,
+        zp_reg_number: '123062033',
+        branch: 'Свиленград',
+        risk_group: 1,
+        starter_date: '25-01-2015',
         id: 4,
         company_name_bg: 'Abercrombie & Fitch Co.',
         company_name_en: 'Abercrombie & Fitch Co.',
@@ -212,6 +250,8 @@
         client_group: 2,
         client_contact_type: 1,
         addresses: [{
+          post_code: '4000',
+          country: 'България',
           id: 1,
           type: 1,
           city: 'Пловдив',
@@ -248,6 +288,14 @@
           company_position: 'Управител'
         }]
       }, {
+        risk_groups: [1, 2, 3, 4, 5],
+        legal_form: 'Юридическа форма',
+        branches: ['Пловдив', 'София', 'Бургас', 'Варна', 'Стара Загора', 'Русе', 'Свиленград'],
+        owners_count: 1,
+        zp_reg_number: '990518797',
+        branch: 'София',
+        risk_group: 1,
+        starter_date: '25-01-2015',
         id: 5,
         company_name_bg: "ABM Industries Incorporated",
         company_name_en: "ABM Industries Incorporated",
@@ -272,6 +320,8 @@
         client_group: 1,
         client_contact_type: 0,
         addresses: [{
+          post_code: '4000',
+          country: 'България',
           id: 1,
           type: 1,
           city: "Пловдив",
@@ -308,6 +358,14 @@
           company_position: "Управител"
         }]
       }, {
+        risk_groups: [1, 2, 3, 4, 5],
+        legal_form: 'Юридическа форма',
+        branches: ['Пловдив', 'София', 'Бургас', 'Варна', 'Стара Загора', 'Русе', 'Свиленград'],
+        owners_count: 1,
+        zp_reg_number: '743381386',
+        branch: 'Русе',
+        risk_group: 1,
+        starter_date: '25-01-2015',
         id: 6,
         company_name_bg: "Ace Hardware Corporation",
         company_name_en: "Ace Hardware Corporation",
@@ -332,6 +390,8 @@
         client_group: 1,
         client_contact_type: 3,
         addresses: [{
+          post_code: '4000',
+          country: 'България',
           id: 1,
           type: 1,
           city: "Пловдив",
@@ -368,6 +428,14 @@
           company_position: "Управител"
         }]
       }, {
+        risk_groups: [1, 2, 3, 4, 5],
+        legal_form: 'Юридическа форма',
+        branches: ['Пловдив', 'София', 'Бургас', 'Варна', 'Стара Загора', 'Русе', 'Свиленград'],
+        owners_count: 1,
+        zp_reg_number: '860455856',
+        branch: 'Бургас',
+        risk_group: 1,
+        starter_date: '25-01-2015',
         id: 7,
         company_name_bg: "ACT Manufacturing Inc.",
         company_name_en: "ACT Manufacturing Inc.",
@@ -392,6 +460,8 @@
         client_group: 3,
         client_contact_type: 0,
         addresses: [{
+          post_code: '4000',
+          country: 'България',
           id: 1,
           type: 1,
           city: "Пловдив",
@@ -428,6 +498,14 @@
           company_position: "Управител"
         }]
       }, {
+        risk_groups: [1, 2, 3, 4, 5],
+        legal_form: 'Юридическа форма',
+        branches: ['Пловдив', 'София', 'Бургас', 'Варна', 'Стара Загора', 'Русе', 'Свиленград'],
+        owners_count: 1,
+        zp_reg_number: '815361886',
+        branch: 'София',
+        risk_group: 1,
+        starter_date: '25-01-2015',
         id: 8,
         company_name_bg: "Acterna Corp.",
         company_name_en: "Acterna Corp.",
@@ -452,6 +530,8 @@
         client_group: 3,
         client_contact_type: 0,
         addresses: [{
+          post_code: '4000',
+          country: 'България',
           id: 1,
           type: 1,
           city: "Пловдив",
@@ -488,6 +568,14 @@
           company_position: "Управител"
         }]
       }, {
+        risk_groups: [1, 2, 3, 4, 5],
+        legal_form: 'Юридическа форма',
+        branches: ['Пловдив', 'София', 'Бургас', 'Варна', 'Стара Загора', 'Русе', 'Свиленград'],
+        owners_count: 1,
+        zp_reg_number: '678270507',
+        branch: 'София',
+        risk_group: 1,
+        starter_date: '25-01-2015',
         id: 9,
         company_name_bg: "Adams Resources & Energy, Inc.",
         company_name_en: "Adams Resources & Energy, Inc.",
@@ -512,6 +600,8 @@
         client_group: 0,
         client_contact_type: 3,
         addresses: [{
+          post_code: '4000',
+          country: 'България',
           id: 1,
           type: 1,
           city: "Пловдив",
@@ -548,6 +638,14 @@
           company_position: "Управител"
         }]
       }, {
+        risk_groups: [1, 2, 3, 4, 5],
+        legal_form: 'Юридическа форма',
+        branches: ['Пловдив', 'София', 'Бургас', 'Варна', 'Стара Загора', 'Русе', 'Свиленград'],
+        owners_count: 1,
+        zp_reg_number: '103596308',
+        branch: 'София',
+        risk_group: 1,
+        starter_date: '25-01-2015',
         id: 10,
         company_name_bg: "ADC Telecommunications, Inc.",
         company_name_en: "ADC Telecommunications, Inc.",
@@ -572,6 +670,8 @@
         client_group: 3,
         client_contact_type: 3,
         addresses: [{
+          post_code: '4000',
+          country: 'България',
           id: 1,
           type: 1,
           city: "Пловдив",

@@ -8,32 +8,32 @@
         <div class="col-md-4 form-padding">
 
           <label for="input-04">Дата на искането за кредит</label>
-          <input type="text" id="input-04" class="form-control text-margin" placeholder="" value="{{ vm.client.request_date }}">
+          <input type="text" id="input-04" class="form-control text-margin" placeholder="">
 
 					<label for="input-05">Име на оператора</label>
-					<input type="text" id="input-03" class="form-control text-margin" placeholder="" value="{{ vm.client.operator_name }}">
+					<input type="text" id="input-03" class="form-control text-margin" placeholder="">
         </div>
 
         <div class="col-md-4 form-padding">
           <label for="input-02">ID Клиентски номер на кредитоискателя</label>
-          <input type="text" disabled id="input-02" class="form-control text-margin" value="{{ vm.client.client_id_number }}">
+          <input type="text" disabled id="input-02" class="form-control text-margin">
 
           <label for="col2-input-02">Филиал</label>
-          <input type="text" id="col2-input-02" class="form-control text-margin" placeholder="" value="{{ vm.client.branch }}" >
+          <input type="text" id="col2-input-02" class="form-control text-margin" placeholder="" >
         </div>
 
         <div class="col-md-4 form-padding">
           <label for="input-03">Регион</label>
-          <input type="text" id="input-03" class="form-control text-margin" placeholder="" value="{{ vm.client.region }}">
+          <input type="text" id="input-03" class="form-control text-margin" placeholder="" >
 
           <label for="col2-input-03">Индентификационен номер на оператора</label>
-          <input type="text" id="col2-input-03" class="form-control text-margin" placeholder="" value="{{ vm.client.operator_id }}">
+          <input type="text" id="col2-input-03" class="form-control text-margin" placeholder="" >
 
         </div>
 
         <div class="col-md-4 form-padding">
           <label for="input-05">Фамилия на оператора</label>
-          <input type="text" id="input-03" class="form-control text-margin" placeholder="" value="{{ vm.client.operator_family }}">
+          <input type="text" id="input-03" class="form-control text-margin" placeholder="" >
         </div>
 
         <div class="col-md-12 form-padding">
@@ -52,16 +52,18 @@
 
         <div class="col-md-4 form-padding">
           <label for="col2-input-05">Отрасъл</label> <!-- TODO: add data to the menu -->
-          <select class="form-control text-margin"  ></select>
+          <select class="form-control text-margin">
+            <option ng-repeat="b in vm.client.branches">{{ b }}</option>
+          </select>
 
-          <label for="col2-input-2">Дата на стартиране надейността</label>
+          <label for="col2-input-2">Дата на стартиране на дейността</label>
           <input type="text" id="col2-input-2" class="form-control text-margin" value="{{ vm.client.starter_date }}" >
 
         </div>
 
         <div class="col-md-4 form-padding">
           <label for="col2-input-09">Собственици – брой</label>
-          <input type="text" id="col2-input-09" class="form-control text-margin" value="{{ vm.client.owners.length }}">
+          <input type="text" id="col2-input-09" class="form-control text-margin" value="{{ vm.client.owners_count }}">
 
           <label for="col3-input-3">Служители – брой</label>
           <input type="text" id="col3-input-3" class="form-control text-margin" value="{{ vm.client.employees.length }}" >
@@ -81,12 +83,14 @@
 
         <div class="col-md-4 form-padding">
           <label>Рискова група</label>
-          <select class="form-control text-margin"  ></select>
+          <select class="form-control text-margin">
+            <option ng-repeat="b in vm.client.risk_groups">{{ b }}</option>
+          </select>
         </div>
 
         <div class="col-md-4 form-padding">
           <label>ЗП Регистрационен номер</label>
-          <input type="text" disabled id="col3-input-3" class="form-control text-margin" value="" >
+          <input type="text" disabled id="col3-input-3" class="form-control text-margin" value="{{ vm.client.zp_reg_number }}" >
         </div>
 
         <div class="col-md-12 form-padding">

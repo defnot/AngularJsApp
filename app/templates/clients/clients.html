@@ -39,21 +39,21 @@
                 <tr>
                     <td>
                         <a href="#/clients" ng-click="sortType = 'id'; sortReverse = !sortReverse">
-                            ID
+                            Номер
                             <span ng-show="sortType == 'id' && !sortReverse" class="fa fa-caret-down"></span>
                             <span ng-show="sortType == 'id' && sortReverse" class="fa fa-caret-up"></span>
                         </a>
                     </td>
                     <td>
                         <a href="#/clients" ng-click="sortType = 'company_name_bg'; sortReverse = !sortReverse">
-                            Фирма (BG)
+                            Име
                             <span ng-show="sortType == 'company_name_bg' && !sortReverse" class="fa fa-caret-down"></span>
                             <span ng-show="sortType == 'company_name_bg' && sortReverse" class="fa fa-caret-up"></span>
                         </a>
                     </td>
                     <td>
                         <a href="#/clients" ng-click="sortType = 'company_name_en'; sortReverse = !sortReverse">
-                            Фирма (EN)
+                            ДДС
                             <span ng-show="sortType == 'company_name_en' && !sortReverse" class="fa fa-caret-down"></span>
                             <span ng-show="sortType == 'company_name_en' && sortReverse" class="fa fa-caret-up"></span>
                         </a>
@@ -62,28 +62,28 @@
                         <a href="#/clients" ng-click="sortType = 'mol'; sortReverse = !sortReverse">
                             <span ng-show="sortType == 'mol' && !sortReverse" class="fa fa-caret-down"></span>
                             <span ng-show="sortType == 'mol' && sortReverse" class="fa fa-caret-up"></span>
-                            МОЛ
+                            ЕИК
                         </a>
                     </td>
                     <td>
                         <a href="#/clients" ng-click="sortType = 'tastiness'; sortReverse = !sortReverse">
                             <span ng-show="sortType == 'tastiness' && !sortReverse" class="fa fa-caret-down"></span>
                             <span ng-show="sortType == 'tastiness' && sortReverse" class="fa fa-caret-up"></span>
-                            URN
+                            Тип
                         </a>
                     </td>
                     <td>
                         <a href="#/clients" ng-click="sortType = 'num_dds'; sortReverse = !sortReverse">
                             <span ng-show="sortType == 'num_dds' && !sortReverse" class="fa fa-caret-down"></span>
                             <span ng-show="sortType == 'num_dds' && sortReverse" class="fa fa-caret-up"></span>
-                            VAT
+                            Адрес
                         </a>
                     </td>
                     <td>
                         <a href="#/clients" ng-click="sortType = 'number_accounting'; sortReverse = !sortReverse">
                             <span ng-show="sortType == 'number_accounting' && !sortReverse" class="fa fa-caret-down"></span>
                             <span ng-show="sortType == 'number_accounting' && sortReverse" class="fa fa-caret-up"></span>
-                            Счетоводен Номер
+                            Телефон
                         </a>
                     </td>
                     <td></td>
@@ -94,11 +94,11 @@
                 <tr ng-repeat="c in vm.getClients() | orderBy:sortType:sortReverse | filter:searchClient">
                     <td>{{ c.id }}</td>
                     <td>{{ c.company_name_bg }}</td>
-                    <td>{{ c.company_name_en }}</td>
-                    <td>{{ c.mol }}</td>
-                    <td>{{ c.eik }}</td>
                     <td>{{ c.num_dds }}</td>
-                    <td>{{ c.number_accounting }}</td>
+                    <td>{{ c.eik }}</td>
+                    <td>{{ c.client_type }}</td>
+                    <td>{{ c.addresses[0].city }}</td>
+                    <td>{{ c.addresses[0].phone }}</td>
                     <td>
                         <a ui-sref="client.editLegal({clientId: c.id})" ng-click="vm.editClient(c)" tooltip="Edit" class="glyphicon glyphicon-edit" style="font-size: 20px; margin-right: 5px; text-decoration: none;"></a>
                         <span tooltip="Delete" class="text-danger"><i class="glyphicon glyphicon-remove" ng-click="delete(c.id)" style="font-size: 20px"></i></span>
