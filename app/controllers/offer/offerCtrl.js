@@ -1,8 +1,8 @@
 (function() {
   'use strict'
 
-  angular.module("Agrion")
-    .controller("OfferCtrl", ['$http', OfferCtrl]);
+  angular.module('Agrion')
+    .controller('OfferCtrl', ['$http', OfferCtrl]);
 
   function OfferCtrl($http) {
 
@@ -10,14 +10,19 @@
     vm.offerTable = [];
     vm.printPDF = printPDF;
     vm.submitOffer = submitOffer;
+    vm.currencies = [
+    { code: 'BGN', name: 'BGN' },
+    { code: 'EUR', name: 'EUR' },
+    { code: 'USD', name: 'USD'}
+    ];
 
     function printPDF() {
 
-      var totalSum = $("#totalSum").text().trim();
-      var monthlyPayment = $("#monthlyPayment").text().trim();
-      var totalInterest = $("#totalInterest").text().trim();
-      var loanAmount = $("#loanAmount").text().trim();
-      var interestPercent = $("#interestPercent").text().trim();
+      var totalSum = $('#totalSum').text().replace(/\s{2,}/g, ' ');
+      var monthlyPayment = $('#monthlyPayment').text().replace(/\s{2,}/g, ' ');
+      var totalInterest = $('#totalInterest').text().replace(/\s{2,}/g, ' ');
+      var loanAmount = $('#loanAmount').text().replace(/\s{2,}/g, ' ');
+      var interestPercent = $('#interestPercent').text().replace(/\s{2,}/g, ' ');
 
       // Table body
       var body = [];
@@ -41,7 +46,7 @@
       body.push(headers);
 
       // Getting table data and converting it to the proper format for pdfmake
-      var tableData = $("#table").tableToJSON();
+      var tableData = $('#table').tableToJSON();
       for (var prop in tableData) {
         var dataRow = [];
         dataRow.push({
@@ -64,10 +69,10 @@
             style: 'header'
           },
           // The spaces in the strings matter for the pdf format!!
-          'Дължима сума:               '        .concat(totalSum),
+          'Дължима сума:              '         .concat(totalSum),
           '35 месечни вноски от:  '             .concat(monthlyPayment),
           'Цяла лихва:                      '   .concat(totalInterest),
-          'Сума на заема:                '      .concat(loanAmount),
+          'Сума на заема:               '       .concat(loanAmount),
           'Лихвa %:                            '.concat(interestPercent),
           '                      ', {
             table: {

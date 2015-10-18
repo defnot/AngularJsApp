@@ -1,49 +1,67 @@
 <div ng-controller="OfferCtrl as vm">
   <h1>Оферта</h1>
-  <form class="form-horizontal" ng-submit="vm.submitOffer()">
+
+  <!-- OFFER FORM -->
+  <form novalidate id="offerForm" name="offerForm" style="width:70%" class="form-horizontal" ng-submit="vm.submitOffer()">
+
+    <!-- LOAN -->
     <div class="form-group">
-      <label class="control-label col-xs-2" for="loan">Заем:</label>
-      <div class="col-xs-5">
-        <input class="form-control" id="loan" ng-model="vm.loan" placeholder="Заем" type="text">
-      </div>
+        <label class="control-label col-xs-2" for="loan">Заем:</label>
+          <div class="col-xs-5">
+            <input class="form-control" id="loan" name="loan" placeholder="Заем" type="text"
+             ng-model="vm.loan" maxlength="15" required >
+          </div>
     </div>
+
+    <!-- INTEREST % -->
     <div class="form-group">
       <label class="control-label col-xs-2" for="interest">Лихва %:</label>
       <div class="col-xs-5">
-        <input class="form-control" id="interest" ng-model="vm.interest" placeholder="Лихва" type="text">
+        <input class="form-control" id="interest" ng-model="vm.interest" placeholder="Лихва"
+         type="text" ng-minlength=1 maxlength="4" required>
       </div>
     </div>
+
+    <!-- NUMBER OF PAYMENTS PER YEAR -->
     <div class="form-group">
       <label class="control-label col-xs-2" for="paymentPerMonth">Брой вноски на година:</label>
       <div class="col-xs-5">
-        <input class="form-control" id="payment-per-month" ng-model="vm.numpayments" placeholder="Брой вноски на година" type="text">
+        <input class="form-control" id="payment-per-month" ng-model="vm.numpayments"
+         placeholder="Брой вноски на година" type="text" ng-minlength=1 maxlength="2" required>
       </div>
     </div>
+
+    <!-- YEARS -->
     <div class="form-group">
       <label class="control-label col-xs-2" for="years">Години:</label>
       <div class="col-xs-5">
-        <input class="form-control" id="years" ng-model="vm.years" placeholder="Години" type="text">
+        <input class="form-control" id="years" ng-model="vm.years" placeholder="Години"
+         type="text" maxlength="3" required>
       </div>
     </div>
+
+    <!-- CURRENCY -->
     <div class="form-group">
       <label class="control-label col-xs-2" for="currency">Валута:</label>
       <div class="col-xs-5">
-        <select class="form-control" id="currency" ng-model="vm.currency">
-          <option selected="selected" value="BGN">BGN</option>
-          <option value="EUR">EUR</option>
-          <option value="USD">USD</option>
+        <select class="form-control" id="currency" ng-model="vm.currency" required
+         ng-options="c.code as c.name for c in vm.currencies" >
+         <option value="">-- Избери валута --</option>
         </select>
       </div>
     </div>
 
+    <!-- BUTTON -->
     <div class="form-group">
       <div class="col-xs-10">
-        <button class="btn btn-primary" type="submit">Изчисли Оферта</button>
+        <button class="btn btn-primary" data-ng-disabled="offerForm.$invalid"
+         type="submit" ng-click="vm.checkData()">Изчисли Оферта</button>
       </div>
     </div>
+
   </form>
   <!-- DATA  -->
-  <div>
+  <div style="width:70%">
     <hr>
     <div class="resultText">
       <b>Дължима сума</b>:</div>
