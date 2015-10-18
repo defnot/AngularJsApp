@@ -92,10 +92,10 @@
                     <td>{{ c.addresses[0].city }}</td>
                     <td>{{ c.addresses[0].phone }}</td>
                     <td>
-                        <a ng-click="vm.editClient(c)" data-toggle="tooltip" title="Edit" class="glyphicon glyphicon-edit" style="font-size: 20px; margin-right: 5px; text-decoration: none; cursor: pointer;"></a>
+                        <a ng-click="vm.editClient(c)" data-toggle="tooltip" title="Редактиране" class="glyphicon glyphicon-edit" style="font-size: 20px; margin-right: 5px; text-decoration: none; cursor: pointer;"></a>
                         <!-- Since multiple data-toggle attributes are not supported, hence wrap the element with another element -->
                         <span data-toggle="modal" data-target="#deleteClientModal" data-id="{{ c.id }}">
-                            <a data-toggle="tooltip" title="Delete" class="glyphicon glyphicon-remove" style="font-size: 20px; margin-right: 5px; text-decoration: none; color: #A94442; cursor: pointer;"></a>
+                            <a data-toggle="tooltip" title="Изтриване" class="glyphicon glyphicon-remove" style="font-size: 20px; margin-right: 5px; text-decoration: none; color: #A94442; cursor: pointer;"></a>
                         </span>
                     </td>
                 </tr>
