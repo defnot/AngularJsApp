@@ -1,4 +1,4 @@
-<tabset ng-controller="IndividualEntityCtrl as vm">
+  <tabset ng-controller="IndividualEntityCtrl as vm">
 
   <tab heading="Информация">
 
@@ -9,32 +9,7 @@
 
           <div class="col-md-4 form-padding">
             <label for="input-02">ID Клиентски номер</label>
-            <input class="form-control text-margin" disabled id="input-02" type="text">
-
-            <label for="input-05">Име на оператора</label>
-            <input class="form-control text-margin" id="input-03" placeholder="Задължително" required type="text">
-          </div>
-
-          <div class="col-md-4 form-padding">
-            <label for="input-04">Дата на искането за кредит</label>
-            <input class="form-control text-margin" id="input-04" placeholder="Задължително" required type="date" ng-model="vm.loan-date">
-
-            <label for="col2-input-02">Филиал</label>
-            <input class="form-control text-margin" id="col2-input-02"  placeholder="Задължително" required  type="text">
-          </div>
-
-          <div class="col-md-4 form-padding">
-            <label for="input-03">Регион</label>
-            <input class="form-control text-margin" id="input-03"  placeholder="Задължително" required  type="text">
-
-            <label for="col2-input-03">Номер на оператора</label>
-            <input class="form-control text-margin" id="col2-input-03"  placeholder="Задължително" required  type="text">
-
-          </div>
-
-          <div class="col-md-4 form-padding">
-            <label for="input-05">Фамилия на оператора</label>
-            <input class="form-control text-margin" id="input-03"  placeholder="Задължително" required  type="text">
+            <input class="form-control text-margin" disabled id="input-02" ng-model="vm.client.clientId" type="text" >
           </div>
 
           <div class="col-md-12 form-padding">
@@ -42,47 +17,36 @@
           </div>
 
           <div class="col-md-4 form-padding">
-            <!-- <input type="text" id="input-06" class="form-control"> -->
 
             <label for="input-07">Име</label>
-            <input class="form-control text-margin" id="input-03" id="input-07" placeholder="Задължително" required type="text">
+            <span ng-if="vm.client.firstname && !vm.containsOnlyLetters(vm.client.firstname)" style="color:red">Невалидно име</span>
+            <input class="form-control text-margin" id="input-07" placeholder="Задължително" required type="text" ng-model="vm.client.firstname">
+
+            <label for="col2-input-2">Презиме</label>
+            <span ng-if="vm.client.middlename && !vm.containsOnlyLetters(vm.client.middlename)" style="color:red">Невалидно презиме!</span>
+            <input class="form-control text-margin" id="col2-input-2" ng-model="vm.client.middlename" type="text" placeholder="Задължително" required>
+
+            <label for="col2-input-09">Фамилия</label>
+            <span ng-if="vm.client.lastname && !vm.containsOnlyLetters(vm.client.lastname)" style="color:red">Невалиднa фамилия!</span>
+            <input class="form-control text-margin" id="col2-input-09" type="text" placeholder="Задължително" required ng-model="vm.client.lastname">
+
 
             <label for="col1-input-05">ЕГН</label>
-            <span ng-if="clientEgn && !vm.checkEgn(clientEgn) && clientEgn.length >=10" style="color:red">Невалиден ЕГН!</span>
-            <span ng-if="clientEgn && clientEgn.length < 10" style="color:red">Невалидна дължина (10)</span>
-            <input class="form-control text-margin" id="col1-input-05" placeholder="Задължително" required ng-change="vm.sex=''; vm.birthDate = ''" ng-model="clientEgn" type="text">
+            <span ng-if="vm.client.egn && !vm.checkEgn(vm.client.egn) && vm.client.egn.length >=10" style="color:red">Невалиден ЕГН!</span>
+            <span ng-if="vm.client.egn && vm.client.egn.length < 10" style="color:red">Невалидна дължина (10)</span>
+            <input class="form-control text-margin" id="col1-input-05" placeholder="Задължително" required ng-change="vm.client.sex=''; vm.client.birthDate = ''" ng-model="vm.client.egn" type="text">
 
           </div>
 
           <div class="col-md-4 form-padding">
-            <label for="col2-input-05">Презиме</label>
-            <input class="form-control text-margin"  id="col3-input-3"  type="text" placeholder="Задължително" required >
 
             <label for="col2-input-2">НЛК</label>
-              <span ng-if="documentNumber && !vm.containsOnlyDigits(documentNumber)" style="color:red">Невалиден ЛКН!</span>
-            <input class="form-control text-margin" id="col2-input-2" ng-model="documentNumber" type="text" placeholder="Задължително" required>
+            <span ng-if="vm.client.documentNumber && !vm.containsOnlyDigits(vm.client.documentNumber)" style="color:red">Невалиден ЛКН!</span>
+            <input class="form-control text-margin" id="col2-input-2" ng-model="vm.client.documentNumber" type="text" placeholder="Задължително" required>
 
-          </div>
-
-          <div class="col-md-4 form-padding">
-            <label for="col2-input-09">Фамилия</label>
-            <input class="form-control text-margin" id="col2-input-09" type="text" placeholder="Задължително" required>
-
-            <label>Дата на раждане</label>
-            <input class="form-control text-margin" disabled id="col3-input-3" ng-model="vm.birthDate" type="text" >
-          </div>
-
-          <div class="col-md-4 form-padding">
-            <label>Пол</label>
-            <input class="form-control text-margin" disabled id="col3-input-3" ng-model="vm.sex" type="text" >
-
-            <label>ДДС №</label>
-            <input class="form-control text-margin" id="col3-input-3" type="text" placeholder="Задължително" required>
-          </div>
-
-          <div class="col-md-4 form-padding">
-            <label>ЗП Регистрационен номер</label>
-            <input class="form-control text-margin" disabled id="col3-input-3" type="text" >
+            <label>ЕИК</label>
+            <span ng-if="vm.client.eik && !vm.checkEik(vm.client.eik)" style="color:red">Невалиден ЕИК!</span>
+            <input class="form-control text-margin" id="col3-input-3" ng-model="vm.client.eik" ng-change="vm.client.dds=''" type="text" placeholder="Задължително" required>
 
             <label>Националност</label>
             <select class="form-control text-margin">
@@ -93,9 +57,18 @@
           </div>
 
           <div class="col-md-4 form-padding">
-            <label>ЕИК</label>
-            <input class="form-control text-margin" id="col3-input-3" type="text" placeholder="Задължително" required>
 
+            <label>Дата на раждане</label>
+            <input class="form-control text-margin" disabled id="col3-input-3" ng-model="vm.client.birthDate" type="text" >
+
+            <label>Пол</label>
+            <input class="form-control text-margin" disabled id="col3-input-3" ng-model="vm.client.sex" type="text" >
+
+            <label>ДДС №</label>
+            <input class="form-control text-margin" id="col3-input-3" type="text" ng-model="vm.client.dds" disabled>
+
+            <label>ЗП Регистрационен номер</label>
+            <input class="form-control text-margin" disabled id="col3-input-3"  type="text" >
           </div>
 
           <div class="col-md-12 form-padding">
@@ -104,38 +77,34 @@
 
           <div class="col-md-4 form-padding">
             <label for="col2-input-09">Улица</label>
-            <input class="form-control text-margin" id="col2-input-09" type="text" placeholder="Задължително" required>
+            <input class="form-control text-margin" id="col2-input-09" type="text" ng-model="vm.client.street">
 
             <label for="col3-input-3">Град</label>
-            <input class="form-control text-margin" id="col3-input-3" type="text" placeholder="Задължително" required>
+            <input class="form-control text-margin" id="col3-input-3" type="text" ng-model="vm.client.city">
           </div>
 
           <div class="col-md-4 form-padding">
             <label for="col2-input-09">Област</label>
-            <input class="form-control text-margin" id="col2-input-09" type="text" placeholder="Задължително" required>
+            <input class="form-control text-margin" id="col2-input-09" type="text" ng-model="vm.client.region">
 
             <label for="col3-input-3">Пощенски код</label>
-            <input class="form-control text-margin" id="col3-input-3" type="text" placeholder="Задължително" required>
+            <input class="form-control text-margin" id="col3-input-3" type="text" ng-model="vm.client.postcode">
           </div>
 
           <div class="col-md-4 form-padding">
             <label for="col2-input-09">Държава</label>
-            <input class="form-control text-margin" id="col2-input-09" type="text" placeholder="Задължително" required>
+            <input class="form-control text-margin" id="col2-input-09" type="text" ng-model="vm.client.country">
 
             <label for="col3-input-3">Телефон</label>
-            <input class="form-control text-margin" id="col3-input-3" type="text"placeholder="Задължително" required>
+            <input class="form-control text-margin" id="col3-input-3" type="text" ng-model="vm.client.phone">
           </div>
 
           <div class="col-md-12" style="padding-top: 30px;">
-            <button class="btn btn-default" ng-click="">
-              <span></span>Cancel</button>
-            <input class="btn btn-success" ng-disabled="!vm.checkEgn(clientEgn)" type="submit" value="Save"/>
+            <button class="btn btn-default">Обратно</button>
+            <input class="btn btn-success"  type="submit" ng-disabled="!vm.checkRequiredFields()" value="Запази"/>
           </div>
         </form>
 
-        <!-- <div>
-          <button class="btn btn-primary text-right" ng-click="saveClientDetails()">Запази</button>
-        </div> -->
       </div>
     </div>
 
