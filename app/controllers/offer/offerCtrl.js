@@ -15,6 +15,10 @@
     { code: 'EUR', name: 'EUR' },
     { code: 'USD', name: 'USD'}
     ];
+    vm.interestModels = [
+    { code: 'първи', name: 'първи' },
+    { code: 'втори', name: 'втори' }
+    ];
 
     function printPDF() {
 

@@ -4,6 +4,17 @@
   <!-- OFFER FORM -->
   <form novalidate id="offerForm" name="offerForm" style="width:70%" class="form-horizontal" ng-submit="vm.submitOffer()">
 
+    <!-- LOAN TYPE -->
+    <div class="form-group">
+      <label class="control-label col-xs-2" for="loanType">Лихвен модел:</label>
+      <div class="col-xs-5">
+        <select class="form-control" id="loanType" ng-model="vm.interestModel" required
+         ng-options="g.code as g.name for g in vm.interestModels" >
+         <option value="">-- Избери модел --</option>
+        </select>
+      </div>
+    </div>
+
     <!-- LOAN -->
     <div class="form-group">
         <label class="control-label col-xs-2" for="loan">Заем:</label>
