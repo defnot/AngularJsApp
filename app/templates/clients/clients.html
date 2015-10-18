@@ -52,39 +52,31 @@
                         </a>
                     </td>
                     <td>
-                        <a href="#/clients" ng-click="sortType = 'company_name_en'; sortReverse = !sortReverse">
+                        <a href="#/clients" ng-click="sortType = 'num_dds'; sortReverse = !sortReverse">
                             ДДС
-                            <span ng-show="sortType == 'company_name_en' && !sortReverse" class="fa fa-caret-down"></span>
-                            <span ng-show="sortType == 'company_name_en' && sortReverse" class="fa fa-caret-up"></span>
+                            <span ng-show="sortType == 'num_dds' && !sortReverse" class="fa fa-caret-down"></span>
+                            <span ng-show="sortType == 'num_dds' && sortReverse" class="fa fa-caret-up"></span>
                         </a>
                     </td>
                     <td>
-                        <a href="#/clients" ng-click="sortType = 'mol'; sortReverse = !sortReverse">
-                            <span ng-show="sortType == 'mol' && !sortReverse" class="fa fa-caret-down"></span>
-                            <span ng-show="sortType == 'mol' && sortReverse" class="fa fa-caret-up"></span>
+                        <a href="#/clients" ng-click="sortType = 'eik'; sortReverse = !sortReverse">
+                            <span ng-show="sortType == 'eik' && !sortReverse" class="fa fa-caret-down"></span>
+                            <span ng-show="sortType == 'eik' && sortReverse" class="fa fa-caret-up"></span>
                             ЕИК
                         </a>
                     </td>
                     <td>
-                        <a href="#/clients" ng-click="sortType = 'tastiness'; sortReverse = !sortReverse">
-                            <span ng-show="sortType == 'tastiness' && !sortReverse" class="fa fa-caret-down"></span>
-                            <span ng-show="sortType == 'tastiness' && sortReverse" class="fa fa-caret-up"></span>
+                        <a href="#/clients" ng-click="sortType = 'client_type'; sortReverse = !sortReverse">
+                            <span ng-show="sortType == 'client_type' && !sortReverse" class="fa fa-caret-down"></span>
+                            <span ng-show="sortType == 'client_type' && sortReverse" class="fa fa-caret-up"></span>
                             Тип
                         </a>
                     </td>
                     <td>
-                        <a href="#/clients" ng-click="sortType = 'num_dds'; sortReverse = !sortReverse">
-                            <span ng-show="sortType == 'num_dds' && !sortReverse" class="fa fa-caret-down"></span>
-                            <span ng-show="sortType == 'num_dds' && sortReverse" class="fa fa-caret-up"></span>
-                            Адрес
-                        </a>
+                        Адрес
                     </td>
                     <td>
-                        <a href="#/clients" ng-click="sortType = 'number_accounting'; sortReverse = !sortReverse">
-                            <span ng-show="sortType == 'number_accounting' && !sortReverse" class="fa fa-caret-down"></span>
-                            <span ng-show="sortType == 'number_accounting' && sortReverse" class="fa fa-caret-up"></span>
-                            Телефон
-                        </a>
+                        Телефон
                     </td>
                     <td></td>
                 </tr>
@@ -101,10 +93,29 @@
                     <td>{{ c.addresses[0].phone }}</td>
                     <td>
                         <a ui-sref="client.editLegal({clientId: c.id})" ng-click="vm.editClient(c)" tooltip="Edit" class="glyphicon glyphicon-edit" style="font-size: 20px; margin-right: 5px; text-decoration: none;"></a>
-                        <span tooltip="Delete" class="text-danger"><i class="glyphicon glyphicon-remove" ng-click="delete(c.id)" style="font-size: 20px"></i></span>
+                        <a tooltip="Delete" class="glyphicon glyphicon-remove" style="font-size: 20px; margin-right: 5px; text-decoration: none; color: #A94442; cursor: pointer;" data-toggle="modal" data-target="#deleteClientModal" data-id="{{ c.id }}"></a>
                     </td>
                 </tr>
                 </tbody>
+
+                <!-- Delete client prompt -->
+                <div id="deleteClientModal" class="modal fade">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">Изтриване на клиент</h4>
+                      </div>
+                      <div class="modal-body">
+                        <p>Сигурни ли сте, че искате да изтриете клиент: {{ vm.promptDeleteClientName }}?</p>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Отказ</button>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="vm.deleteClient()">Изтрий</button>
+                      </div>
+                    </div><!-- /.modal-content -->
+                  </div><!-- /.modal-dialog -->
+                </div><!-- /.modal -->
 
             </table>
         </div>
