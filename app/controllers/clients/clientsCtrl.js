@@ -21,6 +21,11 @@
     // vm.searchClient = ''; // set the default search/filter term
     //
     vm.getClients = function() {
+      // activate fancy tooltips
+      $(document).ready(function() {
+        $('[data-toggle=tooltip]').tooltip();
+      });
+
       return vm.clients;
     };
     //

@@ -14,7 +14,7 @@
     </script>
 
     <div class="page-header col-md-12" style="margin-top: 30px; margin-bottom: 30px;">
-        <h1>Clients</h1>
+        <h1>Клиенти</h1>
     </div>
 
     <div class="col-lg-12 col-md-6 col-xs-12" style="margin-top: 30px;">
@@ -45,10 +45,10 @@
                         </a>
                     </td>
                     <td>
-                        <a href="#/clients" ng-click="sortType = 'company_name_bg'; sortReverse = !sortReverse">
+                        <a href="#/clients" ng-click="sortType = 'display_name'; sortReverse = !sortReverse">
                             Име
-                            <span ng-show="sortType == 'company_name_bg' && !sortReverse" class="fa fa-caret-down"></span>
-                            <span ng-show="sortType == 'company_name_bg' && sortReverse" class="fa fa-caret-up"></span>
+                            <span ng-show="sortType == 'display_name' && !sortReverse" class="fa fa-caret-down"></span>
+                            <span ng-show="sortType == 'display_name' && sortReverse" class="fa fa-caret-up"></span>
                         </a>
                     </td>
                     <td>
@@ -85,15 +85,18 @@
                 <tbody>
                 <tr ng-repeat="c in vm.getClients() | orderBy:sortType:sortReverse | filter:searchClient">
                     <td>{{ c.id }}</td>
-                    <td>{{ c.company_name_bg }}</td>
+                    <td>{{ c.display_name }}</td>
                     <td>{{ c.num_dds }}</td>
                     <td>{{ c.eik }}</td>
                     <td>{{ c.client_type }}</td>
                     <td>{{ c.addresses[0].city }}</td>
                     <td>{{ c.addresses[0].phone }}</td>
                     <td>
-                        <a ng-click="vm.editClient(c)" tooltip="Edit" class="glyphicon glyphicon-edit" style="font-size: 20px; margin-right: 5px; text-decoration: none; cursor: pointer;"></a>
-                        <a tooltip="Delete" class="glyphicon glyphicon-remove" style="font-size: 20px; margin-right: 5px; text-decoration: none; color: #A94442; cursor: pointer;" data-toggle="modal" data-target="#deleteClientModal" data-id="{{ c.id }}"></a>
+                        <a ng-click="vm.editClient(c)" data-toggle="tooltip" title="Edit" class="glyphicon glyphicon-edit" style="font-size: 20px; margin-right: 5px; text-decoration: none; cursor: pointer;"></a>
+                        <!-- Since multiple data-toggle attributes are not supported, hence wrap the element with another element -->
+                        <span data-toggle="modal" data-target="#deleteClientModal" data-id="{{ c.id }}">
+                            <a data-toggle="tooltip" title="Delete" class="glyphicon glyphicon-remove" style="font-size: 20px; margin-right: 5px; text-decoration: none; color: #A94442; cursor: pointer;"></a>
+                        </span>
                     </td>
                 </tr>
                 </tbody>
