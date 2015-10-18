@@ -22,33 +22,41 @@
             <input class="form-control" id="loan" name="loan" placeholder="Заем" type="text"
              ng-model="vm.loan" maxlength="15" required >
           </div>
+          <span ng-if="vm.loan && !vm.validateTotalSum(vm.loan)"
+          class="validation-error">Невалиден заем!</span>
     </div>
 
     <!-- INTEREST % -->
     <div class="form-group">
       <label class="control-label col-xs-2" for="interest">Лихва %:</label>
-      <div class="col-xs-5">
-        <input class="form-control" id="interest" ng-model="vm.interest" placeholder="Лихва"
-         type="text" ng-minlength=1 maxlength="4" required>
-      </div>
+        <div class="col-xs-5">
+          <input class="form-control" id="interest" ng-model="vm.interest" placeholder="Лихва"
+           type="text" ng-minlength=1 maxlength="6" required>
+        </div>
+        <span ng-if="vm.interest && !vm.validateTotalSum(vm.interest)"
+        class="validation-error">Невалидна лихва!</span>
     </div>
 
     <!-- NUMBER OF PAYMENTS PER YEAR -->
     <div class="form-group">
       <label class="control-label col-xs-2" for="paymentPerMonth">Брой вноски на година:</label>
-      <div class="col-xs-5">
-        <input class="form-control" id="payment-per-month" ng-model="vm.numpayments"
-         placeholder="Брой вноски на година" type="text" ng-minlength=1 maxlength="2" required>
-      </div>
+        <div class="col-xs-5">
+          <input class="form-control" id="payment-per-month" ng-model="vm.numpayments"
+           placeholder="Брой вноски на година" type="text" ng-minlength=1 maxlength="2" required>
+        </div>
+        <span ng-if="vm.numpayments && !vm.validatePositiveInteger(vm.numpayments)"
+        class="validation-error">Въведи между 1 и 12 дена!</span>
     </div>
 
     <!-- YEARS -->
     <div class="form-group">
       <label class="control-label col-xs-2" for="years">Години:</label>
-      <div class="col-xs-5">
-        <input class="form-control" id="years" ng-model="vm.years" placeholder="Години"
-         type="text" maxlength="3" required>
-      </div>
+        <div class="col-xs-5">
+          <input class="form-control" id="years" ng-model="vm.years" placeholder="Години"
+           type="text" maxlength="3" required>
+        </div>
+        <span ng-if="vm.years && !vm.validatePositiveInteger(vm.years)"
+        class="validation-error">Невалиден брой години!</span>
     </div>
 
     <!-- CURRENCY -->
@@ -65,14 +73,15 @@
     <!-- BUTTON -->
     <div class="form-group">
       <div class="col-xs-10">
-        <button class="btn btn-primary" data-ng-disabled="offerForm.$invalid"
-         type="submit" ng-click="vm.checkData()">Изчисли Оферта</button>
+        <button class="btn btn-primary" data-ng-disabled="!vm.validateForm()"
+         type="submit" ng-click="vm.showData()">Изчисли Оферта</button>
       </div>
     </div>
 
   </form>
+
   <!-- DATA  -->
-  <div style="width:70%">
+  <div id="dataField" class="ng-hide" style="width:70%">
     <hr>
     <div class="resultText">
       <b>Дължима сума</b>:</div>
@@ -121,9 +130,10 @@
         </tr>
       </tbody>
     </table>
+    <a href="#" class="btn btn-success" role="button">Запиши</a>
+    <div class="btn btn-success" id="create_pdf" role="button" ng-click="vm.printPDF()">Изтегли PDF</div>
   </div>
 
-  <a href="#" class="btn btn-success" role="button">Запиши</a>
-  <div class="btn btn-success" id="create_pdf" role="button" ng-click="vm.printPDF()">Изтегли PDF</div>
+
 
 </div>

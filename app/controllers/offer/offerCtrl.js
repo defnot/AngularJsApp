@@ -20,6 +20,32 @@
     { code: 'втори', name: 'втори' }
     ];
 
+    vm.validateTotalSum = validateTotalSum;
+    vm.validatePositiveInteger = validatePositiveInteger;
+    vm.validateForm = validateForm;
+    vm.showData = showData;
+
+    function showData() {
+      $('#dataField').removeClass('ng-hide');
+    }
+
+    function validateTotalSum(input) {
+        var regexp = /^[+]?([.]\d+|\d+[.]?\d*)$/;
+        return regexp.test(input);;
+    }
+
+    function validatePositiveInteger(input) {
+      var regexp = /^[1-9]\d*$/;
+      return regexp.test(input);
+    }
+
+    function validateForm() {
+      return vm.validateTotalSum(vm.loan) &&
+          vm.validateTotalSum(vm.interest) &&
+          vm.validatePositiveInteger(vm.numpayments) &&
+          vm.validatePositiveInteger(vm.years);
+    }
+
     function printPDF() {
 
       var totalSum = $('#totalSum').text().replace(/\s{2,}/g, ' ');
