@@ -91,7 +91,7 @@
         company_name_bg: 'A.G. Edwards Inc.',
         company_name_en: 'A.G. Edwards Inc.',
         company_name_de: 'A.G. Edwards Inc.',
-        display_name:  'A.G. Edwards Inc.',
+        display_name: 'A.G. Edwards Inc.',
         mol: 'Emma Burton',
         eik: '9563851938',
         notes: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
@@ -162,7 +162,7 @@
         company_name_bg: 'Abbott Laboratories',
         company_name_en: 'Abbott Laboratories',
         company_name_de: 'Abbott Laboratories',
-        display_name:  'Abbott Laboratories',
+        display_name: 'Abbott Laboratories',
         mol: 'Bernice Doyle',
         eik: '2194060574',
         notes: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
@@ -588,7 +588,7 @@
         company_name_bg: 'Adams Resources & Energy, Inc.',
         company_name_en: 'Adams Resources & Energy, Inc.',
         company_name_de: 'Adams Resources & Energy, Inc.',
-        display_name:  'Adams Resources & Energy, Inc.',
+        display_name: 'Adams Resources & Energy, Inc.',
         mol: 'Grady Hogan',
         eik: '4401938627',
         notes: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
@@ -726,9 +726,29 @@
       var clientsUrlRegex = new RegExp(clientsUrl + '/[0-9][0-9]*', '');
       $httpBackend.whenGET(clientsUrlRegex).respond(filterClients);
       $httpBackend.whenDELETE(clientsUrlRegex).respond(deleteClient);
+      $httpBackend.whenPOST(clientsUrl).respond(addPhysicalClient);
 
       $httpBackend.whenGET(/app/).passThrough();
       $httpBackend.whenGET(/calculateEMI/).passThrough();
+
+      function addPhysicalClient(method, url, data) {
+        console.log('create %o', data);
+
+        var c = {
+          clientId: 0
+        };
+        var client = JSON.parse(data);
+
+        // set display name
+        client.display_name = client.first_name + ' ' + client.middle_name + ' ' + client.last_name;
+        // get the last id and add 1
+        client.id = clients[clients.length - 1].id + 1;
+
+        clients.push(client);
+        c.clientId = client.id;
+
+        return [200, c, {}];
+      }
 
       function filterClients(method, url, data) {
         var client = {
@@ -750,7 +770,7 @@
         return [200, client, {}];
       }
 
-      function deleteClient (method, url, data) {
+      function deleteClient(method, url, data) {
         var parameters = url.split('/');
         var length = parameters.length;
         var id = parameters[length - 1];

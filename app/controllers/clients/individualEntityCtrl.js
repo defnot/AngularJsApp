@@ -1,29 +1,53 @@
   (function(){
 
-    "use strict";
+    'use strict';
     angular.module('Agrion')
-			.controller("IndividualEntityCtrl", [IndividualEntityCtrl]);
+			.controller('IndividualEntityCtrl', ['$http', '$state', IndividualEntityCtrl]);
 
 
-    function IndividualEntityCtrl(){
+    function IndividualEntityCtrl($http, $state){
 
         var vm = this;
 
+        // required client model
         vm.client = {
-            clientId : "7789786786",
-
+          clientId: '7789786786', // TODO: Make random string generator
+          addresses: [{
+            city: '',
+            country: '',
+            post_code: '',
+            region: '',
+            street: '',
+            phone: ''
+          }],
+          client_type: 1,
+          first_name: '',
+          middle_name: '',
+          last_name: '',
+          document_number: '',
+          eik: '',
+          num_dds: '',
+          birth_date: '',
+          sex: '',
+          zp_reg_number: ''
         };
 
         //submiting form
         vm.registerClient = function() {
+          $http.post('/api/clients', vm.client).success(function(data, status, headers) {
+            $state.go('clients');
+          });
+        };
 
-            console.log('client: %o', vm.client);
+        vm.checkRequiredFields = checkRequiredFields;
 
-        }
-
-        vm.checkRequiredFields = function() {
-          console.log("TODO implement button validation");
-          return true;
+        function checkRequiredFields () {
+          // console.log('TODO implement button validation');
+          return vm.containsOnlyLetters(vm.client.first_name) &&
+            vm.containsOnlyLetters(vm.client.middle_name) &&
+            vm.containsOnlyLetters(vm.client.last_name) &&
+            vm.checkEgn(vm.client.egn) &&
+            vm.containsOnlyDigits(vm.client.document_number);
         }
 
         //validates eik
@@ -50,7 +74,7 @@
         	if (a9 != a[8])
         		return false;
         	if (!matches[4]){
-            vm.client.dds = 'BG' + vm.client.eik;
+            vm.client.num_dds = 'BG' + vm.client.eik;
         		return true;
           }
         	//2*а9 + 7*а10 + 3*а11 +5*а12
@@ -68,12 +92,12 @@
         	a13 = a13 == 10 ? 0 : a13;
 
           if (a13 == a[3]) {
-            vm.client.dds = 'BG' + vm.client.eik;
+            vm.client.num_dds = 'BG' + vm.client.eik;
             return true;
           }
           return false;
 
-    }
+    };
 
         //validates egn
         vm.checkEgn = function (egn) {
@@ -114,10 +138,10 @@
                 return false;
 
             vm.client.sex = getSex(egn);
-            vm.client.birthDate = getDate(egn);
+            vm.client.birth_date = getDate(egn);
             return true;
 
-        }
+        };
 
         //used for egn validation
         function isValidDate(y, m, d) {
@@ -127,11 +151,11 @@
         //gets sex of the client
         function getSex(egn) {
 
-         var sexChar = Math.floor(parseInt(egn) / 10) % 10
-         if(sexChar % 2 == 0) {
-          return "Мъж";
+         var sexChar = Math.floor(parseInt(egn) / 10) % 10;
+         if(sexChar % 2 === 0) {
+          return 'Мъж';
          } else {
-           return "Жена";
+           return 'Жена';
          }
        }
        //gets bday of the client
@@ -140,49 +164,47 @@
          var month = Math.floor(parseInt(egn) / 1000000) % 100;
          var day = Math.floor(parseInt(egn) / 10000) % 100;
 
-         if (Math.floor(day/10) == 0) {
-           day = "0"+day;
+         if (Math.floor(day/10) === 0) {
+           day = '0'+day;
          }
 
-         if(Math.floor(month/10) == 0){
-           month = "0" + month;
+         if(Math.floor(month/10) === 0){
+           month = '0' + month;
          }
 
-         if(Math.floor(year/10) % 10 == 0 ) {
-           year = "0" + year;
+         if(Math.floor(year/10) % 10 === 0 ) {
+           year = '0' + year;
          }
 
          if(month < 13) {
-           year = "19" + year;
+           year = '19' + year;
          }
 
          if (month >= 41 && month <= 49) {
            month = month % 10;
-           month = "0" + month;
-            year = "20" + year;
+           month = '0' + month;
+            year = '20' + year;
          }
 
          if (month >= 50) {
            month = month % 10;
-           month = "1" + month;
-           year = "20" + year;
+           month = '1' + month;
+           year = '20' + year;
          }
 
-        return day + "/" + month + "/" + year;
+        return day + '/' + month + '/' + year;
 
        }
 
        vm.containsOnlyDigits = function(input) {
          var regexp = /^\d+$/;
-         var valid = regexp.test(input);
-         return valid;
-       }
+         return regexp.test(input);
+       };
 
        vm.containsOnlyLetters = function(input) {
-         var regexp = /^[a-zA-Zа-яА-Я]*$/;
-         var valid = regexp.test(input);
-         return valid;
-       }
+         var regexp = /[a-zA-Zа-яА-Я]+$/;
+         return regexp.test(input);
+       };
 
     }
 }());
