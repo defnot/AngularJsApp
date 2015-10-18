@@ -1,11 +1,10 @@
-(function(){
-"use strict"
+(function() {
+  "use strict"
 
-angular.module("Agrion")
-  .controller("HomeCtrl",
-            [HomeCtrl]);
+  angular.module("Agrion")
+    .controller("HomeCtrl", [HomeCtrl]);
 
-    function HomeCtrl(){
+  function HomeCtrl() {
 
   }
 }());
