@@ -92,7 +92,7 @@
                     <td>{{ c.addresses[0].city }}</td>
                     <td>{{ c.addresses[0].phone }}</td>
                     <td>
-                        <a ui-sref="client.editLegal({clientId: c.id})" ng-click="vm.editClient(c)" tooltip="Edit" class="glyphicon glyphicon-edit" style="font-size: 20px; margin-right: 5px; text-decoration: none;"></a>
+                        <a ng-click="vm.editClient(c)" tooltip="Edit" class="glyphicon glyphicon-edit" style="font-size: 20px; margin-right: 5px; text-decoration: none; cursor: pointer;"></a>
                         <a tooltip="Delete" class="glyphicon glyphicon-remove" style="font-size: 20px; margin-right: 5px; text-decoration: none; color: #A94442; cursor: pointer;" data-toggle="modal" data-target="#deleteClientModal" data-id="{{ c.id }}"></a>
                     </td>
                 </tr>

@@ -3,15 +3,16 @@
 
   angular
     .module('Agrion')
-    .controller('ClientsCtrl', ClientsCtrl);
+    .controller('ClientsCtrl', ['$http', '$state', ClientsCtrl]);
 
-  function ClientsCtrl($http) {
+  function ClientsCtrl($http, $state) {
     var vm = this;
 
     vm.promptDeleteClientId = '';
 
     vm.setClients = setClients;
 
+    // fill clients table on load
     vm.setClients();
 
     // // TODO:
@@ -23,14 +24,7 @@
       return vm.clients;
     };
     //
-    vm.editClient = function (client) {
-
-    	if (client.client_type != 1) {
-        // TODO: Call legal view
-      } else {
-        // TODO: Call individual view
-      }
-    };
+    vm.editClient = editClient;
 
     vm.deleteClient = deleteClient;
 
@@ -56,6 +50,21 @@
       $http.delete('/api/clients/' + vm.promptDeleteClientId).success(function(data, status, headers) {
         vm.setClients();
       });
+    }
+
+    /**
+     * Handle edit client click by navigating to editLegal/editPhysical client view.
+     *
+     * @param  {object} client - the client data object
+     */
+    function editClient (client) {
+
+      if (client.client_type != 1) {
+        // redirect to the legal view
+        $state.go('client.editLegal', {clientId: client.id});
+      } else {
+        // TODO: Call individual view
+      }
     }
 
     /**
