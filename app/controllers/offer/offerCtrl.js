@@ -63,12 +63,12 @@
             text: 'Оферта',
             style: 'header'
           },
-          // The spaces matter for formatting!!
-          'Дължима сума:          '.concat(totalSum),
-          '35 месечни вноски от:  '.concat(monthlyPayment),
-          'Цяла лихва:            '.concat(totalInterest),
-          'Сума на заема:         '.concat(loanAmount),
-          'Лихвa %:               '.concat(interestPercent),
+          // The spaces in the strings matter for the pdf format!!
+          'Дължима сума:               '        .concat(totalSum),
+          '35 месечни вноски от:  '             .concat(monthlyPayment),
+          'Цяла лихва:                      '   .concat(totalInterest),
+          'Сума на заема:                '      .concat(loanAmount),
+          'Лихвa %:                            '.concat(interestPercent),
           '                      ', {
             table: {
               // headers are automatically repeated if the table spans over multiple pages
