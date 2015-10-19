@@ -1,8 +1,122 @@
 <div style="background: #fff; width: 100%; height: 100%;">
 
-  <tabset>
+  <script type="text/ng-template" id="addEditAddressContent.html">
+	<div class="modal-header">
+		<h3 class="modal-title">Address</h3>
+	</div>
+	<div class="modal-body">
+		<form>
+			<div class="row">
+				<div class="col-lg-7 col-md-6 col-xs-12">
+					<!-- <label>Тип</label> -->
+					<select class="form-control text-margin" ng-model="addr.address_type" ng-options="x.id as x.name for x in address_types" ngSe>
+						<option value="" selected>- Address type -</option>
+					</select>
+				</div>
 
-      <tab heading="Регистрация">
+				<div class="col-lg-6 col-md-6 col-xs-12">
+					<input type="text" class="form-control" placeholder="City" ng-model="addr.city">
+				</div>
+
+				<div class="col-lg-6 col-md-6 col-xs-12">
+					<input type="text" class="form-control" placeholder="Street" ng-model="addr.street">
+				</div>
+
+				<div class="col-lg-12 col-md-6 col-xs-12">
+					<input type="text" class="form-control" placeholder="Phones" ng-model="addr.phone">
+				</div>
+
+				<div class="col-lg-6 col-md-6 col-xs-12">
+					<input type="text" class="form-control" placeholder="Fax" ng-model="addr.fax">
+				</div>
+
+				<div class="col-lg-6 col-md-6 col-xs-12">
+					<input type="text" class="form-control" placeholder="e-mail" ng-model="addr.email">
+				</div>
+			</div>
+		</form>
+	</div>
+	<div class="modal-footer">
+		<button class="btn btn-primary" ng-click="ok()">Save</button>
+		<button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+	</div>
+</script>
+
+<!--Delete address dialog-->
+<script type="text/ng-template" id="deleteAddressContent.html">
+	<div class="modal-header">
+		<h3 class="modal-title">Alert</h3>
+	</div>
+	<div class="modal-body">
+		Сигурни ли сте, че искате да изтриете този адрес?
+	</div>
+	<div class="modal-footer">
+		<button class="btn btn-danger" ng-click="ok()">OK</button>
+		<button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+	</div>
+</script>
+
+
+<!--Add/Edit Employee dialog-->
+<script type="text/ng-template" id="addEditEmployeeContent.html">
+	<div class="modal-header">
+		<h3 class="modal-title">Employee</h3>
+	</div>
+	<div class="modal-body">
+		<form>
+			<div class="row">
+				<!-- <div class="col-lg-7 col-md-6 col-xs-12"> -->
+				<div class="col-lg-4 col-md-6 col-xs-12">
+					<!-- <label>Тип</label> -->
+					<select class="form-control text-margin" ng-model="employee.title" ng-options="x.id as x.name for x in titles">
+						<option value="" selected>- Title -</option>
+					</select>
+				</div>
+
+				<div class="col-lg-4 col-md-6 col-xs-12">
+					<input type="text" class="form-control" placeholder="Name" ng-model="employee.first_name">
+				</div>
+
+				<div class="col-lg-4 col-md-6 col-xs-12">
+					<input type="text" class="form-control" placeholder="Family" ng-model="employee.last_name">
+				</div>
+
+				<div class="col-lg-12 col-md-6 col-xs-12">
+					<input type="text" class="form-control" placeholder="Phones" ng-model="employee.phone">
+				</div>
+
+				<div class="col-lg-6 col-md-6 col-xs-12">
+					<input type="text" class="form-control" placeholder="Mobile" ng-model="employee.mobile">
+				</div>
+
+				<div class="col-lg-6 col-md-6 col-xs-12">
+					<input type="text" class="form-control" placeholder="Company position" ng-model="employee.company_position">
+				</div>
+			</div>
+		</form>
+	</div>
+	<div class="modal-footer">
+		<button class="btn btn-primary" ng-click="ok()">Save</button>
+		<button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+	</div>
+</script>
+
+<!--Delete Employee dialog-->
+<script type="text/ng-template" id="deleteEmployeeContent.html">
+	<div class="modal-header">
+		<h3 class="modal-title">Alert</h3>
+	</div>
+	<div class="modal-body">
+		Сигурни ли сте, че искате да изтриете този служител?
+	</div>
+	<div class="modal-footer">
+		<button class="btn btn-danger" ng-click="ok()">OK</button>
+		<button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+	</div>
+</script>
+  <uib-tabset>
+
+      <uib-tab heading="Информация">
         <div class="page-header col-md-12" style="margin-top: 30px; margin-bottom: 30px;">
             <h1>Физическо лице</h1>
         </div>
@@ -101,12 +215,108 @@
           </div>
 
           <div class="col-md-12" style="padding-top: 30px;">
-            <a ui-sref="clients" class="btn btn-default">Обратно</a>
+            <button class="btn btn-default" type="button" name="backBtn" ng-click="vm.back()">Обратно</button>
             <input class="btn btn-success"  type="submit" ng-disabled="!vm.checkRequiredFields()" value="Запази"/>
           </div>
         </form>
-      </tab>
-      <tab heading="Адреси"></tab>
-      <tab heading="Служители"></tab>
-    </tabset>
+      </uib-tab>
+      <uib-tab heading="Адреси">
+        <div style="background: #fff; width: 100%; height: 100%;">
+			<div class="col-md-10 col-md-offset-1" style="padding-top: 30px;">
+				<div class="col-md-4 form-padding">
+					<button class="btn btn-default" ng-click="vm.back()"><span class="glyphicon glyphicon glyphicon-chevron-left"></span> Обратно</button>
+					<button class="btn btn-success" style="margin-left: 20px;" ng-click="createAddress()"><span class="glyphicon glyphicon glyphicon-floppy-saved"></span> Запази</button>
+				</div>
+			</div>
+
+			<div class="col-md-12 col-md-offset-1" style="margin-top: 30px; margin-bottom: 10px; padding-left: 30px;">
+				<button class="btn btn-success" ng-click="vm.createAddress()"><span class="glyphicon glyphicon-plus"></span> Нов Адрес</button>
+			</div>
+
+			<div class="col-md-10 col-md-offset-1">
+
+				<div class="table-responsive">
+					<table class="table">
+						<thead>
+						<tr class="text-primary">
+							<td>Тип</td>
+							<td>Град</td>
+							<td>Улица</td>
+							<td>Телефон</td>
+							<td>Факс</td>
+							<td>Поща</td>
+							<td></td>
+						</tr>
+						</thead>
+
+						<tbody>
+							<tr ng-repeat="addr in client.addresses">
+								<td>{{getAddressType(addr.address_type)}}</td>
+								<td>{{addr.city}}</td>
+								<td>{{addr.street}}</td>
+								<td>{{addr.phone}}</td>
+								<td>{{addr.fax}}</td>
+								<td>{{addr.email}}</td>
+								<td>
+									<span tooltip="Edit" class="text-info"><i class="glyphicon glyphicon-edit" ng-click="editAddress(addr)" style="font-size: 20px; margin-right: 5px;"></i></span>
+									<span tooltip="Delete" class="text-danger"><i class="glyphicon glyphicon-remove" ng-click="deleteAddress(addr)" style="font-size: 20px;"></i></span>
+								</td>
+							</tr>
+						</tbody>
+
+					</table>
+				</div>
+			</div>
+		</div>
+      </uib-tab>
+      <uib-tab heading="Служители">
+        <div style="background: #fff; width: 100%; height: 100%;">
+			<div class="col-md-10 col-md-offset-1" style="padding-top: 30px;">
+				<div class="col-md-4 form-padding">
+					<button class="btn btn-default" ng-click="back()"><span class="glyphicon glyphicon glyphicon-chevron-left"></span> Обратно</button>
+					<button class="btn btn-success" style="margin-left: 20px;" ng-click="saveClientDetails()"><span class="glyphicon glyphicon glyphicon-floppy-saved"></span> Запази</button>
+				</div>
+			</div>
+
+			<div class="col-md-12 col-md-offset-1" style="margin-top: 30px; margin-bottom: 10px; padding-left: 30px;">
+				<button href="#" class="btn btn-success" ng-click="createEmployee()"><span class="glyphicon glyphicon-plus"></span> Нов Служител</button>
+			</div>
+
+			<div class="col-md-10 col-md-offset-1">
+
+				<div class="table-responsive">
+					<table class="table">
+						<thead>
+						<tr class="text-primary">
+							<td>Титла</td>
+							<td>Име</td>
+							<td>Фамилия</td>
+							<td>Телефон</td>
+							<td>Мобилен</td>
+							<td>Позиция</td>
+							<td></td>
+						</tr>
+						</thead>
+
+						<tbody>
+							<tr ng-repeat="employee in client.employees">
+								<td>{{getEmployeeTitle(employee.title)}}</td>
+								<td>{{employee.first_name}}</td>
+								<td>{{employee.last_name}}</td>
+								<td>{{employee.phone}}</td>
+								<td>{{employee.mobile}}</td>
+								<td>{{employee.company_position}}</td>
+								<td>
+									<span tooltip="Edit" class="text-info"><i class="glyphicon glyphicon-edit" ng-click="editEmployee(employee)" style="font-size: 20px; margin-right: 5px;"></i></span>
+									<span tooltip="Delete" class="text-danger"><i class="glyphicon glyphicon-remove" ng-click="deleteEmployee(employee)" style="font-size: 20px;"></i></span>
+								</td>
+							</tr>
+						</tbody>
+
+					</table>
+				</div>
+			</div>
+		</div>
+      </uib-tab>
+    </uib-tabset>
 </div>

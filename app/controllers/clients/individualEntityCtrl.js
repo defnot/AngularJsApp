@@ -4,9 +4,7 @@
   angular.module('Agrion')
     .controller('IndividualEntityCtrl', ['$http', '$state', 'client', IndividualEntityCtrl]);
 
-  function IndividualEntityCtrl($http, $state, client) {
-
-
+  function IndividualEntityCtrl($http, $state, client, $modal) {
 
     var vm = this;
 
@@ -57,6 +55,16 @@
       };
     }
 
+    //create new address for client
+    vm.createAddress = function() {
+
+			//TODO create modal 
+		};
+
+    //navigate to client view
+    vm.back = function() {
+			window.location.href = "#/clients";
+		};
     //submiting form
     vm.registerClient = function() {
       var url = '/api/clients';
