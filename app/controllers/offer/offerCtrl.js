@@ -1,5 +1,5 @@
 (function () {
-	'use strict'
+	'use strict';
 
 	angular.module("Agrion")
 		.controller("OfferCtrl", ['$http',
@@ -26,20 +26,6 @@
 				vm.offerTable = data;
 			});
 		}
-
-
-		// vm.submitOffer = function(){
-		// $http.get(serviceUrl,
-		// {params: {
-		//       loan: vm.loan,
-		//       annualInterest: vm.interest,
-		//       paymentsPerYear: vm.numpayments,
-		//       loanPeriodYears: vm.years
-		//       }} ).
-		//   success(function(data) {
-		//       vm.offerTable = data;
-		//   });
-		// }
 	}
 
 }());
