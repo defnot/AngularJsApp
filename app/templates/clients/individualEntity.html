@@ -1,10 +1,10 @@
-  <tabset ng-controller="IndividualEntityCtrl as vm">
-
-  <tab heading="Информация">
-
+<tabset>
     <div style="background: #fff; width: 100%; height: 100%;">
-      <div class="col-md-10 col-md-offset-1" style="margin-top: 30px; margin-bottom: 20px;">
-        <h3>Физическо лице</h3>
+
+        <div class="page-header col-md-12" style="margin-top: 30px; margin-bottom: 30px;">
+            <h1>Физическо лице</h1>
+        </div>
+
         <form name="registerIndividualClientForm" ng-submit="vm.registerClient()" novalidate>
 
           <div class="col-md-4 form-padding">
@@ -46,12 +46,12 @@
 
             <label>ЕИК</label>
             <span ng-if="vm.client.eik && !vm.checkEik(vm.client.eik)" style="color:red;">Невалиден ЕИК!</span>
-            <input class="form-control text-margin" id="col3-input-3" ng-model="vm.client.eik" ng-change="vm.client.num_dds=''" type="text" placeholder="Задължително" required>
+            <input class="form-control text-margin" id="col3-input-3" ng-model="vm.client.eik" ng-change="vm.client.num_dds=''" type="text" required>
 
             <label>Националност</label>
             <select class="form-control text-margin">
-              <option value="bg">Български</option>
-              <option value="en">Aнглийски</option>
+              <option selected>Bulgarian</option>
+              <option ng-repeat="nacionality in vm.nationalities">{{nacionality}}</option>
             </select>
 
           </div>
@@ -100,13 +100,11 @@
           </div>
 
           <div class="col-md-12" style="padding-top: 30px;">
-            <button class="btn btn-default">Обратно</button>
+            <a ui-sref="clients" class="btn btn-default">Обратно</a>
             <input class="btn btn-success"  type="submit" ng-disabled="!vm.checkRequiredFields()" value="Запази"/>
           </div>
         </form>
 
-      </div>
     </div>
 
-  </tab>
 </tabset>

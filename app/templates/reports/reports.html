@@ -1,0 +1,120 @@
+<div ng-controller="ReportsCtrl as vm">
+  <h1>Отчети</h1>
+
+  <div class="col-lg-12 col-md-6 col-xs-12" style="margin-top: 30px;">
+    <form>
+      <div class="form-group">
+        <div class="input-group">
+          <div class="input-group-addon">
+            <i class="glyphicon glyphicon-search"></i>
+          </div>
+
+          <input class="form-control" ng-model="searchReports" placeholder="Search" type="text">
+
+        </div>
+      </div>
+    </form>
+
+    <div class="table-responsive">
+      <table class="table">
+        <thead>
+          <tr>
+            <td>
+              <a href="#/reports" ng-click="sortType = 'dateAdded'; sortReverse = !sortReverse">
+                Дата
+                <span class="glyphicon glyphicon-chevron-down" ng-show="sortType == 'dateAdded' && !sortReverse"></span>
+                <span class="glyphicon glyphicon-chevron-up" ng-show="sortType == 'dateAdded' && sortReverse"></span>
+              </a>
+            </td>
+            <td>
+              <a href="#/reports" ng-click="sortType = 'ammount'; sortReverse = !sortReverse">
+                Сума
+                <span class="glyphicon glyphicon-chevron-down" ng-show="sortType == 'ammount' && !sortReverse"></span>
+                <span class="glyphicon glyphicon-chevron-up" ng-show="sortType == 'ammount' && sortReverse"></span>
+              </a>
+            </td>
+            <td>
+              <a href="#/reports" ng-click="sortType = 'currency'; sortReverse = !sortReverse">
+                Валута
+                <span class="glyphicon glyphicon-chevron-down" ng-show="sortType == 'currency' && !sortReverse"></span>
+                <span class="glyphicon glyphicon-chevron-up" ng-show="sortType == 'currency' && sortReverse"></span>
+              </a>
+            </td>
+            <td>
+              <a href="#/reports" ng-click="sortType = 'status'; sortReverse = !sortReverse">
+                Статус
+                <span class="glyphicon glyphicon-chevron-down" ng-show="sortType == 'status' && !sortReverse"></span>
+                <span class="glyphicon glyphicon-chevron-up" ng-show="sortType == 'status' && sortReverse"></span>
+              </a>
+            </td>
+            <td>
+              <a href="#/reports" ng-click="sortType = 'firstName'; sortReverse = !sortReverse">
+                Име
+                <span class="glyphicon glyphicon-chevron-down" ng-show="sortType == 'firstName' && !sortReverse"></span>
+                <span class="glyphicon glyphicon-chevron-up" ng-show="sortType == 'firstName' && sortReverse"></span>
+              </a>
+            </td>
+            <td>
+              <a href="#/reports" ng-click="sortType = 'lastName'; sortReverse = !sortReverse">
+                Фамилия
+                <span class="glyphicon glyphicon-chevron-down" ng-show="sortType == 'lastName' && !sortReverse"></span>
+                <span class="glyphicon glyphicon-chevron-up" ng-show="sortType == 'lastName' && sortReverse"></span>
+              </a>
+            </td>
+            <td>
+              <a href="#/reports" ng-click="sortType = 'phone'; sortReverse = !sortReverse">
+                Телефон
+                <span class="glyphicon glyphicon-chevron-down" ng-show="sortType == 'phone' && !sortReverse"></span>
+                <span class="glyphicon glyphicon-chevron-up" ng-show="sortType == 'phone' && sortReverse"></span>
+              </a>
+            </td>
+            <td>
+              <a href="#/reports" ng-click="sortType = 'email'; sortReverse = !sortReverse">
+                Електронен адрес
+                <span class="glyphicon glyphicon-chevron-down" ng-show="sortType == 'email' && !sortReverse"></span>
+                <span class="glyphicon glyphicon-chevron-up" ng-show="sortType == 'email' && sortReverse"></span>
+              </a>
+            </td>
+            <td>
+              <a href="#/reports" ng-click="sortType = 'address'; sortReverse = !sortReverse">
+                Адрес
+                <span class="glyphicon glyphicon-chevron-down" ng-show="sortType == 'address' && !sortReverse"></span>
+                <span class="glyphicon glyphicon-chevron-up" ng-show="sortType == 'address' && sortReverse"></span>
+              </a>
+            </td>
+            <td>
+              <a href="#/reports" ng-click="sortType = 'company'; sortReverse = !sortReverse">
+                Фирма
+                <span class="glyphicon glyphicon-chevron-down" ng-show="sortType == 'company' && !sortReverse"></span>
+                <span class="glyphicon glyphicon-chevron-up" ng-show="sortType == 'company' && sortReverse"></span>
+              </a>
+            </td>
+            <td>Информация</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="c in vm.applications| orderBy:sortType:sortReverse | filter:searchReports">
+            <td data-application-id="{{ c.id }}">{{ c.dateAdded | date:'yyyy-MM-dd HH:mm'}}</td>
+            <td>{{ c.ammount }}</td>
+            <td>{{ c.currency }}</td>
+            <td>{{ c.status }}</td>
+            <td data-user-id="{{ c.userId }}">{{ c.firstName }}</td>
+            <td>{{ c.lastName }}</td>
+            <td>{{ c.phone }}</td>
+            <td>{{ c.email }}</td>
+            <td>{{ c.address }}</td>
+            <td>{{ c.company }}</td>
+            <td>
+              <span class="text-info" tooltip="Информация">
+                <a ui-sref="offerInfo({applicationId: c.id})">
+                  <i class="glyphicon glyphicon-info-sign" class="img-responsive" title="Информация"></i> Инфо
+                </a>
+              </span>
+            </td>
+          </tr>
+        </tbody>
+
+      </table>
+    </div>
+  </div>
+</div>

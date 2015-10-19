@@ -23,7 +23,7 @@
     { code: 'втори', name: 'втори' }
     ];
     vm.selectedModel = vm.interestModels[0];
-    
+
     vm.validateTotalSum = validateTotalSum;
     vm.validatePositiveInteger = validatePositiveInteger;
     vm.validateForm = validateForm;
@@ -153,5 +153,4 @@
       });
     }
   }
-
 }());

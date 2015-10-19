@@ -3,10 +3,9 @@
 
     angular
         .module('Agrion')
-        .controller('OfferClientDataCtrl', OfferClientDataCtrl);
+        .controller('OfferInfoCtrl', OfferInfoCtrl);
 
-    function OfferClientDataCtrl() {
+    function OfferInfoCtrl() {
         //var vm = this;
-
     }
 })();
