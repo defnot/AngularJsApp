@@ -152,5 +152,19 @@
         vm.offerTable = data;
       });
     }
+
+    function submitOfferEPP() {
+      $http.get('http://localhost:9000/calculateEPP', {
+        params: {
+          loan: vm.loan,
+          annualInterest: vm.interest,
+          paymentsPerYear: vm.numpayments,
+          loanPeriodYears: vm.years
+        }
+      }).
+      success(function(data) {
+        vm.offerTable = data;
+      });
+    }
   }
 }());
