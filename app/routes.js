@@ -27,13 +27,33 @@
       // })
       .state('individual', {
         url: '/individual',
-        templateUrl: 'app/templates/clients/individualEntity.html'
+        templateUrl: 'app/templates/clients/individualEntity.html',
+        controller: 'IndividualEntityCtrl as vm',
+        resolve: {
+          client: function () { return undefined; }
+        }
+      })
+      .state('editIndividual', {
+        // the object part of the url should NOT contain any white space chars!
+        url: '/individual/{clientId:int}',
+        templateUrl: 'app/templates/clients/individualEntity.html',
+        controller: 'IndividualEntityCtrl as vm',
+        resolve: {
+          clientResource: 'clientResource',
+
+          client: function (clientResource, $stateParams) {
+            var clientId = $stateParams.clientId;
+
+            return clientResource.get({ clientId: clientId }).$promise;
+          }
+        }
       })
       .state('legal', {
         url: '/legal',
         templateUrl: 'app/templates/clients/legalEntity.html'
       })
       .state('editLegal', {
+        // the object part of the url should NOT contain any white space chars!
         url: '/legal/{clientId:int}',
         templateUrl: 'app/templates/clients/legalEntity.html',
         controller: 'LegalEntityCtrl as vm',
