@@ -1,75 +1,85 @@
 <div ng-controller="OfferCtrl as vm">
   <div class="col-md-12" style="margin-top: 30px; margin-bottom: 20px;">
-    <div class="col-md-4 form-padding">
-      <fieldset ng-hide="true">
-        <h3>Физическо Лице</h3>
-
-        <label for="input-01">ID</label>
-        <input type="text" id="input-01" class="form-control text-margin" placeholder="">
-
-        <label for="input-02">Име и Фамилия</label>
-        <input type="text" id="input-02" class="form-control text-margin" placeholder="">
-
-        <label for="input-03">ЕГН</label>
-        <input type="text" id="input-03" class="form-control text-margin" placeholder="">
-      </fieldset>
-
-      <fieldset ng-hide="false">
-        <h3>Юридическо Лице</h3>
-
-        <label for="input-01">ID</label>
-        <input type="text" id="input-01" class="form-control text-margin" placeholder="">
-
-        <label for="input-02">Име на Форма</label>
-        <input type="text" id="input-02" class="form-control text-margin" placeholder="">
-
-        <label for="input-03">ЕИК</label>
-        <input type="text" id="input-03" class="form-control text-margin" placeholder="">
-
-        <label for="input-04">ДДС</label>
-        <input type="text" id="input-04" class="form-control text-margin" placeholder="">
-      </fieldset>
+    <div class="col-md-2">
+      <select class="form-control"
+          ng-model="vm.clientTypes.selected"
+          ng-options="option.name for option in vm.clientTypes.availableOptions track by option.id"
+          ng-change="vm.filterClientType()">
+      </select>
     </div>
 
-    <div class="col-md-4 form-padding">
-      <h3>Оферта</h3>
+    <div class="col-md-12">
+      <div class="col-md-4 form-padding">
+        <fieldset ng-hide="vm.clientTypes.selected.id != 0">
+          <h3>Физическо Лице</h3>
 
-      <label for="input-05">Дата на кредит</label>
-      <input type="text" id="input-05" class="form-control text-margin" placeholder="" >
+          <label for="input-01">ID</label>
+          <input type="text" id="input-01" class="form-control text-margin" placeholder="">
 
-      <label for="input-06">Регион</label>
-      <input type="text" id="input-06" class="form-control text-margin" placeholder="" >
+          <label for="input-02">Име и Фамилия</label>
+          <input type="text" id="input-02" class="form-control text-margin" placeholder="">
 
-      <label for="input-07">Филиал</label>
-      <input type="text" id="input-07" class="form-control text-margin" placeholder="" >
-    </div>
+          <label for="input-03">ЕГН</label>
+          <input type="text" id="input-03" class="form-control text-margin" placeholder="">
+        </fieldset>
 
-    <div class="col-md-4 form-padding">
-      <h3>Оператор</h3>
+        <fieldset ng-hide="vm.clientTypes.selected.id == 0">
+          <h3>Юридическо Лице</h3>
 
-      <label for="input-08">ID</label>
-      <input type="text" id="input-08" class="form-control text-margin" placeholder="" >
+          <label for="input-01">ID</label>
+          <input type="text" id="input-01" class="form-control text-margin" placeholder="">
 
-      <label for="input-09">Име и Фамилия</label>
-      <input type="text" id="input-09" class="form-control text-margin" placeholder="" >
+          <label for="input-02">Име на Фирма</label>
+          <input type="text" id="input-02" class="form-control text-margin" placeholder="">
 
-      <label for="input-10">Телефон</label>
-      <input type="text" id="input-10" class="form-control text-margin" placeholder="" >
+          <label for="input-03">ЕИК</label>
+          <input type="text" id="input-03" class="form-control text-margin" placeholder="">
 
+          <label for="input-04">ДДС</label>
+          <input type="text" id="input-04" class="form-control text-margin" placeholder="">
+        </fieldset>
+      </div>
+
+      <div class="col-md-4 form-padding">
+        <h3>Оферта</h3>
+
+        <label for="input-05">Дата на кредит</label>
+        <input type="text" id="input-05" class="form-control text-margin" placeholder="" >
+
+        <label for="input-06">Регион</label>
+        <input type="text" id="input-06" class="form-control text-margin" placeholder="" >
+
+        <label for="input-07">Филиал</label>
+        <input type="text" id="input-07" class="form-control text-margin" placeholder="" >
+      </div>
+
+      <div class="col-md-4 form-padding">
+        <h3>Оператор</h3>
+
+        <label for="input-08">ID</label>
+        <input type="text" id="input-08" class="form-control text-margin" value="{{ vm.operator.id }}" disabled>
+
+        <label for="input-09">Име и Фамилия</label>
+        <input type="text" id="input-09" class="form-control text-margin" value="{{ vm.operator.name }}" disabled>
+
+        <label for="input-10">Телефон</label>
+        <input type="text" id="input-10" class="form-control text-margin" value="{{ vm.operator.phone }}" disabled>
+      </div>
     </div>
   </div>
 
   <h1>Оферта</h1>
 
   <!-- OFFER FORM -->
-  <form novalidate id="offerForm" name="offerForm" style="width:70%" class="form-horizontal" ng-submit="vm.submitOffer()">
+  <form novalidate id="offerForm" name="offerForm" style="width:70%" class="form-horizontal" ng-submit="vm.makeOffer()">
 
     <!-- LOAN TYPE -->
     <div class="form-group">
       <label class="control-label col-xs-2" for="loanType">Лихвен модел:</label>
       <div class="col-xs-5">
-        <select name="loanType" class="form-control" id="loanType" ng-model="vm.selectedModel.name"
-         ng-options="g.code as g.name for g in vm.interestModels" >
+        <select name="loanType" class="form-control" id="loanType" ng-selected="1" >
+          <option>{{ vm.offerModels[0] }}</option>
+          <option>{{ vm.offerModels[1] }}</option>
         </select>
       </div>
     </div>
