@@ -5,6 +5,6 @@
 (function() {
   'use strict';
 
-  angular.module('Agrion', ['ui.router', 'commonServices', 'mocks', 'clientFilters']);
+  angular.module('Agrion', ['ui.router', 'commonServices', 'mocks', 'clientFilters', 'ngAnimate', 'ui.bootstrap']);
 
 }());
