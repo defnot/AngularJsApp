@@ -749,12 +749,34 @@
       $httpBackend.whenGET(clientsUrlRegex).respond(filterClients);
       $httpBackend.whenDELETE(clientsUrlRegex).respond(deleteClient);
       $httpBackend.whenPOST(clientsUrl).respond(addPhysicalClient);
+      $httpBackend.whenPUT(clientsUrlRegex).respond(updateClient);
 
+      // TODO: This code will duplicate with other mocks, find way to extract the code.
       $httpBackend.whenGET(/app/).passThrough();
       $httpBackend.whenGET(/calculateEMI/).passThrough();
 
+      function updateClient (method, url, data) {
+        console.log('data: %o', data);
+
+        var parameters = url.split('/');
+        var length = parameters.length;
+        var id = parameters[length - 1];
+        var client = JSON.parse(data);
+
+        if (id > 0) {
+          for (var i = 0; i < clients.length; i++) {
+            if (clients[i].id == id) {
+              clients[i] = client;
+              break;
+            }
+          }
+        }
+
+        return [200, client, {}];
+      }
+
       function addPhysicalClient(method, url, data) {
-        console.log('create %o', data);
+        // console.log('create %o', data);
 
         var c = {
           clientId: 0

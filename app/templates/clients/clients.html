@@ -85,11 +85,11 @@
                 <tbody>
                 <tr ng-repeat="c in vm.getClients() | orderBy:sortType:sortReverse | filter:searchClient">
                     <td>{{ c.id }}</td>
-                    <td>{{ c.display_name }}</td>
+                    <td>{{ c | clientDisplayNameFilter }}</td>
                     <td>{{ c.num_dds }}</td>
                     <td>{{ c.eik }}</td>
                     <td>{{ c.client_type | clientTypeFilter}}</td>
-                    <td>{{ c.addresses[0].city }}</td>
+                    <td>{{ c.addresses[0] | clientAddressFilter }}</td>
                     <td>{{ c.addresses[0].phone }}</td>
                     <td>
                         <a ng-click="vm.editClient(c)" data-toggle="tooltip" title="Редактиране" class="glyphicon glyphicon-edit" style="font-size: 20px; margin-right: 5px; text-decoration: none; cursor: pointer;"></a>
