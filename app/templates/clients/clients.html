@@ -18,7 +18,7 @@
     </div>
 
     <div class="col-lg-12 col-md-6 col-xs-12" style="margin-top: 30px;">
-        <a href="#/client/individual" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span> New</a>
+        <a href="#/client/individual" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span> Нов клиент</a>
     </div>
 
     <div class="col-lg-12 col-md-6 col-xs-12" style="margin-top: 30px;">
@@ -88,7 +88,7 @@
                     <td>{{ c.display_name }}</td>
                     <td>{{ c.num_dds }}</td>
                     <td>{{ c.eik }}</td>
-                    <td>{{ c.client_type }}</td>
+                    <td>{{ c.client_type | clientTypeFilter}}</td>
                     <td>{{ c.addresses[0].city }}</td>
                     <td>{{ c.addresses[0].phone }}</td>
                     <td>
