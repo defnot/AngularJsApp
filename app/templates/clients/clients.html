@@ -85,7 +85,7 @@
                 <tbody>
                 <tr ng-repeat="c in vm.getClients() | orderBy:sortType:sortReverse | filter:searchClient">
                     <td>{{ c.id }}</td>
-                    <td>{{ c.display_name }}</td>
+                    <td>{{ c | clientDisplayNameFilter }}</td>
                     <td>{{ c.num_dds }}</td>
                     <td>{{ c.eik }}</td>
                     <td>{{ c.client_type | clientTypeFilter}}</td>
