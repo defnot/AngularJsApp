@@ -7,6 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Agrion</title>
 
+
   <!-- Style sheets -->
   <link href="app/css/bootstrap.css" rel="stylesheet">
   <link href="app/css/CustomStyle.css" rel="stylesheet">
@@ -36,6 +37,10 @@
 
   <!-- Mocks -->
   <script src="app/mocks/clientResourceMocks.js"></script>
+  <script src="app/mocks/mocks.js"></script>
+
+  <!-- Filters -->
+  <script type="text/javascript" src="app/controllers/clients/client_filters.js"></script>
 
   <!--[if lt IE 9]>
       <script src="https://cdn.jsdelivr.net/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -65,10 +70,10 @@
               </a>
             </li>
             <li>
-              <a ui-sref="client.physical">Физическо лице</a>
+              <a ui-sref="individual">Физическо лице</a>
             </li>
             <li>
-              <a ui-sref="client.legal">Юридическо лице</a>
+              <a ui-sref="legal">Юридическо лице</a>
             </li>
             <li>
               <a ui-sref="offer">
@@ -89,8 +94,13 @@
 
   <!-- jQuery -->
   <script src="lib/jquery/jquery-1.11.2.min.js"></script>
+  <!-- PDF Print scripts -->
+  <script src='lib/pdf-scripts/jquery.tabletojson.min.js'></script>
+  <script src='lib/pdf-scripts/pdfmake.min.js'></script>
+  <script src='lib/pdf-scripts/vfs_fonts.js'></script>
   <!-- Bootstrap Core JavaScript -->
   <script src="lib/bootstrap/bootstrap.min.js"></script>
+
 </body>
 
 </html>

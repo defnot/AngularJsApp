@@ -1,101 +1,136 @@
 <div ng-controller="OfferCtrl as vm">
   <h1>Оферта</h1>
-  <form class="form-horizontal" ng-submit="vm.submitOffer()">
+
+  <!-- OFFER FORM -->
+  <form novalidate id="offerForm" name="offerForm" style="width:70%" class="form-horizontal" ng-submit="vm.submitOffer()">
+
+    <!-- LOAN TYPE -->
     <div class="form-group">
-      <label class="control-label col-xs-2" for="loan">Заем:</label>
+      <label class="control-label col-xs-2" for="loanType">Лихвен модел:</label>
       <div class="col-xs-5">
-        <input class="form-control" id="loan" ng-model="vm.loan" placeholder="Заем" type="text">
-      </div>
-    </div>
-    <div class="form-group">
-      <label class="control-label col-xs-2" for="interest">Лихва %:</label>
-      <div class="col-xs-5">
-        <input class="form-control" id="interest" ng-model="vm.interest" placeholder="Лихва" type="text">
-      </div>
-    </div>
-    <div class="form-group">
-      <label class="control-label col-xs-2" for="paymentPerMonth">Брой вноски на година:</label>
-      <div class="col-xs-5">
-        <input class="form-control" id="payment-per-month" ng-model="vm.numpayments" placeholder="Брой вноски на година" type="text">
-      </div>
-    </div>
-    <div class="form-group">
-      <label class="control-label col-xs-2" for="years">Години:</label>
-      <div class="col-xs-5">
-        <input class="form-control" id="years" ng-model="vm.years" placeholder="Години" type="text">
-      </div>
-    </div>
-    <div class="form-group">
-      <label class="control-label col-xs-2" for="currency">Валута:</label>
-      <div class="col-xs-5">
-        <select class="form-control" id="currency" ng-model="vm.currency">
-          <option selected="selected" value="BGN">BGN</option>
-          <option value="EUR">EUR</option>
-          <option value="USD">USD</option>
+        <select class="form-control" id="loanType" ng-model="vm.interestModel" required
+         ng-options="g.code as g.name for g in vm.interestModels" >
+         <option value="">-- Избери модел --</option>
         </select>
       </div>
     </div>
 
+    <!-- LOAN -->
     <div class="form-group">
-      <div class="col-xs-10">
-        <button class="btn btn-primary" type="submit">Оферта</button>
+        <label class="control-label col-xs-2" for="loan">Заем:</label>
+          <div class="col-xs-5">
+            <input class="form-control" id="loan" name="loan" placeholder="Заем" type="text"
+             ng-model="vm.loan" maxlength="15" required >
+          </div>
+          <span ng-if="vm.loan && !vm.validateTotalSum(vm.loan)"
+          class="validation-error">Невалиден заем!</span>
+    </div>
+
+    <!-- INTEREST % -->
+    <div class="form-group">
+      <label class="control-label col-xs-2" for="interest">Лихва %:</label>
+        <div class="col-xs-5">
+          <input class="form-control" id="interest" ng-model="vm.interest" placeholder="Лихва"
+           type="text" ng-minlength=1 maxlength="6" required>
+        </div>
+        <span ng-if="vm.interest && !vm.validateTotalSum(vm.interest)"
+        class="validation-error">Невалидна лихва!</span>
+    </div>
+
+    <!-- NUMBER OF PAYMENTS PER YEAR -->
+    <div class="form-group">
+      <label class="control-label col-xs-2" for="paymentPerMonth">Брой вноски на година:</label>
+        <div class="col-xs-5">
+          <input class="form-control" id="payment-per-month" ng-model="vm.numpayments"
+           placeholder="Брой вноски на година" type="text" ng-minlength=1 maxlength="2" required>
+        </div>
+        <span ng-if="vm.numpayments && !vm.validatePositiveInteger(vm.numpayments)"
+        class="validation-error">Въведи между 1 и 12 дена!</span>
+    </div>
+
+    <!-- YEARS -->
+    <div class="form-group">
+      <label class="control-label col-xs-2" for="years">Години:</label>
+        <div class="col-xs-5">
+          <input class="form-control" id="years" ng-model="vm.years" placeholder="Години"
+           type="text" maxlength="3" required>
+        </div>
+        <span ng-if="vm.years && !vm.validatePositiveInteger(vm.years)"
+        class="validation-error">Невалиден брой години!</span>
+    </div>
+
+    <!-- CURRENCY -->
+    <div class="form-group">
+      <label class="control-label col-xs-2" for="currency">Валута:</label>
+      <div class="col-xs-5">
+        <select class="form-control" id="currency" ng-model="vm.currency" required
+         ng-options="c.code as c.name for c in vm.currencies" >
+         <option value="">-- Избери валута --</option>
+        </select>
       </div>
     </div>
+
+    <!-- BUTTON -->
+    <div class="form-group">
+      <div class="col-xs-10">
+        <button class="btn btn-primary" data-ng-disabled="!vm.validateForm()"
+         type="submit" ng-click="vm.showData()">Изчисли Оферта</button>
+      </div>
+    </div>
+
   </form>
+
   <!-- DATA  -->
-  <hr>
-  <div class="resultText total2">
-    <b>Дължима сума</b>:</div>
-  <!-- TODO: CREATE THIS FIELD IN SERVICE? -->
-  <span class="resultInfo total2">
-    <b>145,329.02
-      {{vm.currency}}</b>
-  </span>
-  <div class="resultInfoRight">
-    <b>Начална дата:</b>: Октомври 15, 2015<br>
-    <b>Крайна дата</b>: Септември 15, 2018</div>
-  <div class="resultText">35 месечни вноски от:</div>
-  <span class="resultInfo">{{vm.offerTable[0].payment | number:2}}
-    {{vm.currency}}</span>
-  <br style="clear:both">
-  <div class="resultText">Цяла лихва:</div>
-  <!-- TODO: CREATE THIS FIELD IN SERVICE? -->
-  <span class="resultInfo">23,217.02
-    {{vm.currency}}</span>
-  <br style="clear:both">
-  <div class="resultText">Заем:</div>
-  <span class="resultInfo">
-    {{vm.offerTable[0].startBalance | number:2}}
-    {{vm.currency}}</span>
-  <br style="clear:both">
-  <div class="resultText">Лихвa %:</div>
-  <span class="resultInfo">{{vm.interest}}%</span>
-  <br style="clear:both">
-  <div class="resultText">Ефективна годишна лихва:</div>
-  <span class="resultInfo">12.68%</span>
-  <br style="clear:both">
-  <hr>
+  <div id="dataField" class="ng-hide" style="width:70%">
+    <hr>
+    <div class="resultText">
+      <b>Дължима сума</b>:</div>
+    <span class="resultInfo" id="totalSum">
+      <b>{{vm.offerTable[0].totalAmount | number:2}}
+        {{vm.currency}}</b>
+    </span>
+    <br style="clear:both">
+    <div class="resultText">35 месечни вноски от:</div>
+    <span class="resultInfo" id="monthlyPayment">{{vm.offerTable[0].payment | number:2}}
+      {{vm.currency}}</span>
+    <br style="clear:both">
+    <div class="resultText">Цяла лихва:</div>
+    <span class="resultInfo" id="totalInterest">{{vm.offerTable[0].totalInterest | number:2}}
+      {{vm.currency}}</span>
+    <br style="clear:both">
+    <div class="resultText">Сума на заема:</div>
+    <span class="resultInfo" id="loanAmount">
+      {{vm.offerTable[0].startBalance | number:2}}
+      {{vm.currency}}</span>
+    <br style="clear:both">
+    <div class="resultText">Лихвa %:</div>
+    <span class="resultInfo" id="interestPercent">{{vm.interest}}%</span>
+    <br style="clear:both">
+    <!-- <div class="resultText">Ефективна годишна лихва:</div>
+    <span class="resultInfo">12.68%</span> -->
+    <br style="clear:both">
+    <hr>
 
-  <!--TABLE  -->
-  <table class="table table-striped table-bordered table-condensed">
-    <thead>
-      <th>Номер на вноска</th>
-      <th>Заем</th>
-      <th>Главница на вноска</th>
-      <th>Лихва на вноска</th>
-      <th>Вноска</th>
-    </thead>
-    <tbody>
-      <tr ng-repeat="data in vm.offerTable">
-        <td>{{data.month}}</td>
-        <td>{{data.startBalance | number:2}}</td>
-        <td>{{data.principal | number:2}}</td>
-        <td>{{data.interest | number:2}}</td>
-        <td>{{data.payment | number:2}}</td>
-      </tr>
-    </tbody>
-  </table>
-
-  <a ui-sref="offerClientData" class="btn btn-success" role="button">Продължи</a>
-
+    <!--TABLE  -->
+    <table id="table" class="table table-striped table-bordered table-condensed">
+      <thead>
+        <th>Номер на вноска</th>
+        <th>Сума на заема</th>
+        <th>Главница на вноска</th>
+        <th>Лихва на вноска</th>
+        <th>Вноска</th>
+      </thead>
+      <tbody>
+        <tr ng-repeat="data in vm.offerTable">
+          <td>{{data.month}}</td>
+          <td>{{data.startBalance | number:2}}</td>
+          <td>{{data.principal | number:2}}</td>
+          <td>{{data.interest | number:2}}</td>
+          <td>{{data.payment | number:2}}</td>
+        </tr>
+      </tbody>
+    </table>
+    <a href="#" class="btn btn-success" role="button">Запиши</a>
+    <div class="btn btn-success" id="create_pdf" role="button" ng-click="vm.printPDF()">Изтегли PDF</div>
+  </div>
 </div>

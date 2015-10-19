@@ -271,3 +271,9 @@ html body {
   background-color:#FFF;
   font-family: 'Open Sans', sans-serif;
 }
+
+.validation-error {
+  color: red;
+  display: inline-block;
+  padding: 6px
+}

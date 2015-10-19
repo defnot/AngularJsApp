@@ -1,7 +1,10 @@
+/**
+ * Main module. Disabling/Enabling of mocks is done
+ *  through the mocks module itself
+ */
 (function() {
-  "use strict";
+  'use strict';
 
-  // Module 'clientResourceMocks' SHOULD be removed when mocks are not needed.
-  angular.module('Agrion', ['ui.router', 'commonServices', 'clientResourceMocks']);
+  angular.module('Agrion', ['ui.router', 'commonServices', 'mocks', 'clientFilters']);
 
 }());

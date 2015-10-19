@@ -8,4 +8,4 @@
   function clientResource($resource) {
     return $resource('/api/clients/:clientId');
   }
-}())
+}());

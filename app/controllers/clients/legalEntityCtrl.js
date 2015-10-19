@@ -1,12 +1,11 @@
-(function () {
-	'use strict';
+(function() {
+  'use strict';
 
-	angular.module('Agrion')
-		.controller('LegalEntityCtrl',
-                [LegalEntityCtrl]);
+  angular.module('Agrion')
+    .controller('LegalEntityCtrl', ['client', LegalEntityCtrl]);
 
-	function LegalEntityCtrl() {
-		var vm = this;
-
-	}
+  function LegalEntityCtrl(client) {
+    var vm = this;
+    vm.client = client;
+  }
 }());
