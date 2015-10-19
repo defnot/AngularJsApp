@@ -1,10 +1,11 @@
-<tabset>
-    <div style="background: #fff; width: 100%; height: 100%;">
+<div style="background: #fff; width: 100%; height: 100%;">
 
+  <tabset>
+
+      <tab heading="Регистрация">
         <div class="page-header col-md-12" style="margin-top: 30px; margin-bottom: 30px;">
             <h1>Физическо лице</h1>
         </div>
-
         <form name="registerIndividualClientForm" ng-submit="vm.registerClient()" novalidate>
 
           <div class="col-md-4 form-padding">
@@ -104,7 +105,8 @@
             <input class="btn btn-success"  type="submit" ng-disabled="!vm.checkRequiredFields()" value="Запази"/>
           </div>
         </form>
-
-    </div>
-
-</tabset>
+      </tab>
+      <tab heading="Адреси"></tab>
+      <tab heading="Служители"></tab>
+    </tabset>
+</div>

@@ -35,7 +35,7 @@
     } else {
       // required client model
       vm.client = {
-        clientId: '', // TODO: Make random string generator
+        clientId: '1230650123', // TODO: Make random string generator
         addresses: [{
           city: '',
           country: '',
