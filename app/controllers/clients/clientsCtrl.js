@@ -66,7 +66,7 @@
 
       if (client.client_type != 1) {
         // redirect to the legal view
-        $state.go('client.editLegal', {clientId: client.id});
+        $state.go('editLegal', {clientId: client.id});
       } else {
         // TODO: Call individual view
       }

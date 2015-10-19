@@ -21,19 +21,19 @@
         url: '/clients',
         templateUrl: 'app/templates/clients/clients.html'
       })
-      .state('client', {
-        url: '/client',
-        templateUrl: 'app/templates/clients/client.html',
-      })
-      .state('client.individual', {
+      // .state('client', {
+      //   url: '/client',
+      //   templateUrl: 'app/templates/clients/client.html',
+      // })
+      .state('individual', {
         url: '/individual',
         templateUrl: 'app/templates/clients/individualEntity.html'
       })
-      .state('client.legal', {
+      .state('legal', {
         url: '/legal',
         templateUrl: 'app/templates/clients/legalEntity.html'
       })
-      .state('client.editLegal', {
+      .state('editLegal', {
         url: '/legal/{clientId:int}',
         templateUrl: 'app/templates/clients/legalEntity.html',
         controller: 'LegalEntityCtrl as vm',
