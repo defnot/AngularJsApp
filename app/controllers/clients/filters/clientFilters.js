@@ -3,7 +3,8 @@
 
   angular.module('clientFilters', [])
     .filter('clientTypeFilter', clientTypeFilter)
-    .filter('clientDisplayNameFilter', clientDisplayNameFilter);
+    .filter('clientDisplayNameFilter', clientDisplayNameFilter)
+    .filter('clientAddressFilter', clientAddressFilter);
 
   function clientTypeFilter() {
     return function(input) {
@@ -18,6 +19,12 @@
       }
 
       return input.company_name_bg;
+    };
+  }
+
+  function clientAddressFilter () {
+    return function(input) {
+      return input.country + ', ' + input.city + ', ' + input.street;
     };
   }
 }());

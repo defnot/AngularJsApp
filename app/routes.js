@@ -46,7 +46,11 @@
       })
       .state('legal', {
         url: '/legal',
-        templateUrl: 'app/templates/clients/legalEntity.html'
+        templateUrl: 'app/templates/clients/legalEntity.html',
+        controller: 'LegalEntityCtrl as vm',
+        resolve: {
+          client: function () { return undefined; }
+        }
       })
       .state('editLegal', {
         // the object part of the url should NOT contain any white space chars!

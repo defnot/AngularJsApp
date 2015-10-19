@@ -1,40 +1,8 @@
-<tabset>
-	<tab heading="Информация">
-
-    <div style="background: #fff; width: 100%; height: 100%;">
-      <div class="col-md-10" style="margin-top: 30px; margin-bottom: 20px;">
+<div style="background: #fff; width: 100%; height: 100%;">
+  <tabset>
+    <tab heading="Информация">
         <div class="page-header col-md-12" style="margin-top: 30px; margin-bottom: 30px;">
             <h1>Юридическо лице</h1>
-        </div>
-        <div class="col-md-4 form-padding">
-
-          <label for="input-04">Дата на искането за кредит</label>
-          <input type="text" id="input-04" class="form-control text-margin" placeholder="">
-
-					<label for="input-05">Име на оператора</label>
-					<input type="text" id="input-03" class="form-control text-margin" placeholder="">
-        </div>
-
-        <div class="col-md-4 form-padding">
-          <label for="input-02">ID Клиентски номер на кредитоискателя</label>
-          <input type="text" disabled id="input-02" class="form-control text-margin">
-
-          <label for="col2-input-02">Филиал</label>
-          <input type="text" id="col2-input-02" class="form-control text-margin" placeholder="" >
-        </div>
-
-        <div class="col-md-4 form-padding">
-          <label for="input-03">Регион</label>
-          <input type="text" id="input-03" class="form-control text-margin" placeholder="" >
-
-          <label for="col2-input-03">Индентификационен номер на оператора</label>
-          <input type="text" id="col2-input-03" class="form-control text-margin" placeholder="" >
-
-        </div>
-
-        <div class="col-md-4 form-padding">
-          <label for="input-05">Фамилия на оператора</label>
-          <input type="text" id="input-03" class="form-control text-margin" placeholder="" >
         </div>
 
         <div class="col-md-12 form-padding">
@@ -73,7 +41,7 @@
 
         <div class="col-md-4 form-padding">
           <label>ЕИК №:</label>
-          <input type="text" id="col3-input-3" class="form-control text-margin" value="{{ vm.client.eik }}" >
+          <input type="text" id="col3-input-3" ng-model="vm.client.eik" ng-change="vm.client.num_dds=''" class="form-control text-margin" value="{{ vm.client.eik }}" >
 
         </div>
 
@@ -122,20 +90,11 @@
           <input type="text" id="col3-input-3" class="form-control text-margin" value="{{ vm.client.addresses[0].phone }}" >
         </div>
 
-
         <div class="col-md-12 "  style="padding-top: 30px;">
+          <button class="btn btn-default" ng-click=""><span></span>Cancel</button>
 
-            <button class="btn btn-default" ng-click=""><span></span>Cancel</button>
-            <button class="btn btn-success" ng-click=""><span class="glyphicon glyphicon glyphicon-floppy-saved"></span> Save</button>
-
-      </div>
-
-        <!-- <div>
-          <button class="btn btn-primary text-right" ng-click="saveClientDetails()">Запази</button>
-        </div> -->
-      </div>
-    </div>
-
-
-	</tab>
+          <button class="btn btn-success" ng-click="vm.registerClient()"><span class="glyphicon glyphicon glyphicon-floppy-saved"></span> Save</button>
+        </div>
+  </tab>
 </tabset>
+    </div>
