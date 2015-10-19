@@ -28,6 +28,8 @@
   <script src="app/controllers/clients/individualEntityCtrl.js" charset="utf-8"></script>
   <script src="app/controllers/clients/legalEntityCtrl.js" charset="utf-8"></script>
   <script src="app/controllers/offer/offerCtrl.js" charset="utf-8"></script>
+  <script src="app/controllers/reports/reportsCtrl.js" charset="utf-8"></script>
+  <script src="app/controllers/offer/offerInfoCtrl.js" charset="utf-8"></script>
 
   <!-- Services -->
   <script src="app/services/commonServices.js"></script>
@@ -62,24 +64,24 @@
         <div class="sidebarStyle">
           <ul class="nav">
             <li>
-              <a href="#/clients">
+              <a ui-sref="client">
                 <span class="menu-icon-clients"></span>
                 Клиенти
               </a>
             </li>
             <li>
-              <a href="#/individual">Физическо лице</a>
+              <a ui-sref="individual">Физическо лице</a>
             </li>
             <li>
-              <a href="#/legal">Юридическо лице</a>
+              <a ui-sref="legal">Юридическо лице</a>
             </li>
             <li>
-              <a href="#/offer">
+              <a ui-sref="offer">
                 <span class="menu-icon-offer"></span>
                 Оферта</a>
             </li>
             <li>
-              <a href="#/reports">
+              <a ui-sref="reports">
                 <span class="menu-icon-reports"></span>
                 Отчети</a>
             </li>
@@ -95,7 +97,7 @@
   <!-- PDF Print scripts -->
   <script src='lib/pdf-scripts/jquery.tabletojson.min.js'></script>
   <script src='lib/pdf-scripts/pdfmake.min.js'></script>
- 	<script src='lib/pdf-scripts/vfs_fonts.js'></script>
+  <script src='lib/pdf-scripts/vfs_fonts.js'></script>
   <!-- Bootstrap Core JavaScript -->
   <script src="lib/bootstrap/bootstrap.min.js"></script>
 

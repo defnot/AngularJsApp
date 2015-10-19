@@ -1,4 +1,4 @@
-(function() {
+(function () {
   'use strict';
 
   angular.module('Agrion')
@@ -60,10 +60,12 @@
         resolve: {
           clientResource: 'clientResource',
 
-          client: function(clientResource, $stateParams) {
+          client: function (clientResource, $stateParams) {
             var clientId = $stateParams.clientId;
 
-            return clientResource.get({ clientId: clientId }).$promise;
+            return clientResource.get({
+              clientId: clientId
+            }).$promise;
           }
         }
       })
@@ -75,6 +77,19 @@
       .state('offerClientData', {
         url: '/offerclientdata',
         templateUrl: 'app/templates/offer/offer-client-data.html'
+      })
+      .state('offer', {
+        url: '/offer',
+        templateUrl: 'app/templates/offer/offer.html',
+        controller: 'OfferCtrl as vm'
+      })
+      .state('reports', {
+        url: '/reports',
+        templateUrl: 'app/templates/reports/reports.html'
+      })
+      .state('offerInfo', {
+        url: '/offerInfo/{applicationId:int}',
+        templateUrl: 'app/templates/offer/offerInfo.html'
       });
   }
 }());

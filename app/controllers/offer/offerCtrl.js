@@ -1,5 +1,5 @@
-(function() {
-  'use strict'
+(function () {
+  'use strict';
 
   angular.module('Agrion')
     .controller('OfferCtrl', ['$http', OfferCtrl]);
@@ -31,7 +31,7 @@
 
     function validateTotalSum(input) {
         var regexp = /^[+]?([.]\d+|\d+[.]?\d*)$/;
-        return regexp.test(input);;
+        return regexp.test(input);
     }
 
     function validatePositiveInteger(input) {
@@ -89,7 +89,7 @@
           text: tableData[prop]['Лихва на вноска']
         }, {
           text: tableData[prop]['Вноска']
-        })
+        });
         body.push(dataRow);
       }
 
@@ -146,5 +146,4 @@
       });
     }
   }
-
 }());
