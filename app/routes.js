@@ -21,10 +21,6 @@
         url: '/clients',
         templateUrl: 'app/templates/clients/clients.html'
       })
-      // .state('client', {
-      //   url: '/client',
-      //   templateUrl: 'app/templates/clients/client.html',
-      // })
       .state('individual', {
         url: '/individual',
         templateUrl: 'app/templates/clients/individualEntity.html',
@@ -68,11 +64,6 @@
             }).$promise;
           }
         }
-      })
-      .state('offer', {
-        url: '/offer',
-        templateUrl: 'app/templates/offer/offer.html',
-        controller: 'OfferCtrl as vm'
       })
       .state('offerClientData', {
         url: '/offerclientdata',
