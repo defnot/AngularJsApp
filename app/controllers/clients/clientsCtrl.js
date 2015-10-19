@@ -68,7 +68,7 @@
         // redirect to the legal view
         $state.go('editLegal', {clientId: client.id});
       } else {
-        // TODO: Call individual view
+        $state.go('editIndividual', {clientId: client.id});
       }
     }
 
