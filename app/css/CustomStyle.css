@@ -176,6 +176,7 @@
   position: absolute;
   left: 0;
   z-index: 4;
+  clear: both;
 }
 .sidebarStyle ul li a {
   font-size: 13px;
@@ -267,6 +268,10 @@
   text-align: right;
 }
 
+html {
+  position: relative;
+  min-height: 100%;
+}
 html body {
   background-color:#FFF;
   font-family: 'Open Sans', sans-serif;
@@ -276,4 +281,9 @@ html body {
   color: red;
   display: inline-block;
   padding: 6px
+}
+.sidebar-footer {
+  position: absolute;
+  padding-bottom: 10px;
+  bottom: 0;
 }

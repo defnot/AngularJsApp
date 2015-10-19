@@ -8,9 +8,8 @@
     <div class="form-group">
       <label class="control-label col-xs-2" for="loanType">Лихвен модел:</label>
       <div class="col-xs-5">
-        <select class="form-control" id="loanType" ng-model="vm.interestModel" required
+        <select name="loanType" class="form-control" id="loanType" ng-model="vm.selectedModel.name"
          ng-options="g.code as g.name for g in vm.interestModels" >
-         <option value="">-- Избери модел --</option>
         </select>
       </div>
     </div>
@@ -63,9 +62,8 @@
     <div class="form-group">
       <label class="control-label col-xs-2" for="currency">Валута:</label>
       <div class="col-xs-5">
-        <select class="form-control" id="currency" ng-model="vm.currency" required
+        <select class="form-control" id="currency" ng-model="vm.selectedCurrency.name"
          ng-options="c.code as c.name for c in vm.currencies" >
-         <option value="">-- Избери валута --</option>
         </select>
       </div>
     </div>
@@ -87,28 +85,27 @@
       <b>Дължима сума</b>:</div>
     <span class="resultInfo" id="totalSum">
       <b>{{vm.offerTable[0].totalAmount | number:2}}
-        {{vm.currency}}</b>
+        {{vm.selectedCurrency.name}}</b>
     </span>
     <br style="clear:both">
     <div class="resultText">35 месечни вноски от:</div>
     <span class="resultInfo" id="monthlyPayment">{{vm.offerTable[0].payment | number:2}}
-      {{vm.currency}}</span>
+      {{vm.selectedCurrency.name}}</span>
     <br style="clear:both">
     <div class="resultText">Цяла лихва:</div>
     <span class="resultInfo" id="totalInterest">{{vm.offerTable[0].totalInterest | number:2}}
-      {{vm.currency}}</span>
+      {{vm.selectedCurrency.name}}</span>
     <br style="clear:both">
     <div class="resultText">Сума на заема:</div>
     <span class="resultInfo" id="loanAmount">
       {{vm.offerTable[0].startBalance | number:2}}
-      {{vm.currency}}</span>
+      {{vm.selectedCurrency.name}}</span>
     <br style="clear:both">
     <div class="resultText">Лихвa %:</div>
     <span class="resultInfo" id="interestPercent">{{vm.interest}}%</span>
     <br style="clear:both">
     <!-- <div class="resultText">Ефективна годишна лихва:</div>
     <span class="resultInfo">12.68%</span> -->
-    <br style="clear:both">
     <hr>
 
     <!--TABLE  -->
@@ -132,6 +129,7 @@
     </table>
     <a href="#" class="btn btn-success" role="button">Запиши</a>
     <div class="btn btn-success" id="create_pdf" role="button" ng-click="vm.printPDF()">Изтегли PDF</div>
+    <hr>
   </div>
 
 

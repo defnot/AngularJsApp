@@ -1,5 +1,5 @@
 (function() {
-  'use strict'
+  'use strict';
 
   angular.module('Agrion')
     .controller('OfferCtrl', ['$http', OfferCtrl]);
@@ -10,16 +10,20 @@
     vm.offerTable = [];
     vm.printPDF = printPDF;
     vm.submitOffer = submitOffer;
+
     vm.currencies = [
     { code: 'BGN', name: 'BGN' },
     { code: 'EUR', name: 'EUR' },
     { code: 'USD', name: 'USD'}
     ];
+    vm.selectedCurrency = vm.currencies[0];
+
     vm.interestModels = [
     { code: 'първи', name: 'първи' },
     { code: 'втори', name: 'втори' }
     ];
-
+    vm.selectedModel = vm.interestModels[0];
+    
     vm.validateTotalSum = validateTotalSum;
     vm.validatePositiveInteger = validatePositiveInteger;
     vm.validateForm = validateForm;
@@ -31,7 +35,7 @@
 
     function validateTotalSum(input) {
         var regexp = /^[+]?([.]\d+|\d+[.]?\d*)$/;
-        return regexp.test(input);;
+        return regexp.test(input);
     }
 
     function validatePositiveInteger(input) {
@@ -53,7 +57,8 @@
       var totalInterest = $('#totalInterest').text().replace(/\s{2,}/g, ' ');
       var loanAmount = $('#loanAmount').text().replace(/\s{2,}/g, ' ');
       var interestPercent = $('#interestPercent').text().replace(/\s{2,}/g, ' ');
-
+      var currentdate = new Date();
+      var datetime = currentdate.getDate() + "/" + (currentdate.getMonth()+1)  + "/" + currentdate.getFullYear();
       // Table body
       var body = [];
       var headers = [{
@@ -89,7 +94,7 @@
           text: tableData[prop]['Лихва на вноска']
         }, {
           text: tableData[prop]['Вноска']
-        })
+        });
         body.push(dataRow);
       }
 
@@ -104,6 +109,8 @@
           'Цяла лихва:                      '   .concat(totalInterest),
           'Сума на заема:               '       .concat(loanAmount),
           'Лихвa %:                            '.concat(interestPercent),
+          '                      ',
+          'Дата: '.concat(datetime),
           '                      ', {
             table: {
               // headers are automatically repeated if the table spans over multiple pages
