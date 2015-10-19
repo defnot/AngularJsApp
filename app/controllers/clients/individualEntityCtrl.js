@@ -5,9 +5,6 @@
     .controller('IndividualEntityCtrl', ['$http', '$state', 'client', IndividualEntityCtrl]);
 
   function IndividualEntityCtrl($http, $state, client) {
-
-
-
     var vm = this;
 
     //all nationalities

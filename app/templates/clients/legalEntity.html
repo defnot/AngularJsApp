@@ -1,8 +1,6 @@
-<tabset>
-	<tab heading="Информация">
-
-    <div style="background: #fff; width: 100%; height: 100%;">
-      <div class="col-md-10" style="margin-top: 30px; margin-bottom: 20px;">
+<div style="background: #fff; width: 100%; height: 100%;">
+  <tabset>
+    <tab heading="Информация">
         <div class="page-header col-md-12" style="margin-top: 30px; margin-bottom: 30px;">
             <h1>Юридическо лице</h1>
         </div>
@@ -43,7 +41,7 @@
 
         <div class="col-md-4 form-padding">
           <label>ЕИК №:</label>
-          <input type="text" id="col3-input-3" class="form-control text-margin" value="{{ vm.client.eik }}" >
+          <input type="text" id="col3-input-3" ng-model="vm.client.eik" ng-change="vm.client.num_dds=''" class="form-control text-margin" value="{{ vm.client.eik }}" >
 
         </div>
 
@@ -92,20 +90,11 @@
           <input type="text" id="col3-input-3" class="form-control text-margin" value="{{ vm.client.addresses[0].phone }}" >
         </div>
 
-
         <div class="col-md-12 "  style="padding-top: 30px;">
+          <button class="btn btn-default" ng-click=""><span></span>Cancel</button>
 
-            <button class="btn btn-default" ng-click=""><span></span>Cancel</button>
-            <button class="btn btn-success" ng-click=""><span class="glyphicon glyphicon glyphicon-floppy-saved"></span> Save</button>
-
-      </div>
-
-        <!-- <div>
-          <button class="btn btn-primary text-right" ng-click="saveClientDetails()">Запази</button>
-        </div> -->
-      </div>
-    </div>
-
-
-	</tab>
+          <button class="btn btn-success" ng-click="vm.registerClient()"><span class="glyphicon glyphicon glyphicon-floppy-saved"></span> Save</button>
+        </div>
+  </tab>
 </tabset>
+    </div>
