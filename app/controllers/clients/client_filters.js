@@ -1,9 +1,23 @@
 (function() {
   'use strict';
 
-  angular.module('clientFilters', []).filter('clientTypeFilter', function() {
+  angular.module('clientFilters', [])
+    .filter('clientTypeFilter', clientTypeFilter)
+    .filter('clientDisplayNameFilter', clientDisplayNameFilter);
+
+  function clientTypeFilter() {
     return function(input) {
       return input == 1 ? 'Физ. Лице' : 'Юр. Лице';
     };
-  });
+  }
+
+  function clientDisplayNameFilter () {
+    return function(input) {
+      if (input.client_type == 1) {
+        return input.first_name + ' ' + input.middle_name + ' ' + input.last_name;
+      }
+
+      return input.company_name_bg;
+    };
+  }
 }());
