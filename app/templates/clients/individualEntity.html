@@ -148,7 +148,7 @@
             <label for="col1-input-05">ЕГН</label>
             <span ng-if="vm.client.egn && !vm.checkEgn(vm.client.egn) && vm.client.egn.length >=10" style="color:red">Невалиден ЕГН!</span>
             <span ng-if="vm.client.egn && vm.client.egn.length < 10" style="color:red">Невалидна дължина (10)</span>
-            <input class="form-control text-margin" id="col1-input-05" placeholder="Задължително" required ng-change="vm.client.sex=''; vm.client.birth_date = ''" ng-model="vm.client.egn" type="text">
+            <input class="form-control text-margin" id="col1-input-05" placeholder="Задължително" required ng-change="vm.client.sex=''; vm.client.birth_date = ''; vm.client.reg_number=''" ng-model="vm.client.egn" type="text">
 
           </div>
 
@@ -158,7 +158,7 @@
             <span ng-if="vm.client.document_number && !vm.containsOnlyDigits(vm.client.document_number)" style="color:red">Невалиден ЛКН!</span>
             <input class="form-control text-margin" id="col2-input-2" ng-model="vm.client.document_number" type="text" placeholder="Задължително" required>
 
-            <label>ЕИК</label>
+            <label>ЕИК №:</label>
             <span ng-if="vm.client.eik && !vm.checkEik(vm.client.eik)" style="color:red;">Невалиден ЕИК!</span>
             <input class="form-control text-margin" id="col3-input-3" ng-model="vm.client.eik" ng-change="vm.client.num_dds=''" type="text" required>
 
@@ -182,7 +182,7 @@
             <input class="form-control text-margin" id="col3-input-3" type="text" ng-model="vm.client.num_dds" disabled>
 
             <label>ЗП Регистрационен номер</label>
-            <input class="form-control text-margin" disabled id="col3-input-3" type="text" >
+            <input class="form-control text-margin" ng-model="vm.client.reg_number" disabled id="col3-input-3" type="text" >
           </div>
 
           <div class="col-md-12 form-padding">
@@ -207,7 +207,10 @@
 
           <div class="col-md-4 form-padding">
             <label for="col2-input-09">Държава</label>
-            <input class="form-control text-margin" id="col2-input-09" type="text" ng-model="vm.client.addresses[0].country">
+            <select class="form-control text-margin">
+              <option selected>Bulgaria</option>
+              <option ng-repeat="country in vm.cuntries">{{country}}</option>
+            </select>
 
             <label for="col3-input-3">Телефон</label>
             <input class="form-control text-margin" id="col3-input-3" type="text" ng-model="vm.client.addresses[0].phone">

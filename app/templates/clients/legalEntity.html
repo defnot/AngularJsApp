@@ -41,7 +41,7 @@
 
         <div class="col-md-4 form-padding">
           <label>ЕИК №:</label>
-          <input type="text" id="col3-input-3" ng-model="vm.client.eik" ng-change="vm.client.num_dds=''" class="form-control text-margin" value="{{ vm.client.eik }}" >
+          <input type="text" id="col3-input-3" ng-model="vm.client.eik" ng-change="vm.client.num_dds=''; vm.client.reg_number=''" ng-blur="vm.setRegNumber()" class="form-control text-margin"  >
 
         </div>
 
@@ -59,7 +59,7 @@
 
         <div class="col-md-4 form-padding">
           <label>ЗП Регистрационен номер</label>
-          <input type="text" disabled id="col3-input-3" class="form-control text-margin" value="{{ vm.client.zp_reg_number }}" >
+          <input type="text" disabled id="col3-input-3" class="form-control text-margin" ng-model="vm.client.reg_number" >
         </div>
 
         <div class="col-md-12 form-padding">
@@ -84,8 +84,11 @@
 
         <div class="col-md-4 form-padding">
           <label for="col2-input-09">Държава</label>
-          <input type="text" id="col2-input-09" class="form-control text-margin" value="{{ vm.client.addresses[0].country }}" >
-
+          <select class="form-control text-margin">
+            <option selected>Bulgaria</option>
+            <option ng-repeat="country in vm.cuntries">{{country}}</option>
+          </select>
+          
           <label for="col3-input-3">Телефон</label>
           <input type="text" id="col3-input-3" class="form-control text-margin" value="{{ vm.client.addresses[0].phone }}" >
         </div>
