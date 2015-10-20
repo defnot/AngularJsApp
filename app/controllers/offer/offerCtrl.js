@@ -1,10 +1,10 @@
-(function() {
+(function () {
   'use strict';
 
   angular.module('Agrion')
-    .controller('OfferCtrl', ['$http', OfferCtrl]);
+    .controller('OfferCtrl', ['$http', '$stateParams', OfferCtrl]);
 
-  function OfferCtrl($http) {
+  function OfferCtrl($http, $stateParams) {
 
     var vm = this;
     vm.offerTable = [];
@@ -36,10 +36,17 @@
       'Намаляващи вноски'
     ];
 
-    vm.currencies = [
-    { code: 'BGN', name: 'BGN' }, // На Дамян кода - НЕ ПИПАЙ
-    { code: 'EUR', name: 'EUR' },
-    { code: 'USD', name: 'USD'}
+    vm.currencies = [{
+        code: 'BGN',
+        name: 'BGN'
+      }, // На Дамян кода - НЕ ПИПАЙ
+      {
+        code: 'EUR',
+        name: 'EUR'
+      }, {
+        code: 'USD',
+        name: 'USD'
+      }
     ];
     vm.selectedCurrency = vm.currencies[0];
 
@@ -47,14 +54,17 @@
     vm.validatePositiveInteger = validatePositiveInteger;
     vm.validateForm = validateForm;
     vm.showData = showData;
+    vm.addApplication = addApplication;
+
+    vm.applicationInfo = getApplicationInfo();
 
     function showData() {
       $('#dataField').removeClass('ng-hide');
     }
 
     function validateTotalSum(input) {
-        var regexp = /^[+]?([.]\d+|\d+[.]?\d*)$/;
-        return regexp.test(input);
+      var regexp = /^[+]?([.]\d+|\d+[.]?\d*)$/;
+      return regexp.test(input);
     }
 
     function validatePositiveInteger(input) {
@@ -64,9 +74,9 @@
 
     function validateForm() {
       return vm.validateTotalSum(vm.loan) &&
-          vm.validateTotalSum(vm.interest) &&
-          vm.validatePositiveInteger(vm.numpayments) &&
-          vm.validatePositiveInteger(vm.years);
+        vm.validateTotalSum(vm.interest) &&
+        vm.validatePositiveInteger(vm.numpayments) &&
+        vm.validatePositiveInteger(vm.years);
     }
 
     function printPDF() {
@@ -77,7 +87,7 @@
       var loanAmount = $('#loanAmount').text().replace(/\s{2,}/g, ' ');
       var interestPercent = $('#interestPercent').text().replace(/\s{2,}/g, ' ');
       var currentdate = new Date();
-      var datetime = currentdate.getDate() + "/" + (currentdate.getMonth()+1)  + "/" + currentdate.getFullYear();
+      var datetime = currentdate.getDate() + "/" + (currentdate.getMonth() + 1) + "/" + currentdate.getFullYear();
       // Table body
       var body = [];
       var headers = [{
@@ -123,10 +133,10 @@
             style: 'header'
           },
           // The spaces in the strings matter for the pdf format!!
-          'Дължима сума:              '         .concat(totalSum),
-          '35 месечни вноски от:  '             .concat(monthlyPayment),
-          'Цяла лихва:                      '   .concat(totalInterest),
-          'Сума на заема:               '       .concat(loanAmount),
+          'Дължима сума:              '.concat(totalSum),
+          '35 месечни вноски от:  '.concat(monthlyPayment),
+          'Цяла лихва:                      '.concat(totalInterest),
+          'Сума на заема:               '.concat(loanAmount),
           'Лихвa %:                            '.concat(interestPercent),
           '                      ',
           'Дата: '.concat(datetime),
@@ -168,7 +178,7 @@
           loanPeriodYears: vm.years
         }
       }).
-      success(function(data) {
+      success(function (data) {
         vm.offerTable = data;
       });
     }
@@ -182,12 +192,12 @@
           loanPeriodYears: vm.years
         }
       }).
-      success(function(data) {
+      success(function (data) {
         vm.offerTable = data;
       });
     }
 
-    function makeOffer () {
+    function makeOffer() {
       var option = $('#loanType')[0].selectedOptions[0].value;
 
       if (option === vm.offerModels[0]) {
@@ -196,5 +206,68 @@
         submitOfferEPP();
       }
     }
+
+    /**
+     * Getting an application from a global json variable, based on a value from the url
+     * @return the applicaiton object
+     */
+    function getApplicationInfo() {
+      var applicationId = $stateParams.applicationId;
+      var offerInfo = ApplicationMocks.applications[applicationId];
+
+      loadLoanInfo(offerInfo);
+
+      return offerInfo;
+    }
+
+    /**
+     * Aligning data from the current application with the data already defined in the form
+     */
+    function loadLoanInfo(offerInfo) {
+      if ($stateParams.applicationId >= 0) {
+        vm.loan = offerInfo.loan;
+        vm.interest = offerInfo.annualInterest;
+        vm.numpayments = offerInfo.paymentsPerYear;
+        vm.years = offerInfo.loanPeriodYears;
+        vm.selectedCurrency.name = offerInfo.currency;
+        //vm.offerType.name = offerInfo.offerType;
+      }
+    }
+
+      function addApplication() {
+        var newId;
+        if ($stateParams.applicationId >= 0) {
+          newId = $stateParams.applicationId;
+        } else {
+          newId = ApplicationMocks.applications.count + 1;
+        }
+
+        var applicationInfo = {
+          "offerType": vm.applicationInfo.offerType,
+          "loanPeriodYears": vm.years,
+          "paymentsPerYear": vm.numpayments,
+          "annualInterest": vm.interest,
+          "operatorId": vm.operator.id,
+          "egn": vm.applicationInfo.egn,
+          "dds": vm.applicationInfo.dds,
+          "eik": vm.applicationInfo.eik,
+          "region": vm.applicationInfo.region,
+          "branch": vm.applicationInfo.branch,
+          "address": vm.applicationInfo.address,
+          "phone": vm.applicationInfo.phone,
+          "email": vm.applicationInfo.email,
+          "company": vm.applicationInfo.company,
+          "lastName": vm.applicationInfo.lastName,
+          "firstName": vm.applicationInfo.firstName,
+          "currency": vm.selectedCurrency.name,
+          "loan": vm.loan,
+          "status": vm.applicationInfo.status,
+          "userId": vm.applicationInfo.userId,
+          "dateAdded": new Date(),
+          "id": newId
+        };
+
+        ApplicationMocks.applications.push(applicationInfo);
+      }
   }
 }());

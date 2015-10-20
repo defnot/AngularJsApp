@@ -14,29 +14,32 @@
           <h3>Физическо Лице</h3>
 
           <label for="input-01">ID</label>
-          <input type="text" id="input-01" class="form-control text-margin" placeholder="">
+          <input type="text" id="input-01" class="form-control text-margin" placeholder="" ng-model="vm.applicationInfo.id">
 
-          <label for="input-02">Име и Фамилия</label>
-          <input type="text" id="input-02" class="form-control text-margin" placeholder="">
+          <label for="input-02">Име</label>
+          <input type="text" id="input-02" class="form-control text-margin" placeholder=""  ng-model="vm.applicationInfo.firstName">
+
+          <label for="input-03">Фамилия</label>
+          <input type="text" id="input-03" class="form-control text-margin" placeholder=""  ng-model="vm.applicationInfo.lastName">
 
           <label for="input-03">ЕГН</label>
-          <input type="text" id="input-03" class="form-control text-margin" placeholder="">
+          <input type="text" id="input-03" class="form-control text-margin" placeholder=""  ng-model="vm.applicationInfo.egn">
         </fieldset>
 
         <fieldset ng-hide="vm.clientTypes.selected.id == 0">
           <h3>Юридическо Лице</h3>
 
           <label for="input-01">ID</label>
-          <input type="text" id="input-01" class="form-control text-margin" placeholder="">
+          <input type="text" id="input-01" class="form-control text-margin" placeholder="" ng-model="vm.applicationInfo.id">
 
           <label for="input-02">Име на Фирма</label>
-          <input type="text" id="input-02" class="form-control text-margin" placeholder="">
+          <input type="text" id="input-02" class="form-control text-margin" placeholder="" ng-model="vm.applicationInfo.company">
 
           <label for="input-03">ЕИК</label>
-          <input type="text" id="input-03" class="form-control text-margin" placeholder="">
+          <input type="text" id="input-03" class="form-control text-margin" placeholder="" ng-model="vm.applicationInfo.eik">
 
           <label for="input-04">ДДС</label>
-          <input type="text" id="input-04" class="form-control text-margin" placeholder="">
+          <input type="text" id="input-04" class="form-control text-margin" placeholder="" ng-model="vm.applicationInfo.dds">
         </fieldset>
       </div>
 
@@ -44,13 +47,13 @@
         <h3>Оферта</h3>
 
         <label for="input-05">Дата на кредит</label>
-        <input type="text" id="input-05" class="form-control text-margin" placeholder="" >
+        <input type="text" id="input-05" class="form-control text-margin" placeholder="" ng-model="vm.applicationInfo.dateAdded">
 
         <label for="input-06">Регион</label>
-        <input type="text" id="input-06" class="form-control text-margin" placeholder="" >
+        <input type="text" id="input-06" class="form-control text-margin" placeholder="" ng-model="vm.applicationInfo.region">
 
         <label for="input-07">Филиал</label>
-        <input type="text" id="input-07" class="form-control text-margin" placeholder="" >
+        <input type="text" id="input-07" class="form-control text-margin" placeholder="" ng-model="vm.applicationInfo.branch">
       </div>
 
       <div class="col-md-4 form-padding">
@@ -77,7 +80,7 @@
     <div class="form-group">
       <label class="control-label col-xs-2" for="loanType">Лихвен модел:</label>
       <div class="col-xs-5">
-        <select name="loanType" class="form-control" id="loanType" ng-selected="1" >
+        <select name="loanType" class="form-control" id="loanType" ng-selected="1"  ng-model="vm.applicationInfo.offerType" >
           <option>{{ vm.offerModels[0] }}</option>
           <option>{{ vm.offerModels[1] }}</option>
         </select>
@@ -177,7 +180,7 @@
     <!-- <div class="resultText">Ефективна годишна лихва:</div>
     <span class="resultInfo">12.68%</span> -->
     <hr>
-    <div class="btn btn-success" id="create_pdf" role="button" ng-click="vm.printPDF()">Изтегли PDF</div>
+    <div class="btn btn-success" id="create_pdf_up" role="button" ng-click="vm.printPDF()">Изтегли PDF</div>
     <hr>
     <!--TABLE  -->
     <table id="table" class="table table-striped table-bordered table-condensed">
@@ -198,7 +201,7 @@
         </tr>
       </tbody>
     </table>
-    <a href="#" class="btn btn-success" role="button">Запиши</a>
+    <div class="btn btn-success" role="button" ng-click="vm.addApplication()">Запиши</div>
     <div class="btn btn-success" id="create_pdf" role="button" ng-click="vm.printPDF()">Изтегли PDF</div>
     <hr>
   </div>

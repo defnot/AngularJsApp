@@ -84,7 +84,7 @@
       })
       .state('offerInfo', {
         url: '/offerInfo/{applicationId:int}',
-        templateUrl: 'app/templates/offer/offerInfo.html'
+        templateUrl: 'app/templates/offer/offer.html'
       });
   }
 }());

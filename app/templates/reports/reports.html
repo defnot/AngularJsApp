@@ -95,7 +95,7 @@
         <tbody>
           <tr ng-repeat="c in vm.applications| orderBy:sortType:sortReverse | filter:searchReports">
             <td data-application-id="{{ c.id }}">{{ c.dateAdded | date:'yyyy-MM-dd HH:mm'}}</td>
-            <td>{{ c.ammount }}</td>
+            <td>{{ c.loan }}</td>
             <td>{{ c.currency }}</td>
             <td>{{ c.status }}</td>
             <td data-user-id="{{ c.userId }}">{{ c.firstName }}</td>
