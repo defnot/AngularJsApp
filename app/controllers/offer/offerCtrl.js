@@ -10,19 +10,38 @@
     vm.offerTable = [];
     vm.printPDF = printPDF;
     vm.submitOffer = submitOffer;
+    vm.makeOffer = makeOffer;
+    vm.operator = {
+      id: 'op2910',
+      name: 'Стойко Дамянов',
+      phone: '+359 888 383 833'
+    };
+
+    vm.clientTypes = {
+      availableOptions: [{
+        name: 'Физическо Лице',
+        id: 0
+      }, {
+        name: 'Юридическо Лице',
+        id: 1
+      }],
+      selected: {
+        id: 0,
+        name: 'Физическо Лице'
+      }
+    };
+
+    vm.offerModels = [
+      'Анюитетни вноски',
+      'Намаляващи вноски'
+    ];
 
     vm.currencies = [
-    { code: 'BGN', name: 'BGN' },
+    { code: 'BGN', name: 'BGN' }, // На Дамян кода - НЕ ПИПАЙ
     { code: 'EUR', name: 'EUR' },
     { code: 'USD', name: 'USD'}
     ];
     vm.selectedCurrency = vm.currencies[0];
-
-    vm.interestModels = [
-    { code: 'първи', name: 'първи' },
-    { code: 'втори', name: 'втори' }
-    ];
-    vm.selectedModel = vm.interestModels[0];
 
     vm.validateTotalSum = validateTotalSum;
     vm.validatePositiveInteger = validatePositiveInteger;
@@ -140,6 +159,7 @@
     }
     ////
     function submitOffer() {
+
       $http.get('http://localhost:9000/calculateEMI', {
         params: {
           loan: vm.loan,
@@ -165,6 +185,16 @@
       success(function(data) {
         vm.offerTable = data;
       });
+    }
+
+    function makeOffer () {
+      var option = $('#loanType')[0].selectedOptions[0].value;
+
+      if (option === vm.offerModels[0]) {
+        submitOffer();
+      } else {
+        submitOfferEPP();
+      }
     }
   }
 }());

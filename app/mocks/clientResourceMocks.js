@@ -754,6 +754,7 @@
       // TODO: This code will duplicate with other mocks, find way to extract the code.
       $httpBackend.whenGET(/app/).passThrough();
       $httpBackend.whenGET(/calculateEMI/).passThrough();
+      $httpBackend.whenGET(/calculateEPP/).passThrough();
 
       function updateClient (method, url, data) {
         console.log('data: %o', data);
