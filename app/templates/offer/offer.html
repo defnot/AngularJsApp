@@ -175,6 +175,47 @@
       </div>
     </div>
 
+    <!-- GRATIS PERIOD -->
+    <div class="form-group">
+      <label class="control-label col-xs-2" for="gratis">Гратисен период в месеци:</label>
+        <div class="col-xs-5">
+          <input class="form-control" id="gratis" ng-model="vm.gratis" placeholder="Гратисен период"
+           type="text" required>
+        </div>
+        <!-- TODO: VALIDATION -->
+        <span ng-if=""
+        class="validation-error">Невалиден период!</span>
+    </div>
+
+    <div class="form-group">
+      <label class="control-label col-xs-5" for="promotional">Промоционални условия</label>
+    </div>
+
+    <!-- PROMOTIONAL PERIOD -->
+    <div class="form-group">
+      <label class="control-label col-xs-2" for="promotional">Промоционален период в месеци:</label>
+        <div class="col-xs-5">
+          <input class="form-control" id="promotional" ng-model="vm.promotional" placeholder="Промоционален период"
+           type="text" required>
+        </div>
+        <!-- TODO: VALIDATION -->
+        <span ng-if=""
+        class="validation-error">Невалиден период!</span>
+    </div>
+
+    <!-- PROMOTIONAL INTEREST -->
+    <div class="form-group">
+      <label class="control-label col-xs-2" for="promotional_interest">Промоционална лихва:</label>
+        <div class="col-xs-5">
+          <input class="form-control" id="promotional_interest" ng-model="vm.promotional_interest" placeholder="Промоционален период"
+           type="text" required>
+        </div>
+        <!-- TODO: VALIDATION -->
+        <span ng-if=""
+        class="validation-error">Невалиден!</span>
+    </div>
+
+
     <!-- BUTTON -->
     <div class="form-group">
       <div class="col-xs-10">

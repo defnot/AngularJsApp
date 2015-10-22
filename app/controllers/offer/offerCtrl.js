@@ -184,7 +184,11 @@
           loan: vm.loan,
           annualInterest: vm.interest,
           paymentsPerYear: vm.numpayments,
-          loanPeriodYears: vm.years
+          loanPeriodYears: vm.years,
+          gracePeriod: vm.gratis,
+          promotionalPeriod: vm.promotional,
+          promotionalInterest: vm.promotional_interest
+
         }
       }).
       success(function (data) {
@@ -198,7 +202,10 @@
           loan: vm.loan,
           annualInterest: vm.interest,
           paymentsPerYear: vm.numpayments,
-          loanPeriodYears: vm.years
+          loanPeriodYears: vm.years,
+          gracePeriod: vm.gratis,
+          promotionalPeriod: vm.promotional,
+          promotionalInterest: vm.promotional_interest
         }
       }).
       success(function (data) {
