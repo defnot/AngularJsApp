@@ -5,13 +5,13 @@
     .module('Agrion')
     .controller('ReportsCtrl', ReportsCtrl);
 
-    //ReportsCtrl.$inject = ['$filter'];
+    ReportsCtrl.$inject = ['$window'];
 
 
-  function ReportsCtrl() {
+  function ReportsCtrl($window) {
     var vm = this;
 
-    vm.applications = ApplicationMocks.applications;
+    vm.applications = $window.ApplicationMocks.applications;
   }
 
 })();

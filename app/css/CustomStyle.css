@@ -287,3 +287,14 @@ html body {
   padding-bottom: 10px;
   bottom: 0;
 }
+
+.login-icon {
+  background: url('../images/login.png') no-repeat center center;
+  display: inline-block;
+  height: 50px;
+  width: 50px;
+}
+
+.login-icon:hover {
+  background: url('../images/login-hover.png') no-repeat center center;
+}

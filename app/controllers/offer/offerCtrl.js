@@ -25,10 +25,10 @@
         name: 'Юридическо Лице',
         id: 1
       }],
-       selected: {
-         id: 0,
-         name: 'Физическо Лице'
-       }
+      selected: {
+        id: 0,
+        name: 'Физическо Лице'
+      }
     };
 
     vm.offerModels = [
@@ -65,12 +65,9 @@
 
     init();
 
-    function autoCompleteCompleted(selected) {
-      if (selected !== undefined) {
-        vm.applicationInfo = selected.originalObject;
-        setLoanInfo(selected.originalObject);
-      }
-    }
+    //===================================================================
+    //Functions included into the controller scope
+    //===================================================================
 
     function showData() {
       $('#dataField').removeClass('ng-hide');
@@ -225,7 +222,14 @@
      */
     function getApplicationInfo() {
       var applicationId = $stateParams.applicationId;
-      var offerInfo = $window.ApplicationMocks.applications[applicationId];
+      var offerInfo = {};
+
+      for (var i = 0; i < $window.ApplicationMocks.applications.length; i++) {
+        if ($window.ApplicationMocks.applications[i].id === applicationId) {
+          offerInfo = $window.ApplicationMocks.applications[i];
+          break;
+        }
+      }
 
       setLoanInfo(offerInfo);
 
@@ -252,10 +256,26 @@
      */
     function saveApplication() {
       var newId;
-      if ($stateParams.applicationId >= 0) {
-        newId = $stateParams.applicationId;
+      var applicationId = $stateParams.applicationId;
+      if (applicationId >= 0) {
+        newId = applicationId;
       } else {
-        newId = $window.ApplicationMocks.applications.count + 1;
+        //setting default values for физическо лице
+        newId = $window.ApplicationMocks.applications.length + 1;
+        vm.applicationInfo.address = "some dummy address";
+        vm.applicationInfo.company = "some dummy company name";
+        vm.applicationInfo.dds = "2062175689";
+        vm.applicationInfo.eik = "9563851938";
+        vm.applicationInfo.email = "user@company.com";
+        vm.applicationInfo.phone = "088734752";
+        vm.applicationInfo.status = "изчакващ";
+        vm.applicationInfo.userId = generateGuid();
+
+        if (vm.clientTypes.selected.id === 1) { //юридическо лице
+          vm.applicationInfo.egn = "2703149893";
+          vm.applicationInfo.firstName = "dummyFirstName";
+          vm.applicationInfo.lastName = "dummyLastName";
+        }
       }
 
       var applicationInfo = {
@@ -279,20 +299,56 @@
         "loan": vm.loan,
         "status": vm.applicationInfo.status,
         "userId": vm.applicationInfo.userId,
-        "dateAdded": new Date(),
-        "id": newId
+        "dateAdded": vm.applicationInfo.dateAdded,
+        "id": newId,
+        "clientType": vm.clientTypes.selected.id
       };
 
+      //remove the old item in oreder to be updated with the new one
+      if (applicationId >= 0) {
+        for (var i = 0; i < $window.ApplicationMocks.applications.length; i++) {
+          if ($window.ApplicationMocks.applications[i].id === applicationId) {
+            $window.ApplicationMocks.applications.splice(i,1);
+            break;
+          }
+        }
+      }
+
       $window.ApplicationMocks.applications.push(applicationInfo);
+      $window.toastr.success('The applicaiton has been saved');
     }
 
+    /**
+     * Fires when angular autocomplete alt selects values and loads the selected application data
+     * @param  {the object which was seleted} selected The application info for the selected object
+     */
+    function autoCompleteCompleted(selected) {
+      if (selected !== undefined) {
+        vm.applicationInfo = selected.originalObject;
+        setLoanInfo(selected.originalObject);
+      }
+    }
+
+    //===================================================================
+    //Functions not included into the controller scope
+    //===================================================================
+
+    /**
+     * Loads the view panels depending the current state of the page
+     */
     function init() {
       vm.clientTypes.selected.id = 0; //Физическо Лице'
+      vm.applicationInfo.dateAdded = new Date();
+      vm.applicationInfo.id = $window.ApplicationMocks.applications.length + 1;
+
       if ($stateParams.applicationId !== undefined) {
         setEditMode();
       }
     }
 
+    /**
+     * Loads the view panels, used during the edit mode
+     */
     function setEditMode() {
       $("#newApplicationPanel").hide();
       vm.applicationInfo = getApplicationInfo();
@@ -302,6 +358,10 @@
       makeOffer();
     }
 
+    /**
+     * Shows or hide the panels, created for editing the differente types of users
+     * @param  {applicationInfo} clientData - Information about the currently opened applicaiton
+     */
     function loadClientPanel(clientData) {
       if (clientData.clientType === 0) {
         $("#fsIndividualEntity").show();
@@ -310,6 +370,18 @@
         $("#fsLegalEntity").show();
         $("#fsIndividualEntity").hide();
       }
+    }
+
+    /**
+     * Generate GUID (see http://stackoverflow.com/a/2117523/364657)
+     * @return {string} the generated guid number
+     */
+    function generateGuid() {
+      return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+        var r = Math.random() * 16 | 0,
+          v = c === 'x' ? r : r & 0x3 | 0x8;
+        return v.toString(16);
+      });
     }
 
   }
