@@ -183,12 +183,12 @@
   font-weight: 600;
   color: #fff;
 
-	margin: auto;
-	text-align: center;
+  margin: auto;
+  text-align: center;
 }
 
 .sidebarStyle ul li a:hover{
-	background-color: #75ad29;
+  background-color: #75ad29;
 }
 
 .nav > li > a:hover,
@@ -226,39 +226,39 @@
 
 .contentAreaStyle
 {
-	background-color: #E8E8C2;
-	height: 400px;
-	text-align: center;
+  background-color: #E8E8C2;
+  height: 400px;
+  text-align: center;
 }
 .footer1Style
 {
-	background-color: #7d7e7d;
-	color: #dddddd;
-	height: 150px;
-	text-align: center;
+  background-color: #7d7e7d;
+  color: #dddddd;
+  height: 150px;
+  text-align: center;
 }
 .footer2Style
 {
-	background-color: #5C5C5C;
-	color: #dddddd;
-	height: 150px;
-	text-align: center;
+  background-color: #5C5C5C;
+  color: #dddddd;
+  height: 150px;
+  text-align: center;
 }
 .footerCopyRightStyle
 {
-	background-color: #373737;
-	color: #dddddd;
-	height: 30px;
-	text-align: center;
+  background-color: #373737;
+  color: #dddddd;
+  height: 30px;
+  text-align: center;
 }
 
 .resultText, .resultInfo
 {
-	width: 24%;
-	position: relative;
-	float:left;
-	font-size:14px;
-	line-height:24px;
+  width: 24%;
+  position: relative;
+  float:left;
+  font-size:14px;
+  line-height:24px;
 }
 .resultInfoRight
 {

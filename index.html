@@ -7,10 +7,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Agrion</title>
 
-
   <!-- Style sheets -->
   <link href="app/css/bootstrap.css" rel="stylesheet">
   <link href="app/css/CustomStyle.css" rel="stylesheet">
+
+  <!-- jQuery -->
+  <script src="lib/jquery/jquery-1.11.2.min.js"></script>
 
   <!-- Angular -->
   <script src="lib/angular/angular.js" charset="utf-8"></script>
@@ -31,7 +33,6 @@
   <script src="app/mocks/mocks.js"></script>
   <script src="app/mocks/applications.js"></script>
 
-
   <!-- Controllers -->
   <script src="app/controllers/homeCtrl.js" charset="utf-8"></script>
   <script src="app/controllers/clients/clientsCtrl.js" charset="utf-8"></script>
@@ -39,7 +40,6 @@
   <script src="app/controllers/clients/legalEntityCtrl.js" charset="utf-8"></script>
   <script src="app/controllers/offer/offerCtrl.js" charset="utf-8"></script>
   <script src="app/controllers/reports/reportsCtrl.js" charset="utf-8"></script>
-  <!-- <script src="app/controllers/offer/offerInfoCtrl.js" charset="utf-8"></script> -->
 
   <!-- Services -->
   <script src="app/services/commonServices.js"></script>
@@ -47,6 +47,10 @@
 
   <!-- Filters -->
   <script type="text/javascript" src="app/controllers/clients/filters/clientFilters.js"></script>
+
+  <!-- Angular autocomplete -->
+  <script src="lib/angucomplete-alt/angucomplete-alt.js"></script>
+  <link href="lib/angucomplete-alt/angucomplete-alt.css" rel="stylesheet">
 
   <!--[if lt IE 9]>
       <script src="https://cdn.jsdelivr.net/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -99,7 +103,7 @@
                 Developed by
               </div>
               <div class="col-xs-12">
-                  <img src="app/images/sf-logo.png" style="width: 100px;"/>
+                <img src="app/images/sf-logo.png" style="width: 100px;" />
               </div>
             </a>
           </div>
@@ -108,9 +112,6 @@
       </div>
     </div>
   </div>
-
-  <!-- jQuery -->
-  <script src="lib/jquery/jquery-1.11.2.min.js"></script>
   <!-- PDF Print scripts -->
   <script src='lib/pdf-scripts/jquery.tabletojson.min.js'></script>
   <script src='lib/pdf-scripts/pdfmake.min.js'></script>

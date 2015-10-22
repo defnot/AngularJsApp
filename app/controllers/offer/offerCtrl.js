@@ -2,15 +2,15 @@
   'use strict';
 
   angular.module('Agrion')
-    .controller('OfferCtrl', ['$http', '$stateParams', OfferCtrl]);
+    .controller('OfferCtrl', OfferCtrl);
 
-  function OfferCtrl($http, $stateParams) {
+  OfferCtrl.$inject = ['$http', '$stateParams', '$window'];
 
+  function OfferCtrl($http, $stateParams, $window) {
     var vm = this;
+
+    //variables
     vm.offerTable = [];
-    vm.printPDF = printPDF;
-    vm.submitOffer = submitOffer;
-    vm.makeOffer = makeOffer;
     vm.operator = {
       id: 'op2910',
       name: 'Стойко Дамянов',
@@ -25,10 +25,10 @@
         name: 'Юридическо Лице',
         id: 1
       }],
-      selected: {
-        id: 0,
-        name: 'Физическо Лице'
-      }
+       selected: {
+         id: 0,
+         name: 'Физическо Лице'
+       }
     };
 
     vm.offerModels = [
@@ -49,14 +49,28 @@
       }
     ];
     vm.selectedCurrency = vm.currencies[0];
+    vm.applicationInfo = []; //getApplicationInfo();
+    vm.allApplications = $window.ApplicationMocks.applications;
 
+    //functions
+    vm.printPDF = printPDF;
+    vm.submitOffer = submitOffer;
+    vm.makeOffer = makeOffer;
     vm.validateTotalSum = validateTotalSum;
     vm.validatePositiveInteger = validatePositiveInteger;
     vm.validateForm = validateForm;
     vm.showData = showData;
-    vm.addApplication = addApplication;
+    vm.saveApplication = saveApplication;
+    vm.autoCompleteCompleted = autoCompleteCompleted;
 
-    vm.applicationInfo = getApplicationInfo();
+    init();
+
+    function autoCompleteCompleted(selected) {
+      if (selected !== undefined) {
+        vm.applicationInfo = selected.originalObject;
+        setLoanInfo(selected.originalObject);
+      }
+    }
 
     function showData() {
       $('#dataField').removeClass('ng-hide');
@@ -80,7 +94,6 @@
     }
 
     function printPDF() {
-
       var totalSum = $('#totalSum').text().replace(/\s{2,}/g, ' ');
       var monthlyPayment = $('#monthlyPayment').text().replace(/\s{2,}/g, ' ');
       var totalInterest = $('#totalInterest').text().replace(/\s{2,}/g, ' ');
@@ -165,11 +178,10 @@
           // alignment: 'justify'
         }
       };
-      pdfMake.createPdf(docDefinition).open();
+      $window.pdfMake.createPdf(docDefinition).open();
     }
     ////
     function submitOffer() {
-
       $http.get('http://localhost:9000/calculateEMI', {
         params: {
           loan: vm.loan,
@@ -220,18 +232,19 @@
      */
     function getApplicationInfo() {
       var applicationId = $stateParams.applicationId;
-      var offerInfo = ApplicationMocks.applications[applicationId];
+      var offerInfo = $window.ApplicationMocks.applications[applicationId];
 
-      loadLoanInfo(offerInfo);
+      setLoanInfo(offerInfo);
 
       return offerInfo;
     }
 
     /**
      * Aligning data from the current application with the data already defined in the form
+     * @param {string} offerInfo The current application information
      */
-    function loadLoanInfo(offerInfo) {
-      if ($stateParams.applicationId >= 0) {
+    function setLoanInfo(offerInfo) {
+      if (offerInfo !== undefined) {
         vm.loan = offerInfo.loan;
         vm.interest = offerInfo.annualInterest;
         vm.numpayments = offerInfo.paymentsPerYear;
@@ -241,40 +254,70 @@
       }
     }
 
-      function addApplication() {
-        var newId;
-        if ($stateParams.applicationId >= 0) {
-          newId = $stateParams.applicationId;
-        } else {
-          newId = ApplicationMocks.applications.count + 1;
-        }
-
-        var applicationInfo = {
-          "offerType": vm.applicationInfo.offerType,
-          "loanPeriodYears": vm.years,
-          "paymentsPerYear": vm.numpayments,
-          "annualInterest": vm.interest,
-          "operatorId": vm.operator.id,
-          "egn": vm.applicationInfo.egn,
-          "dds": vm.applicationInfo.dds,
-          "eik": vm.applicationInfo.eik,
-          "region": vm.applicationInfo.region,
-          "branch": vm.applicationInfo.branch,
-          "address": vm.applicationInfo.address,
-          "phone": vm.applicationInfo.phone,
-          "email": vm.applicationInfo.email,
-          "company": vm.applicationInfo.company,
-          "lastName": vm.applicationInfo.lastName,
-          "firstName": vm.applicationInfo.firstName,
-          "currency": vm.selectedCurrency.name,
-          "loan": vm.loan,
-          "status": vm.applicationInfo.status,
-          "userId": vm.applicationInfo.userId,
-          "dateAdded": new Date(),
-          "id": newId
-        };
-
-        ApplicationMocks.applications.push(applicationInfo);
+    /**
+     * Saves an application request
+     */
+    function saveApplication() {
+      var newId;
+      if ($stateParams.applicationId >= 0) {
+        newId = $stateParams.applicationId;
+      } else {
+        newId = $window.ApplicationMocks.applications.count + 1;
       }
+
+      var applicationInfo = {
+        "offerType": vm.applicationInfo.offerType,
+        "loanPeriodYears": vm.years,
+        "paymentsPerYear": vm.numpayments,
+        "annualInterest": vm.interest,
+        "operatorId": vm.operator.id,
+        "egn": vm.applicationInfo.egn,
+        "dds": vm.applicationInfo.dds,
+        "eik": vm.applicationInfo.eik,
+        "region": vm.applicationInfo.region,
+        "branch": vm.applicationInfo.branch,
+        "address": vm.applicationInfo.address,
+        "phone": vm.applicationInfo.phone,
+        "email": vm.applicationInfo.email,
+        "company": vm.applicationInfo.company,
+        "lastName": vm.applicationInfo.lastName,
+        "firstName": vm.applicationInfo.firstName,
+        "currency": vm.selectedCurrency.name,
+        "loan": vm.loan,
+        "status": vm.applicationInfo.status,
+        "userId": vm.applicationInfo.userId,
+        "dateAdded": new Date(),
+        "id": newId
+      };
+
+      $window.ApplicationMocks.applications.push(applicationInfo);
+    }
+
+    function init() {
+      vm.clientTypes.selected.id = 0; //Физическо Лице'
+      if ($stateParams.applicationId !== undefined) {
+        setEditMode();
+      }
+    }
+
+    function setEditMode() {
+      $("#newApplicationPanel").hide();
+      vm.applicationInfo = getApplicationInfo();
+
+      vm.clientTypes.selected.id = vm.applicationInfo.clientType;
+      loadClientPanel(vm.applicationInfo);
+      makeOffer();
+    }
+
+    function loadClientPanel(clientData) {
+      if (clientData.clientType === 0) {
+        $("#fsIndividualEntity").show();
+        $("#fsLegalEntity").hide();
+      } else if (clientData.clientType === 1) {
+        $("#fsLegalEntity").show();
+        $("#fsIndividualEntity").hide();
+      }
+    }
+
   }
 }());
