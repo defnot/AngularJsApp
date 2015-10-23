@@ -40,6 +40,7 @@
     <script charset="utf-8" src="app/controllers/clients/legalEntityCtrl.js"></script>
     <script charset="utf-8" src="app/controllers/offer/offerCtrl.js"></script>
     <script charset="utf-8" src="app/controllers/reports/reportsCtrl.js"></script>
+    <script src="app/controllers/login/loginCtrl.js" charset="utf-8"></script>
 
     <!-- Services -->
     <script src="app/services/commonServices.js"></script>
@@ -59,20 +60,35 @@
     <!--[if lt IE 9]> <script src="https://cdn.jsdelivr.net/html5shiv/3.7.2/html5shiv.min.js"></script> <script src="https://cdn.jsdelivr.net/respond/1.4.2/respond.min.js"></script> <![endif]-->
   </head>
 
-  <body>
+  <body ng-controller="Login as vm">
     <div class="container-fluid ">
       <div class="row">
+
         <div class="headerStyle">
-          <img alt="Code Scratcher" class="img-responsive" src="app/images/logo.png"/>
-          <a href="login-icon">
-            <span class="menu-icon-login"></span>DO SOME SHITS</a>
+          <ul class="header-wrapper">
+            <li>
+              <a href="index.html" title="Заглавна страница"><img src="app/images/logo.png" alt="Code Scratcher" class="img-responsive" style="float:left" /></a>
+            </li>
+            <li>
+              <div class="login-wrapper" >
+                <a href="login.html" title="Вход в системата"><span class="login-icon"></span></a>
+              </div>
+            </li>
+          </ul>
         </div>
+
+
+
         <div class="container-fluid">
           <!-- main content -->
           <div class="col-sm-11 col-sm-push-1">
             <form>
               <div class="row">
-                <div class="col-lg-6 col-md-6 col-xs-12 col-md-offset-4">
+                <div class="col-md-offset-4">
+                <img src="app/images/seedmoney.jpg" class=".text-center" alt="Login form">
+                </div>
+
+                <div class="col-lg-5 col-md-offset-3">
                   <div class="center-block">
                   <div class="panel panel-default">
                     <div class="panel-heading">
@@ -81,14 +97,14 @@
                     <div class="panel-body">
                       <div class="form-group">
                       <label for="tbxUsername">Потребителско име</label>
-                      <input class="form-control" id="tbxUsername" placeholder="Потребителско име" type="text">
+                      <input class="form-control" id="tbxUsername" placeholder="Потребителско име" type="text" ng-model="vm.username">
                     </div>
                     <div class="form-group">
                       <label for="tbxPassword">Парола</label>
-                      <input class="form-control" id="tbxPassword" placeholder="Парола" type="password">
+                      <input class="form-control" id="tbxPassword" placeholder="Парола" type="password" ng-model="vm.password">
                     </div>
                        <div class="form-group">
-                      <button type="button" class="btn btn-primary" data-dismiss="modal">Вход</button>
+                      <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="vm.login()">Вход</button>
                       </div>
                     </div>
                   </div>
@@ -100,7 +116,6 @@
           </div>
 
           <div class="sidebarStyle">
-            <ul class="nav"></ul>
             <div class="sidebar-footer">
               <a href="http://www.scalefocus.com" target="_blank">
                 <div class="col-xs-12" style="color: #FFFFFF; font-size: 10px;">

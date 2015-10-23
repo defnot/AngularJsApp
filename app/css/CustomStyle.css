@@ -288,6 +288,12 @@ html body {
   bottom: 0;
 }
 
+.login-wrapper{
+  float:right;
+  padding-right: 10px;
+  padding-top: 3px;
+}
+
 .login-icon {
   background: url('../images/login.png') no-repeat center center;
   display: inline-block;
@@ -297,4 +303,10 @@ html body {
 
 .login-icon:hover {
   background: url('../images/login-hover.png') no-repeat center center;
+}
+
+.header-wrapper{
+  list-style:none;
+  padding:0;
+  overflow:auto;
 }

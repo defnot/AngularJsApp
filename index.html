@@ -40,6 +40,7 @@
   <script src="app/controllers/clients/legalEntityCtrl.js" charset="utf-8"></script>
   <script src="app/controllers/offer/offerCtrl.js" charset="utf-8"></script>
   <script src="app/controllers/reports/reportsCtrl.js" charset="utf-8"></script>
+  <script src="app/controllers/login/loginCtrl.js" charset="utf-8"></script>
 
   <!-- Services -->
   <script src="app/services/commonServices.js"></script>
@@ -68,9 +69,18 @@
     <div class="row">
 
       <div class="headerStyle">
-        <img src="app/images/logo.png" alt="Code Scratcher" class="img-responsive" />
-        <a href="login-icon"><span class="menu-icon-login"></span></a>
+        <ul class="header-wrapper">
+          <li>
+            <a href="index.html" title="Заглавна страница"><img src="app/images/logo.png" alt="Code Scratcher" class="img-responsive" style="float:left" /></a>
+          </li>
+          <li>
+            <div class="login-wrapper">
+              <a href="login.html" title="Вход в системата"><span class="login-icon"></span></a>
+            </div>
+          </li>
+        </ul>
       </div>
+
       <div class="container-fluid">
         <!-- main content -->
         <div class="col-sm-11 col-sm-push-1">

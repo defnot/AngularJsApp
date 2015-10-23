@@ -381,8 +381,14 @@ var ApplicationMocks = (function () {
 ];
 
 
+var users = {
+  "username": "agrion",
+  "password": "Pass123$"
+};
+
 return {
-  applications: applications
+  applications: applications,
+  users: users
 };
 
 })();
