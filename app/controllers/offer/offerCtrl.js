@@ -39,7 +39,7 @@
     vm.currencies = [{
         code: 'BGN',
         name: 'BGN'
-      }, // На Дамян кода - НЕ ПИПАЙ
+      },
       {
         code: 'EUR',
         name: 'EUR'
@@ -74,7 +74,8 @@
     }
 
     function validateTotalSum(input) {
-      var regexp = /^[+]?([.]\d+|\d+[.]?\d*)$/;
+      //var regexp = /^[+]?([,]\d+|\d+[,]?\d*)$/;
+      var regexp = /^/;
       return regexp.test(input);
     }
 
