@@ -135,7 +135,7 @@
     <div class="form-group">
       <label class="control-label col-xs-2" for="loan">Заем:</label>
       <div class="col-xs-5">
-        <input class="form-control" id="loan" maxlength="15" name="loan" ng-model="vm.loan" placeholder="Заем" required type="text">
+        <input class="form-control" id="loan" maxlength="15" name="loan" ng-model="vm.loan" placeholder="Заем" required type="text" number-input-format>
       </div>
       <span class="validation-error" ng-if="vm.loan && !vm.validateTotalSum(vm.loan)">Невалиден заем!</span>
     </div>
