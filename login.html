@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="Agrion">
+
+  <head>
+    <meta charset="utf-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <title>Agrion</title>
+
+    <!-- Style sheets -->
+    <link href="app/css/bootstrap.css" rel="stylesheet">
+    <link href="app/css/CustomStyle.css" rel="stylesheet">
+
+    <!-- jQuery -->
+    <script src="lib/jquery/jquery-1.11.2.min.js"></script>
+
+    <!-- Angular -->
+    <script charset="utf-8" src="lib/angular/angular.js"></script>
+    <script charset="utf-8" src="lib/angular-ui-router/angular-ui-router.js"></script>
+    <script charset="utf-8" src="lib/angular-resource/angular-resource.js"></script>
+    <script charset="utf-8" src="lib/angular-mocks/angular-mocks.js"></script>
+
+    <!--  Angular Bootstrap-->
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular-animate.js"></script>
+    <script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.14.2.js"></script>
+
+    <!-- Angular app files -->
+    <script charset="utf-8" src="app/app.js"></script>
+    <script charset="utf-8" src="app/routes.js"></script>
+
+    <!-- Mocks -->
+    <script src="app/mocks/clientResourceMocks.js"></script>
+    <script src="app/mocks/mocks.js"></script>
+    <script src="app/mocks/applications.js"></script>
+
+    <!-- Controllers -->
+    <script charset="utf-8" src="app/controllers/homeCtrl.js"></script>
+    <script charset="utf-8" src="app/controllers/clients/clientsCtrl.js"></script>
+    <script charset="utf-8" src="app/controllers/clients/individualEntityCtrl.js"></script>
+    <script charset="utf-8" src="app/controllers/clients/legalEntityCtrl.js"></script>
+    <script charset="utf-8" src="app/controllers/offer/offerCtrl.js"></script>
+    <script charset="utf-8" src="app/controllers/reports/reportsCtrl.js"></script>
+
+    <!-- Services -->
+    <script src="app/services/commonServices.js"></script>
+    <script src="app/services/clientResource.js"></script>
+
+    <!-- Filters -->
+    <script src="app/controllers/clients/filters/clientFilters.js" type="text/javascript"></script>
+
+    <!-- Angular autocomplete -->
+    <script src="lib/angucomplete-alt/angucomplete-alt.js"></script>
+    <link href="lib/angucomplete-alt/angucomplete-alt.css" rel="stylesheet">
+
+    <!-- toastr -->
+    <script src="lib/toastr/toastr.min.js"></script>
+    <link href="lib/toastr/toastr.min.css" rel="stylesheet">
+
+    <!--[if lt IE 9]> <script src="https://cdn.jsdelivr.net/html5shiv/3.7.2/html5shiv.min.js"></script> <script src="https://cdn.jsdelivr.net/respond/1.4.2/respond.min.js"></script> <![endif]-->
+  </head>
+
+  <body>
+    <div class="container-fluid ">
+      <div class="row">
+        <div class="headerStyle">
+          <img alt="Code Scratcher" class="img-responsive" src="app/images/logo.png"/>
+          <a href="login-icon">
+            <span class="menu-icon-login"></span>DO SOME SHITS</a>
+        </div>
+        <div class="container-fluid">
+          <!-- main content -->
+          <div class="col-sm-11 col-sm-push-1">
+            <form>
+              <div class="row">
+                <div class="col-lg-6 col-md-6 col-xs-12 col-md-offset-4">
+                  <div class="center-block">
+                  <div class="panel panel-default">
+                    <div class="panel-heading">
+                      <label for="cleintType">Вход в системата</label>
+                    </div>
+                    <div class="panel-body">
+                      <div class="form-group">
+                      <label for="tbxUsername">Потребителско име</label>
+                      <input class="form-control" id="tbxUsername" placeholder="Потребителско име" type="text">
+                    </div>
+                    <div class="form-group">
+                      <label for="tbxPassword">Парола</label>
+                      <input class="form-control" id="tbxPassword" placeholder="Парола" type="password">
+                    </div>
+                       <div class="form-group">
+                      <button type="button" class="btn btn-primary" data-dismiss="modal">Вход</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                </div>
+              </div>
+            </form>
+
+          </div>
+
+          <div class="sidebarStyle">
+            <ul class="nav"></ul>
+            <div class="sidebar-footer">
+              <a href="http://www.scalefocus.com" target="_blank">
+                <div class="col-xs-12" style="color: #FFFFFF; font-size: 10px;">
+                  Developed by
+                </div>
+                <div class="col-xs-12">
+                  <img src="app/images/sf-logo.png" style="width: 100px;"/>
+                </div>
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <!-- PDF Print scripts -->
+    <script src='lib/pdf-scripts/jquery.tabletojson.min.js'></script>
+    <script src='lib/pdf-scripts/pdfmake.min.js'></script>
+    <script src='lib/pdf-scripts/vfs_fonts.js'></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="lib/bootstrap/bootstrap.min.js"></script>
+
+    <script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.14.2.js"></script>
+
+  </body>
+
+</html>

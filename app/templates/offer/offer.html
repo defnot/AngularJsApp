@@ -124,7 +124,7 @@
     <div class="form-group">
       <label class="control-label col-xs-2" for="loanType">Лихвен модел:</label>
       <div class="col-xs-5">
-        <select class="form-control" id="loanType" name="loanType" ng-model="vm.applicationInfo.offerType" ng-selected="1">
+        <select class="form-control" id="loanType" name="loanType" ng-model="vm.applicationInfo.offerType">
           <option>{{ vm.offerModels[0] }}</option>
           <option>{{ vm.offerModels[1] }}</option>
         </select>
@@ -275,8 +275,28 @@
         </tr>
       </tbody>
     </table>
-    <div class="btn btn-success" ng-click="vm.saveApplication()" role="button">Запиши</div>
+    <div class="btn btn-success" data-toggle="modal" data-target="#editApplicationModal" role="button">Запиши</div>
     <div class="btn btn-success" id="create_pdf" ng-click="vm.printPDF()" role="button">Изтегли PDF</div>
     <hr>
   </div>
+
+<!-- Update client  -->
+<div id="editApplicationModal" class="modal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Редактиране на молба</h4>
+      </div>
+      <div class="modal-body">
+        <p>Сигурни ли сте, че искате да редакирате тази молба?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Отказ</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="vm.saveApplication()">Редактирай</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
 </div>
