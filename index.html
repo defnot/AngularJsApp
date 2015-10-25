@@ -42,12 +42,13 @@
   <script src="app/controllers/reports/reportsCtrl.js" charset="utf-8"></script>
   <script src="app/controllers/login/loginCtrl.js" charset="utf-8"></script>
 
-  <!-- Directives -->
-  <script src="app/directives/numberInputFormat.js" charset="utf-8"></script>
-
   <!-- Services -->
   <script src="app/services/commonServices.js"></script>
   <script src="app/services/clientResource.js"></script>
+  <script src="app/services/userService.js"></script>
+
+  <!-- Directives -->
+  <script src="app/directives/numberInputFormat.js" charset="utf-8"></script>
 
   <!-- Filters -->
   <script type="text/javascript" src="app/controllers/clients/filters/clientFilters.js"></script>
@@ -67,7 +68,7 @@
     <![endif]-->
 </head>
 
-<body>
+<body ng-controller="HomeCtrl as vm">
 
   <div class="container-fluid ">
     <div class="row">
@@ -79,7 +80,17 @@
           </li>
           <li>
             <div class="login-wrapper">
-              <a href="login.html" title="Вход в системата"><span class="login-icon"></span></a>
+              <div id="loggedUserPanel" ng-show="vm.isUserLogged()">
+                Здравейте
+                <strong>{{vm.getCurrentUsername()}}</strong>
+                <a href="#" role="button" class="btn btn-link" ng-click="vm.logout()">Излез</a>
+              </div>
+
+              <div id="anonymousUserPanel" ng-show="vm.isUserLogged() == false">
+                <a href="login.html" title="Вход в системата">
+                  <span class="login-icon"></span>
+                </a>
+              </div>
             </div>
           </li>
         </ul>
@@ -93,24 +104,24 @@
 
         <div class="sidebarStyle">
           <ul class="nav">
-            <li>
+            <li ng-show="vm.isCurrentUserAuthenticated">
               <a ui-sref="clients">
                 <span class="menu-icon-clients"></span>
                 Клиенти
               </a>
             </li>
-            <li>
+            <li ng-show="vm.isCurrentUserAuthenticated">
               <a ui-sref="individual">Физическо лице</a>
             </li>
-            <li>
+            <li ng-show="vm.isCurrentUserAuthenticated">
               <a ui-sref="legal">Юридическо лице</a>
             </li>
-            <li>
+            <li ng-show="vm.isCurrentUserAuthenticated">
               <a ui-sref="offer">
                 <span class="menu-icon-offer"></span>
                 Оферта</a>
             </li>
-            <li>
+            <li ng-show="vm.isCurrentUserAuthenticated">
               <a ui-sref="reports">
                 <span class="menu-icon-reports"></span>
                 Отчети</a>
