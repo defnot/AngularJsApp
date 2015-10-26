@@ -23,7 +23,7 @@
             el.val($filter('customCurrency')(scope.amount));
            });
         }
-      }
-    })
+      };
+    });
 
 }());

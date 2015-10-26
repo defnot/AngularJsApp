@@ -11,7 +11,8 @@
       'clientFilters',
       'ngAnimate',
       'ui.bootstrap',
-      'angucomplete-alt'
+      'angucomplete-alt',
+      'directives'      
     ])
     .run(CheckAuthentication)
     .constant('constants', {

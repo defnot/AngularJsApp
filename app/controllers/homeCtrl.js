@@ -10,31 +10,14 @@
   function HomeCtrl(UserService) {
     var vm = this;
 
-    vm.isCurrentUserAuthenticated = UserService.isUserLogged();
-    vm.logout = logout;
-    vm.isUserLogged = isUserLogged;
-    vm.getCurrentUsername = getCurrentUsername;
+    vm.isCurrentUserAuthenticated = isCurrentUserAuthenticated();
 
     /**
-     * Attempts to logout the user
+     * Checks if the the current user is authenticated on the system
+     * @return {Boolean} [If the users is authenticated]
      */
-    function logout() {
-      UserService.logout();
-    }
-
-    /**
-     * Returns if the there is currently logged user
-     */
-    function isUserLogged() {
+    function isCurrentUserAuthenticated() {
       return UserService.isUserLogged();
     }
-
-    /**
-     * Gets the current username
-     */
-    function getCurrentUsername() {
-      return UserService.getCurrentUsername();
-    }
-
   }
 })();

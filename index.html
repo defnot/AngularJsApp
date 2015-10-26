@@ -48,7 +48,9 @@
   <script src="app/services/userService.js"></script>
 
   <!-- Directives -->
+  <script src="app/directives/directives.js" charset="utf-8"></script>
   <script src="app/directives/numberInputFormat.js" charset="utf-8"></script>
+  <script src="app/directives/userPanel.js" charset="utf-8"></script>
 
   <!-- Filters -->
   <script type="text/javascript" src="app/controllers/clients/filters/clientFilters.js"></script>
@@ -80,17 +82,7 @@
           </li>
           <li>
             <div class="login-wrapper">
-              <div id="loggedUserPanel" ng-show="vm.isUserLogged()">
-                Здравейте
-                <strong>{{vm.getCurrentUsername()}}</strong>
-                <a href="#" role="button" class="btn btn-link" ng-click="vm.logout()">Излез</a>
-              </div>
-
-              <div id="anonymousUserPanel" ng-show="vm.isUserLogged() == false">
-                <a href="login.html" title="Вход в системата">
-                  <span class="login-icon"></span>
-                </a>
-              </div>
+              <user-panel></user-panel>
             </div>
           </li>
         </ul>
@@ -143,9 +135,9 @@
     </div>
   </div>
   <!-- PDF Print scripts -->
-  <script src='lib/pdf-scripts/jquery.tabletojson.min.js'></script>
-  <script src='lib/pdf-scripts/pdfmake.min.js'></script>
-  <script src='lib/pdf-scripts/vfs_fonts.js'></script>
+  <script src="lib/pdf-scripts/jquery.tabletojson.min.js"></script>
+  <script src="lib/pdf-scripts/pdfmake.min.js"></script>
+  <script src="lib/pdf-scripts/vfs_fonts.js"></script>
   <!-- Bootstrap Core JavaScript -->
   <script src="lib/bootstrap/bootstrap.min.js"></script>
 
