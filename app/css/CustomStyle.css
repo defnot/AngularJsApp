@@ -310,3 +310,5 @@ html body {
   padding:0;
   overflow:auto;
 }
+
+.nav, .pagination, .carousel, .panel-title a { cursor: pointer; }

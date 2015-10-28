@@ -37,14 +37,14 @@
 
           <div id="searchLegal" ng-hide="vm.clientTypes.selected.id == 0">
             <div class="panel-body">
-              <label for="searchByEgn">ЕИК (БУЛСТАТ)</label>
-              <div angucomplete-alt id="searchByEgn" input-class="form-control" local-data="vm.allApplications" match-class="highlight" minlength="2" pause="100" placeholder="ЕИК (БУЛСТАТ)" search-fields="eik" selected-object="selectedApplication" title-field="eik"></div>
+              <label for="searchByEIK">ЕИК (БУЛСТАТ)</label>
+              <div angucomplete-alt id="searchByEIK" input-class="form-control" local-data="vm.allApplications" match-class="highlight" minlength="2" pause="100" placeholder="ЕИК (БУЛСТАТ)" search-fields="eik" selected-object="selectedApplication" title-field="eik"></div>
 
-              <label for="searchByEgn">ДДС</label>
-              <div angucomplete-alt id="searchByEgn" input-class="form-control" local-data="vm.allApplications" match-class="highlight" minlength="2" pause="100" placeholder="ДДС" search-fields="dds" selected-object="selectedApplication" title-field="dds"></div>
+              <label for="searchByDDS">ДДС</label>
+              <div angucomplete-alt id="searchByDDS" input-class="form-control" local-data="vm.allApplications" match-class="highlight" minlength="2" pause="100" placeholder="ДДС" search-fields="dds" selected-object="selectedApplication" title-field="dds"></div>
 
-              <label for="searchByName">Име на фирма</label>
-              <div angucomplete-alt id="searchByName" input-class="form-control" local-data="vm.allApplications" match-class="highlight" minlength="2" pause="100" placeholder="Име на фирма" search-fields="company" selected-object="selectedApplication" title-field="company"></div>
+              <label for="searchByCompanyName">Име на фирма</label>
+              <div angucomplete-alt id="searchByCompanyName" input-class="form-control" local-data="vm.allApplications" match-class="highlight" minlength="2" pause="100" placeholder="Име на фирма" search-fields="company" selected-object="selectedApplication" title-field="company"></div>
             </div>
           </div>
 
@@ -57,60 +57,61 @@
         <fieldset ng-show="vm.clientTypes.selected.id == 0" id="fsIndividualEntity">
           <h3>Физическо Лице</h3>
 
-          <label for="input-01">ID</label>
-          <input class="form-control text-margin" id="input-01" ng-model="vm.applicationInfo.id" placeholder="" type="text">
+          <label for="physicalEntityId">ID</label>
+          <input class="form-control text-margin" id="physicalEntityId" ng-model="vm.applicationInfo.id" placeholder="" type="text">
 
-          <label for="input-02">Име</label>
-          <input class="form-control text-margin" id="input-02" ng-model="vm.applicationInfo.firstName" placeholder="" type="text">
+          <label for="physicalEntityName">Име</label>
+          <input class="form-control text-margin" id="physicalEntityName" ng-model="vm.applicationInfo.firstName" placeholder="" type="text">
 
-          <label for="input-03">Фамилия</label>
-          <input class="form-control text-margin" id="input-03" ng-model="vm.applicationInfo.lastName" placeholder="" type="text">
+          <label for="physicalEntityFamilyName">Фамилия</label>
+          <input class="form-control text-margin" id="physicalEntityFamilyName" ng-model="vm.applicationInfo.lastName" placeholder="" type="text">
 
-          <label for="input-03">ЕГН</label>
-          <input class="form-control text-margin" id="input-03" ng-model="vm.applicationInfo.egn" placeholder="" type="text">
+          <label for="physicalEntityEGN">ЕГН</label>
+          <input class="form-control text-margin" id="physicalEntityEGN" ng-model="vm.applicationInfo.egn" placeholder="" type="text">
         </fieldset>
 
         <fieldset ng-show="vm.clientTypes.selected.id == 1" id="fsLegalEntity">
           <h3>Юридическо Лице</h3>
 
-          <label for="input-01">ID</label>
-          <input class="form-control text-margin" id="input-01" ng-model="vm.applicationInfo.id" placeholder="" type="text">
+          <label for="legalEntityId">ID</label>
+          <input class="form-control text-margin" id="legalEntityId" ng-model="vm.applicationInfo.id" placeholder="" type="text">
 
-          <label for="input-02">Име на Фирма</label>
-          <input class="form-control text-margin" id="input-02" ng-model="vm.applicationInfo.company" placeholder="" type="text">
+          <label for="legalEntityCompnayName">Име на Фирма</label>
+          <input class="form-control text-margin" id="legalEntityCompnayName" ng-model="vm.applicationInfo.company" placeholder="" type="text">
 
-          <label for="input-03">ЕИК</label>
-          <input class="form-control text-margin" id="input-03" ng-model="vm.applicationInfo.eik" placeholder="" type="text">
+          <label for="legalEntityEIK">ЕИК</label>
+          <input class="form-control text-margin" id="legalEntityEIK" ng-model="vm.applicationInfo.eik" placeholder="" type="text">
 
-          <label for="input-04">ДДС</label>
-          <input class="form-control text-margin" id="input-04" ng-model="vm.applicationInfo.dds" placeholder="" type="text">
+          <label for="legalEntityDDS">ДДС</label>
+          <input class="form-control text-margin" id="legalEntityDDS" ng-model="vm.applicationInfo.dds" placeholder="" type="text">
         </fieldset>
       </div>
 
       <div class="col-md-4 form-padding">
         <h3>Оферта</h3>
 
-        <label for="input-05">Дата на кредит</label>
-        <input class="form-control text-margin" id="input-05" ng-model="vm.applicationInfo.dateAdded" placeholder="" type="text">
+        <label for="offerApplicationDate">Дата на кредит</label>
+        <!-- <input class="form-control text-margin" id="offerApplicationDate" ng-model="vm.applicationInfo.dateAdded" placeholder="" type="text"> -->
+          <input type="date" class="form-control ng-pristine ng-valid ng-isolate-scope ng-valid-required ng-touched text-margin" ng-model="vm.ApplicationDateAdded"  uib-datepicker-popup="{{vm.format}}" is-open="status.opened" ng-required="true" required="required" starting-day="1">
 
-        <label for="input-06">Регион</label>
-        <input class="form-control text-margin" id="input-06" ng-model="vm.applicationInfo.region" placeholder="" type="text">
+        <label for="offerRegion">Регион</label>
+        <input class="form-control text-margin" id="offerRegion" ng-model="vm.applicationInfo.region" placeholder="" type="text">
 
-        <label for="input-07">Филиал</label>
-        <input class="form-control text-margin" id="input-07" ng-model="vm.applicationInfo.branch" placeholder="" type="text">
+        <label for="offerBranch">Филиал</label>
+        <input class="form-control text-margin" id="offerBranch" ng-model="vm.applicationInfo.branch" placeholder="" type="text">
       </div>
 
       <div class="col-md-4 form-padding">
         <h3>Оператор</h3>
 
-        <label for="input-08">ID</label>
-        <input class="form-control text-margin" disabled id="input-08" type="text" value="{{ vm.operator.id }}">
+        <label for="operatorId">ID</label>
+        <input class="form-control text-margin" disabled id="operatorId" type="text" value="{{ vm.operator.id }}">
 
-        <label for="input-09">Име и Фамилия</label>
-        <input class="form-control text-margin" disabled id="input-09" type="text" value="{{ vm.operator.name }}">
+        <label for="operatorName">Име и Фамилия</label>
+        <input class="form-control text-margin" disabled id="operatorName" type="text" value="{{ vm.operator.name }}">
 
-        <label for="input-10">Телефон</label>
-        <input class="form-control text-margin" disabled id="input-10" type="text" value="{{ vm.operator.phone }}">
+        <label for="operatorPhone">Телефон</label>
+        <input class="form-control text-margin" disabled id="operatorPhone" type="text" value="{{ vm.operator.phone }}">
       </div>
     </div>
   </div>
@@ -144,7 +145,7 @@
     <div class="form-group">
       <label class="control-label col-xs-2" for="interest">Лихва %:</label>
       <div class="col-xs-5">
-        <input class="form-control" id="interest" maxlength="6" ng-minlength=1 ng-model="vm.interest" placeholder="Лихва" required type="text">
+        <input class="form-control" id="interest" maxlength="6" ng-minlength="1" ng-model="vm.interest" placeholder="Лихва" required type="text">
       </div>
       <span class="validation-error" ng-if="vm.interest && !vm.validateTotalSum(vm.interest)">Невалидна лихва!</span>
     </div>
@@ -153,7 +154,7 @@
     <div class="form-group">
       <label class="control-label col-xs-2" for="paymentPerMonth">Брой вноски на година:</label>
       <div class="col-xs-5">
-        <input class="form-control" id="payment-per-month" maxlength="2" ng-minlength=1 ng-model="vm.numpayments" placeholder="Брой вноски на година" required type="text">
+        <input class="form-control" id="payment-per-month" maxlength="2" ng-minlength="1" ng-model="vm.numpayments" placeholder="Брой вноски на година" required type="text">
       </div>
       <span class="validation-error" ng-if="vm.numpayments && !vm.validatePositiveInteger(vm.numpayments)">Въведи между 1 и 12 дена!</span>
     </div>

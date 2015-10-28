@@ -4,9 +4,9 @@
   angular.module('Agrion')
     .controller('OfferCtrl', OfferCtrl);
 
-  OfferCtrl.$inject = ['$http', '$stateParams', '$window'];
+  OfferCtrl.$inject = ['$http', '$stateParams', '$window', '$filter'];
 
-  function OfferCtrl($http, $stateParams, $window) {
+  function OfferCtrl($http, $stateParams, $window, $filter) {
     var vm = this;
 
     //variables
@@ -52,6 +52,7 @@
     vm.applicationInfo = []; //getApplicationInfo();
     vm.allApplications = $window.ApplicationMocks.applications;
 
+
     //functions
     vm.printPDF = printPDF;
     vm.submitOffer = submitOffer;
@@ -62,8 +63,13 @@
     vm.showData = showData;
     vm.saveApplication = saveApplication;
     vm.autoCompleteCompleted = autoCompleteCompleted;
+    vm.format = 'dd-MMMM-yyyy';
+
 
     init();
+
+    //used another variable because of the date format conversation
+    vm.ApplicationDateAdded = new Date(vm.applicationInfo.dateAdded);
 
     //===================================================================
     //Functions included into the controller scope
