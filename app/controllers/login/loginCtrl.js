@@ -1,10 +1,6 @@
 (function () {
   'use strict';
 
-  //from mocks
-  //  "username": "agrion",
-  //  "password": "Pass123$"
-
   angular
     .module('Agrion')
     .controller('Login', Login);

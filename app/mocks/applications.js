@@ -381,10 +381,20 @@ var ApplicationMocks = (function () {
 ];
 
 
-var users = {
-  "username": "agrion",
-  "password": "Pass123$"
-};
+var users = [
+    {
+        "username": "bob@example.com",
+        "password": "secret"
+    },
+    {
+        "username": "jane@example.com",
+        "password": "secret"
+    },
+    {
+        "username": "jeff@example.com",
+        "password": "secret"
+    }
+];
 
 return {
   applications: applications,

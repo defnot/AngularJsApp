@@ -5,9 +5,9 @@
     .module('Agrion')
     .service('UserService', UserService);
 
-  UserService.$inject = ['$rootScope', '$window', 'constants'];
+  UserService.$inject = ['$http','$rootScope', '$window', 'constants'];
 
-  function UserService($rootScope, $window, constants) {
+  function UserService($http,$rootScope, $window, constants) {
 
     var serviceResult = {
       login: login,
@@ -30,19 +30,38 @@
      * @return {bool}          If the login process was successfull
      */
     function login(username, password) {
-      var isSuccessfull = false;
+        var isSuccessfull = false;
+        for(var i = 0; i < $window.ApplicationMocks.users.length; i++) {
+            var user = $window.ApplicationMocks.users[i];
+            if(username == user.username && password == user.password) {
+                localStorage.setItem(constants.USERNAME_LOCALSTORAGE_KEY, user.username);
+//
+                _currentUsername = username;
+                _isUserLogged = true;
+//
+                isSuccessfull = true;
 
-      if (username === $window.ApplicationMocks.users.username && password === $window.ApplicationMocks.users.password) {
-        localStorage.setItem(constants.USERNAME_LOCALSTORAGE_KEY, $window.ApplicationMocks.users.username);
+                $http({
+                    method: 'GET',
+                    url: 'http://localhost:9000/makeLogin',
+                    params: {
+                        email: username,
+                        password: password
+                    }
+                }).then(function successCallback(data, status, headers, config) {
+                    alert("Success");
+                    isSuccessfull = true;
+                }, function errorCallback(data, status, headers, config) {
+                    isSuccessfull = false;
+                });
 
-        _currentUsername = username;
-        _isUserLogged = true;
-
-        isSuccessfull = true;
-      }
-
-      return isSuccessfull;
+            }
+        }
+        return isSuccessfull;
     }
+
+
+
 
     /**
      * Sets the user credentials into the localStorage
@@ -50,6 +69,15 @@
     function logout() {
       if (localStorage.getItem(constants.USERNAME_LOCALSTORAGE_KEY)) {
         localStorage.removeItem(constants.USERNAME_LOCALSTORAGE_KEY);
+          $http({
+              method: 'GET',
+              url: 'http://localhost:9000/makeLogout'
+          }).then(function successCallback(data, status, headers, config) {
+              alert("Success");
+
+          }, function errorCallback(data, status, headers, config) {
+
+          });
       }
 
       _currentUsername = null;

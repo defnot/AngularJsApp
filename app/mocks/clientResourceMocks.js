@@ -755,6 +755,8 @@
       $httpBackend.whenGET(/app/).passThrough();
       $httpBackend.whenGET(/calculateEMI/).passThrough();
       $httpBackend.whenGET(/calculateEPP/).passThrough();
+      $httpBackend.whenGET(/makeLogin/).passThrough();
+      $httpBackend.whenGET(/makeLogout/).passThrough();
 
       function updateClient (method, url, data) {
         console.log('data: %o', data);
