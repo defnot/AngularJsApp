@@ -2,11 +2,12 @@
   "name": "SpeedCreditJs",
   "version": "10.0.4",
   "description": "a really cool app",
-  "main": "index.js",
   "engines": {
     "npm": "2.1.x"
   },
   "scripts": {
-    "test": "mocha"
+    "start": "node index.js",
+    "test": "mocha",
+    "postinstall": "bower install && grunt build"
   }
 }
