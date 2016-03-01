@@ -8,9 +8,12 @@
 
   function OfferCtrl($http, $stateParams, $window, $filter) {
     var vm = this;
-
+    var show = true;
     //variables
     vm.offerTable = [];
+    vm.allSessionsTable = [];
+    vm.singleSessionTable = [];
+
     vm.operator = {
       id: 'op2910',
       name: 'Стойко Дамянов',
@@ -61,10 +64,13 @@
     vm.validatePositiveInteger = validatePositiveInteger;
     vm.validateForm = validateForm;
     vm.showData = showData;
+    vm.trackAllSessions = trackAllSessions;
+    vm.trackSingleSession = trackSingleSession;
+    vm.showSession = showSession;
     vm.saveApplication = saveApplication;
     vm.autoCompleteCompleted = autoCompleteCompleted;
     vm.format = 'dd-MMMM-yyyy';
-
+    vm.text = "Покажи всички потребители";
 
     init();
 
@@ -78,7 +84,19 @@
     function showData() {
       $('#dataField').removeClass('ng-hide');
     }
-
+    function showSession() {
+        if(show === true) {
+            vm.text = "Покажи само този потребител";
+            $('#allUsers').removeClass('ng-hide').addClass('ng-show');
+            $('#singleUser').removeClass('ng-show').addClass('ng-hide');
+            show = false;
+        } else {
+            vm.text = "Покажи всички потребители";
+            $('#allUsers').removeClass('ng-show').addClass('ng-hide');
+            $('#singleUser').removeClass('ng-hide').addClass('ng-show');
+            show = true;
+        }
+    }
     function validateTotalSum(input) {
       //var regexp = /^[+]?([,]\d+|\d+[,]?\d*)$/;
       var regexp = /^/;
@@ -204,7 +222,7 @@
     }
 
     function submitOfferEPP() {
-      $http.get('http://localhost:9000/calculateEPP', {
+      $http.get('https://spcreditbackend.herokuapp.com/calculateEPP', {
         params: {
           loan: vm.loan,
           annualInterest: vm.interest,
@@ -219,7 +237,18 @@
         vm.offerTable = data;
       });
     }
-
+    function trackAllSessions() {
+        $http.get('https://spcreditbackend.herokuapp.com/allSessions', {})
+            .success(function(data) {
+                vm.allSessionsTable = data;
+            });
+    }
+      function trackSingleSession() {
+          $http.get('https://spcreditbackend.herokuapp.com/singleSess', {})
+              .success(function(data) {
+                  vm.singleSessionTable = data;
+              });
+      }
     function makeOffer() {
       var option = $('#loanType')[0].selectedOptions[0].value;
 

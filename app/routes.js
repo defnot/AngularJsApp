@@ -118,8 +118,14 @@
         data: {
           requireLogin: true
         }
-      });
-
+      })
+        .state('track', {
+            url: '/track',
+            templateUrl: 'app/templates/track/track.html',
+            data: {
+                requireLogin: true
+            }
+        });
 
   }
 }());

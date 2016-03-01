@@ -43,13 +43,12 @@
 
                 $http({
                     method: 'GET',
-                    url: 'http://localhost:9000/makeLogin',
+                    url: 'https://spcreditbackend.herokuapp.com/makeLogin',
                     params: {
                         email: username,
                         password: password
                     }
                 }).then(function successCallback(data, status, headers, config) {
-                    alert("Success");
                     isSuccessfull = true;
                 }, function errorCallback(data, status, headers, config) {
                     isSuccessfull = false;
@@ -60,9 +59,6 @@
         return isSuccessfull;
     }
 
-
-
-
     /**
      * Sets the user credentials into the localStorage
      */
@@ -71,9 +67,8 @@
         localStorage.removeItem(constants.USERNAME_LOCALSTORAGE_KEY);
           $http({
               method: 'GET',
-              url: 'http://localhost:9000/makeLogout'
+              url: 'https://spcreditbackend.herokuapp.com/makeLogout'
           }).then(function successCallback(data, status, headers, config) {
-              alert("Success");
 
           }, function errorCallback(data, status, headers, config) {
 

@@ -757,6 +757,8 @@
       $httpBackend.whenGET(/calculateEPP/).passThrough();
       $httpBackend.whenGET(/makeLogin/).passThrough();
       $httpBackend.whenGET(/makeLogout/).passThrough();
+      $httpBackend.whenGET(/allSessions/).passThrough();
+      $httpBackend.whenGET(/singleSess/).passThrough();
 
       function updateClient (method, url, data) {
         console.log('data: %o', data);

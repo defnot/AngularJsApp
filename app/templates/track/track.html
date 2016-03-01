@@ -1,0 +1,26 @@
+<div ng-controller="OfferCtrl as vm">
+    <button class="btn btn-primary" ng-click="vm.trackAllSessions();" style="
+    margin-bottom: 30px">Покажи сесиите</button>
+    <div id="sessionField" style="width:70%">
+    <table class="table table-striped table-bordered table-condensed" id="table">
+        <thead>
+        <th>Id</th>
+        <th>Email</th>
+        <th>Начало на сесията</th>
+        <th>Край на сесията</th>
+        <th>Валидност</th>
+        <th>Token</th>
+        </thead>
+        <tbody>
+        <tr ng-repeat="data in vm.allSessionsTable">
+            <td>{{data.id}}</td>
+            <td>{{data.members[0].email}}</td>
+            <td>{{data.startTime}}</td>
+            <td>{{data.endTime}}</td>
+            <td>{{data.isValid}}</td>
+            <td>{{data.token}}</td>
+        </tr>
+        </tbody>
+    </table>
+    </div>
+</div>
