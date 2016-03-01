@@ -1,16 +1,13 @@
 {
-  "name": "AgrionJs",
-  "version": "1.0.0",
-  "description": "",
+  "name": "SpeedCreditJs",
+  "version": "10.0.4",
+  "description": "a really cool app",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "engines": {
+    "npm": "2.1.x"
   },
-  "author": "",
-  "license": "ISC",
-  "dependencies": {},
-  "devDependencies": {
-    "gulp": "^3.9.0",
-    "gulp-connect": "^2.2.0"
+  "scripts": {
+    "test": "mocha",
+    "postinstall": "bower install && grunt build"
   }
 }
