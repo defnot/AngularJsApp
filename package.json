@@ -1,6 +1,5 @@
 {
   "scripts": {
-    "start": "node app",
-    "postinstall": "gulp default"
+    "start": "node app"
   }
 }
