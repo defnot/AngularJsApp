@@ -204,7 +204,7 @@
     }
     ////
     function submitOffer() {
-      $http.get('http://localhost:9000/calculateEMI', {
+      $http.get('https://speedcreditbackend.herokuapp.com/calculateEMI', {
         params: {
           loan: vm.loan,
           annualInterest: vm.interest,
@@ -222,7 +222,7 @@
     }
 
     function submitOfferEPP() {
-      $http.get('https://spcreditbackend.herokuapp.com/calculateEPP', {
+      $http.get('https://speedcreditbackend.herokuapp.com/calculateEPP', {
         params: {
           loan: vm.loan,
           annualInterest: vm.interest,
@@ -238,13 +238,13 @@
       });
     }
     function trackAllSessions() {
-        $http.get('https://spcreditbackend.herokuapp.com/allSessions', {})
+        $http.get('https://speedcreditbackend.herokuapp.com/allSessions', {})
             .success(function(data) {
                 vm.allSessionsTable = data;
             });
     }
       function trackSingleSession() {
-          $http.get('https://spcreditbackend.herokuapp.com/singleSess', {})
+          $http.get('https://speedcreditbackend.herokuapp.com/singleSess', {})
               .success(function(data) {
                   vm.singleSessionTable = data;
               });

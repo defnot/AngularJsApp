@@ -43,7 +43,7 @@
 
                 $http({
                     method: 'GET',
-                    url: 'https://spcreditbackend.herokuapp.com/makeLogin',
+                    url: 'https://speedcreditbackend.herokuapp.com/makeLogin',
                     params: {
                         email: username,
                         password: password
@@ -67,7 +67,7 @@
         localStorage.removeItem(constants.USERNAME_LOCALSTORAGE_KEY);
           $http({
               method: 'GET',
-              url: 'https://spcreditbackend.herokuapp.com/makeLogout'
+              url: 'https://speedcreditbackend.herokuapp.com/makeLogout'
           }).then(function successCallback(data, status, headers, config) {
 
           }, function errorCallback(data, status, headers, config) {
