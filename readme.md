@@ -1,4 +1,3 @@
-AGRION
 
 ON FIRST ISNTALL, RUN "npm install" from the current(project) folder in order to install the dependencies
 
